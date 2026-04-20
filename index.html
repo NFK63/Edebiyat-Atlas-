@@ -3,55 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edebiyat Atlası | Teknofest Projesi</title>
+    <title>NFK Edebiyat Atlası</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background-color: #001529; color: white; overflow: hidden; }
         #welcome-screen {
             position: absolute; width: 100%; height: 100%; 
             background: radial-gradient(circle, #002140 0%, #001529 100%);
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            z-index: 9999; text-align: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999;
         }
-        .btn-container { display: flex; gap: 30px; margin-top: 40px; }
         .choice-btn {
-            padding: 25px 50px; font-size: 22px; font-weight: bold; cursor: pointer;
+            padding: 20px 40px; font-size: 22px; font-weight: bold; cursor: pointer;
             border: 2px solid #1890ff; background: rgba(24, 144, 255, 0.1); color: white; 
-            border-radius: 15px; transition: 0.3s;
+            border-radius: 50px; transition: 0.4s; margin: 10px;
         }
-        .choice-btn:hover { background: #1890ff; transform: scale(1.1); box-shadow: 0 0 20px #1890ff; }
-        #map { height: 100vh; width: 100%; display: none; }
+        .choice-btn:hover { background: #1890ff; transform: scale(1.05); }
+        #map { height: 100vh; width: 100%; display: none; background: #001529; }
         .back-btn {
             position: absolute; top: 20px; left: 20px; z-index: 1000;
-            padding: 10px 20px; background: #ff4d4f; color: white; border: none; 
-            cursor: pointer; border-radius: 8px; font-weight: bold; display: none;
+            padding: 12px 25px; background: #f5222d; color: white; border: none; 
+            cursor: pointer; border-radius: 30px; font-weight: bold; display: none;
         }
+        .custom-pin {
+            display: flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px; border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg); border: 2px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .custom-pin i { transform: rotate(45deg); font-style: normal; font-size: 16px; }
     </style>
 </head>
 <body>
 
     <div id="welcome-screen">
-        <h1 style="font-size: 50px; margin-bottom: 10px;">📚 EDEBİYAT ATLASI</h1>
-        <p style="font-size: 20px; opacity: 0.8;">Hangi türü keşfetmek istersiniz?</p>
+        <h1 style="font-size: 45px; letter-spacing: 3px; text-align:center;">NFK EDEBİYAT ATLASI</h1>
+        <p style="opacity: 0.8;">Aile ve Değerler Odaklı Türkiye Haritası</p>
         <div class="btn-container">
-            <button class="choice-btn" onclick="startApp('hikaye')">HİKAYE</button>
-            <button class="choice-btn" onclick="startApp('roman')">ROMAN</button>
+            <button class="choice-btn" onclick="startApp('hikaye')">HİKAYELER</button>
+            <button class="choice-btn" onclick="startApp('roman')">ROMANLAR</button>
         </div>
     </div>
 
-    <button class="back-btn" id="backBtn" onclick="location.reload()">⬅ Geri Dön</button>
+    <button class="back-btn" id="backBtn" onclick="location.reload()">⬅ ANA MENÜ</button>
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         var map;
         var markers = [];
+
         var veriler = {
             hikaye: [
-                { ad: "Kaşağı", yazar: "Ömer Seyfettin", yer: "Balıkesir, Gönen", koord: [40.10, 27.65], ozet: "Vicdan azabı üzerine kurulmuş bir çocukluk hikayesi." }
+                { ad: "Buzlu Dağların Sıcaklığı", yazar: "Sibel Yılmaz", yer: "Van", koord: [38.50, 43.38], renk: "#d46b08", tema: "Dayanışma", ozet: "Zor kış şartlarında birbirine destek olan bir aile." },
+                { ad: "Göç Yolunda", yazar: "Mehmet Kaya", yer: "Muş", koord: [38.73, 41.48], renk: "#52c41a", tema: "Birlik", ozet: "Sel felaketinde köyü ve aileyi koruma mücadelesi." },
+                { ad: "Dağ Tepesindeki Mektup", yazar: "Elif Akdoğan", yer: "Ağrı", koord: [39.71, 43.05], renk: "#722ed1", tema: "Bağlılık", ozet: "Mektup aracılığıyla sevgi aktarımı." },
+                { ad: "Sıcak Sofra", yazar: "Hatice Demir", yer: "Urfa", koord: [37.15, 38.79], renk: "#faad14", tema: "Paylaşım", ozet: "Sofradaki paylaşımın bağları pekiştirmesi." },
+                { ad: "Baklava Tadında Sevgi", yazar: "Can Antep", yer: "Gaziantep", koord: [37.06, 37.38], renk: "#fa541c", tema: "Birlik", ozet: "Ortak işle pekişen sevgi." },
+                { ad: "Fırtına ve Şemsiye", yazar: "Ayhan Aras", yer: "Maraş", koord: [37.57, 36.92], renk: "#1890ff", tema: "Koruma", ozet: "Tehlikeli durumda birlikte hareket." },
+                { ad: "Evlerin Önündeki Sohbet", yazar: "Zeynep Aslan", yer: "Diyarbakır", koord: [37.91, 40.23], renk: "#eb2f96", tema: "Zaman Geçirme", ozet: "Küçük olaylarla güçlenen bağlar." },
+                { ad: "Karlı Kapı", yazar: "Derya Koç", yer: "Erzurum", koord: [39.90, 41.27], renk: "#13c2c2", tema: "Destek", ozet: "Sıcak aile ortamı." },
+                { ad: "Kars’ın Akşamı", yazar: "Murat Eren", yer: "Kars", koord: [40.60, 43.09], renk: "#ad2102", tema: "Kuvvetli Bağ", ozet: "Günlük sohbetlerin değeri." },
+                { ad: "Bingöl’de Bahar", yazar: "Selma Yıldız", yer: "Bingöl", koord: [38.88, 40.49], renk: "#389e0d", tema: "Sevgi", ozet: "Bahçe işleriyle yeşeren bağlar." },
+                { ad: "Elazığ’ın Nağmeleri", yazar: "Hasan Çelik", yer: "Elazığ", koord: [38.67, 39.22], renk: "#003a8c", tema: "Anılar", ozet: "Eski şarkılarla sevgi köprüsü." },
+                { ad: "Munzur’un Suyunda", yazar: "Leyla Demir", yer: "Tunceli", koord: [39.10, 39.54], renk: "#08979c", tema: "Doğa", ozet: "Doğayla vakit geçirerek güçlenen bağlar." },
+                { ad: "Bitlis’in Akşamüstü", yazar: "Emine Kaya", yer: "Bitlis", koord: [38.39, 42.10], renk: "#873800", tema: "Pekiştirme", ozet: "Maceraları paylaşan sıcak bir aile." },
+                { ad: "Siirt’in Sıcacık Evi", yazar: "Ahmet Yıldırım", yer: "Siirt", koord: [37.92, 41.94], renk: "#d48806", tema: "Sohbet", ozet: "Veranda sohbetleriyle güçlenen bağlar." },
+                { ad: "Hakkari’nin Zirvesinde", yazar: "Zeynel Demir", yer: "Hakkari", koord: [37.57, 43.73], renk: "#237804", tema: "Dayanışma", ozet: "Zorlukların aileyi yakınlaştırması." },
+                { ad: "Şırnak’ın Rüzgarı", yazar: "Fatma Arslan", yer: "Şırnak", koord: [37.51, 42.45], renk: "#cf1322", tema: "Masallar", ozet: "Birlikte yemek ve masallarla gelen sevgi." },
+                { ad: "Erzincan’ın Serin Akşamı", yazar: "Nesrin Koç", yer: "Erzincan", koord: [39.74, 39.49], renk: "#096dd9", tema: "Yakınlaşma", ozet: "Günlük paylaşımlarla güçlenen bağlar." },
+                { ad: "Kaşağı", yazar: "Ömer Seyfettin", yer: "İstanbul", koord: [41.00, 28.97], renk: "#f5222d", tema: "Dürüstlük", ozet: "Pişmanlık üzerine bir hikaye." },
+                { ad: "Semaver", yazar: "Sait Faik", yer: "İstanbul", koord: [41.03, 28.93], renk: "#003a8c", tema: "Anne Sevgisi", ozet: "Anne ve oğul sevgisi." },
+                { ad: "Eskici", yazar: "Refik Halit Karay", yer: "Ankara", koord: [39.92, 32.85], renk: "#eb2f96", tema: "Özlem", ozet: "Memleket ve aile özlemi." },
+                { ad: "Birlikte Güçlüyüz", yazar: "Emre Kaya", yer: "Adana", koord: [36.99, 35.32], renk: "#389e0d", tema: "Mücadele", ozet: "Maddi zorluklarda aile desteği." },
+                { ad: "Aynı Çatı Altında", yazar: "Zeynep Demir", yer: "Antalya", koord: [36.88, 30.70], renk: "#096dd9", tema: "Sevgi", ozet: "Geniş aile ve farklı kuşakların uyumu." },
+                { ad: "Annenin Eli", yazar: "Fatma Yıldız", yer: "Mersin", koord: [36.81, 34.63], renk: "#cf1322", tema: "Fedakarlık", ozet: "Anne sevgisinin ailedeki önemi." },
+                { ad: "Babamın Öğrettiği", yazar: "Ahmet Arslan", yer: "Hatay", koord: [36.20, 36.16], renk: "#d48806", tema: "Değerler", ozet: "Babanın verdiği hayat dersleri." },
+                { ad: "Küçük Mutluluklar", yazar: "Zeynep Yıldız", yer: "Isparta", koord: [37.76, 30.55], renk: "#eb2f96", tema: "Küçük Anlar", ozet: "Küçük anlarla mutlu olan aile." },
+                { ad: "Geri Dönüş", yazar: "Emre Koç", yer: "Burdur", koord: [37.72, 30.28], renk: "#003a8c", tema: "Değer Anlama", ozet: "Genç bireyin aileye dönüşü." },
+                { ad: "Birlikte Başarmak", yazar: "Fatih Demir", yer: "Osmaniye", koord: [37.07, 36.24], renk: "#fa541c", tema: "Başarı", ozet: "Ailenin çocuğa verdiği sonsuz destek." }
             ],
             roman: [
-                { ad: "Çalıkuşu", yazar: "Reşat Nuri Güntekin", yer: "Bursa, Zeyniler", koord: [40.18, 29.06], ozet: "Feride'nin Anadolu'daki öğretmenlik mücadelesi." }
+                { ad: "Huzur", yazar: "A. Hamdi Tanpınar", yer: "İstanbul", koord: [41.01, 28.96], renk: "#d46b08", tema: "Estetik", ozet: "Eski-yeni çatışması." },
+                { ad: "Aşk-ı Memnu", yazar: "Halid Ziya Uşaklıgil", yer: "İstanbul", koord: [41.10, 29.05], renk: "#003a8c", tema: "Trajedi", ozet: "Yalı hayatı ve yasak aşk." },
+                { ad: "Çalıkuşu", yazar: "Reşat Nuri Güntekin", yer: "Anadolu", koord: [39.00, 35.00], renk: "#f5222d", tema: "Fedakarlık", ozet: "Feride'nin öğretmenlik serüveni." },
+                { ad: "İnce Memed", yazar: "Yaşar Kemal", yer: "Adana", koord: [37.05, 35.35], renk: "#389e0d", tema: "Adalet", ozet: "Ağalık düzenine başkaldırı." }
             ]
         };
 
@@ -61,14 +95,36 @@
             document.getElementById('backBtn').style.display = 'block';
 
             if (!map) {
-                map = L.map('map').setView([39.0, 35.2], 6);
+                map = L.map('map', {
+                    center: [38.96, 35.24],
+                    zoom: 6,
+                    minZoom: 6,
+                    maxZoom: 10,
+                    maxBounds: [[34.0, 24.0], [43.0, 46.0]]
+                });
                 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
             }
 
             markers.forEach(m => map.removeLayer(m));
+
             veriler[tur].forEach(function(item) {
-                var m = L.marker(item.koord).addTo(map)
-                    .bindPopup(`<b style="color:#1890ff; font-size:16px;">${item.ad}</b><br><i>${item.yazar}</i><hr><b>Mekan:</b> ${item.yer}<br><b>Özet:</b> ${item.ozet}`);
+                var icon = L.divIcon({
+                    className: 'custom-div-icon',
+                    html: `<div class="custom-pin" style="background-color: ${item.renk};"><i>📖</i></div>`,
+                    iconSize: [30, 42],
+                    iconAnchor: [15, 42]
+                });
+
+                var m = L.marker(item.koord, {icon: icon}).addTo(map)
+                    .bindPopup(`
+                        <div style="color:#333; min-width:180px;">
+                            <strong style="font-size:16px; color:${item.renk}">${item.ad}</strong><br>
+                            <small>${item.yazar} - ${item.yer}</small><br>
+                            <span style="background:${item.renk}; color:white; padding:2px 6px; border-radius:4px; font-size:10px;">${item.tema}</span>
+                            <hr style="margin:5px 0;">
+                            <b>Özet:</b> ${item.ozet}
+                        </div>
+                    `);
                 markers.push(m);
             });
         }
