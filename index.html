@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Aile Hikayeleri - Kırmızı Halka İkon</title>
+    <title>Aile Hikayeleri - İç Anadolu Eklendi</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
@@ -83,7 +83,6 @@
             color: #7fc9ff;
             font-style: italic;
         }
-        /* ----- KIRMIZI HALKA İKON ----- */
         .kirmizi-halka {
             background: transparent;
             border: 4px solid #ff3333;
@@ -93,7 +92,6 @@
             box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
             transition: all 0.1s ease;
         }
-        /* Hoverda biraz büyüsün */
         .kirmizi-halka:hover {
             transform: scale(1.1);
             border-width: 5px;
@@ -131,12 +129,12 @@
 <div id="harita"></div>
 <div class="panel">
     <h2>📖 Aile Hikayeleri</h2>
-    <p class="desc">88 hikaye · Her biri kırmızı halka ikon ile</p>
+    <p class="desc">100 hikaye · İç Anadolu eklendi · Kırmızı halka ikon</p>
     <div class="hikaye-listesi" id="hikayeListesi"></div>
 </div>
 
 <script>
-    // Şehir merkezleri (aynı)
+    // Şehir merkezleri (genişletilmiş)
     const sehirMerkezleri = {
         "Adana": [37.0000, 35.3213], "Antalya": [36.8841, 30.7056], "Mersin": [36.8121, 34.6415],
         "Hatay": [36.2025, 36.1607], "Isparta": [37.7648, 30.5566], "Burdur": [37.7203, 30.2908],
@@ -151,45 +149,160 @@
         "Kastamonu": [41.3887, 33.7827], "Trabzon": [41.0027, 39.7169], "İzmir": [38.4192, 27.1287],
         "Muğla": [37.2153, 28.3636], "Manisa": [38.6131, 27.4264], "Aydın": [37.8560, 27.8456],
         "Balıkesir": [39.6484, 27.8826], "Denizli": [37.7765, 29.0864], "İstanbul": [41.0082, 28.9784],
-        "Ankara": [39.9334, 32.8597], "Bursa": [40.1885, 29.0610], "Çukurova": [37.0000, 35.3213]
+        "Ankara": [39.9334, 32.8597], "Bursa": [40.1885, 29.0610], "Çukurova": [37.0000, 35.3213],
+        // İç Anadolu eklemeler
+        "Konya": [37.8714, 32.4848], "Kayseri": [38.7223, 35.4827], "Nevşehir": [38.6247, 34.7144],
+        "Kırşehir": [39.1458, 34.1639], "Aksaray": [38.3687, 34.0370], "Niğde": [37.9667, 34.6833],
+        "Karaman": [37.1811, 33.2150], "Eskişehir": [39.7767, 30.5206], "Yozgat": [39.8200, 34.8094],
+        "Sivas": [39.7483, 37.0160], "Çankırı": [40.6009, 33.6159], "Kırıkkale": [39.8468, 33.5153]
     };
 
     let tumHikayeler = [];
 
-    // Tüm hikayeler (kısa tutmak için 61-80 örneği, ama senin tüm 88 hikayen buraya gelmeli - önceki gibi)
-    // Buraya daha önceki 88 hikayenin tamamını koyman gerekiyor. Kısaca örnek:
-    for (let i=61; i<=80; i++) tumHikayeler.push({ baslik: i+") Örnek Hikaye", ozet: "Özet metni", sehir: "Adana", yazar: "Yazar" });
-    // !!! GERÇEK PROJENDE ESKİ 88 HİKAYENİN TAMAMINI BURAYA YAPIŞTIR !!!
-    // Şimdilik çalışması için bir kaç tane ekleyelim:
-    tumHikayeler = [
-        { baslik: "61) Birlikte Güçlüyüz", ozet: "Adana'da aile dayanışması", sehir: "Adana", yazar: "Emre Kaya" },
-        { baslik: "62) Aynı Çatı Altında", ozet: "Antalya'da geniş aile", sehir: "Antalya", yazar: "Zeynep Demir" },
-        { baslik: "1) Buzlu Dağların Sıcaklığı", ozet: "Van'da kış dayanışması", sehir: "Van", yazar: "Sibel Yılmaz" },
-        { baslik: "Kaşağı – Ömer Seyfettin", ozet: "Kardeş kıskançlığı", sehir: "İstanbul", yazar: "Ömer Seyfettin" },
-        { baslik: "91) Yağmurun Sesi", ozet: "Rize'de yağmur sohbeti", sehir: "Rize", yazar: "Emine Yılmaz" }
-    ];
-    // NOT: Sen kendi 88 hikayeni bu diziye ekleyeceksin. Ben kısa kestim.
+    // ===================== 1) Önceki 88 hikaye (61-80, 1-28, klasikler, 91-110) =====================
+    // 61-80 (20 adet)
+    tumHikayeler.push({ baslik: "61) Birlikte Güçlüyüz", ozet: "Adana'da yaşayan bir aile, maddi zorluklar yaşar ama herkes elinden geleni yaparak birbirine destek olur.", sehir: "Adana", yazar: "Emre Kaya" });
+    tumHikayeler.push({ baslik: "62) Aynı Çatı Altında", ozet: "Antalya'da yaşayan geniş bir aile, farklı kuşaklarla birlikte yaşar.", sehir: "Antalya", yazar: "Zeynep Demir" });
+    tumHikayeler.push({ baslik: "63) Annenin Eli", ozet: "Mersin'de bir çocuk, annesinin fedakârlıklarını fark eder.", sehir: "Mersin", yazar: "Fatma Yıldız" });
+    tumHikayeler.push({ baslik: "64) Babamın Öğrettiği", ozet: "Hatay'da bir baba çocuğuna hayat dersleri verir.", sehir: "Hatay", yazar: "Ahmet Arslan" });
+    tumHikayeler.push({ baslik: "65) Kardeşlik", ozet: "Isparta'da iki kardeş zor durumda birbirine destek olur.", sehir: "Isparta", yazar: "Elif Koç" });
+    tumHikayeler.push({ baslik: "66) Bayram Sabahı", ozet: "Burdur'da bayramda aile bir araya gelir.", sehir: "Burdur", yazar: "Hasan Yıldırım" });
+    tumHikayeler.push({ baslik: "67) Evin Sessizliği", ozet: "Osmaniye'de çocuklar gidince ev sessizleşir.", sehir: "Osmaniye", yazar: "Ayşe Arslan" });
+    tumHikayeler.push({ baslik: "68) Bir Sofra Etrafında", ozet: "Antalya'da aile birlikte yemek yer.", sehir: "Antalya", yazar: "Mehmet Demir" });
+    tumHikayeler.push({ baslik: "69) Küçük Bir Özür", ozet: "Adana'da bir çocuk hatasını kabul eder.", sehir: "Adana", yazar: "Dilan Koç" });
+    tumHikayeler.push({ baslik: "70) Eller Birleşince", ozet: "Mersin'de aile birlikte sorun çözer.", sehir: "Mersin", yazar: "Kerem Yılmaz" });
+    tumHikayeler.push({ baslik: "71) Paylaşılan Yük", ozet: "Antalya'da taşınma sürecinde aile birlikte çalışır.", sehir: "Antalya", yazar: "Selin Yılmaz" });
+    tumHikayeler.push({ baslik: "72) Büyükannenin Hikâyesi", ozet: "Hatay'da büyükanne geçmişi anlatır.", sehir: "Hatay", yazar: "Ayla Koç" });
+    tumHikayeler.push({ baslik: "73) Sessiz Destek", ozet: "Mersin'de aile öğrenciye destek olur.", sehir: "Mersin", yazar: "Burcu Demir" });
+    tumHikayeler.push({ baslik: "74) Birlikte Onarmak", ozet: "Adana'da aile evi tamir eder.", sehir: "Adana", yazar: "Hakan Arslan" });
+    tumHikayeler.push({ baslik: "75) Küçük Mutluluklar", ozet: "Isparta'da aile küçük anlarla mutlu olur.", sehir: "Isparta", yazar: "Zeynep Yıldız" });
+    tumHikayeler.push({ baslik: "76) Geri Dönüş", ozet: "Burdur'da genç ailesine geri döner.", sehir: "Burdur", yazar: "Emre Koç" });
+    tumHikayeler.push({ baslik: "77) Birlikte Başarmak", ozet: "Osmaniye'de aile çocuğa destek olur.", sehir: "Osmaniye", yazar: "Fatih Demir" });
+    tumHikayeler.push({ baslik: "78) Akşam Çayı", ozet: "Antalya'da aile çay saatinde buluşur.", sehir: "Antalya", yazar: "Derya Arslan" });
+    tumHikayeler.push({ baslik: "79) Birlikte Susmak", ozet: "Mersin'de aile zor durumda birlikte olur.", sehir: "Mersin", yazar: "Kerem Arslan" });
+    tumHikayeler.push({ baslik: "80) Son Lokma", ozet: "Adana'da aile sofrada paylaşım yapar.", sehir: "Adana", yazar: "Elif Demir" });
 
-    // Jitter fonksiyonu
+    // 1-28 (28 adet)
+    tumHikayeler.push({ baslik: "1) Buzlu Dağların Sıcaklığı", ozet: "Van’ın soğuk kışında bir aile, kar fırtınasına rağmen birbirine destek olur.", sehir: "Van", yazar: "Sibel Yılmaz" });
+    tumHikayeler.push({ baslik: "2) Göç Yolunda", ozet: "Muş’taki bir köyde yaşayan Ali ailesi, sel ve zor koşullarla karşılaşır.", sehir: "Muş", yazar: "Mehmet Kaya" });
+    tumHikayeler.push({ baslik: "3) Dağ Tepesindeki Mektup", ozet: "Ağrı’da bir kız, babasının yazdığı mektubu bulur ve ailesinin sevgisini hisseder.", sehir: "Ağrı", yazar: "Elif Akdoğan" });
+    tumHikayeler.push({ baslik: "4) Sıcak Sofra", ozet: "Urfa’da bir aile, akşam yemeklerinde bir araya gelir, büyükbabaya destek olur.", sehir: "Urfa", yazar: "Hatice Demir" });
+    tumHikayeler.push({ baslik: "5) Baklava Tadında Sevgi", ozet: "Antep’te bir aile bayram için birlikte baklava yapar.", sehir: "Gaziantep", yazar: "Can Antep" });
+    tumHikayeler.push({ baslik: "6) Fırtına ve Şemsiye", ozet: "Maraş’ta bir fırtınada çocukları korumak için aile birlikte hareket eder.", sehir: "Kahramanmaraş", yazar: "Ayhan Aras" });
+    tumHikayeler.push({ baslik: "7) Evlerin Önündeki Sohbet", ozet: "Diyarbakır’da elektrik kesilince mum ışığında sohbet ederler.", sehir: "Diyarbakır", yazar: "Zeynep Aslan" });
+    tumHikayeler.push({ baslik: "8) Karlı Kapı", ozet: "Erzurum’da karla kaplı köyde aile birlikte kahvaltı eder.", sehir: "Erzurum", yazar: "Derya Koç" });
+    tumHikayeler.push({ baslik: "9) Kars’ın Akşamı", ozet: "Kars’ta gün batarken aile birlikte çay içer, çocuklar okul anlatır.", sehir: "Kars", yazar: "Murat Eren" });
+    tumHikayeler.push({ baslik: "10) Bingöl’de Bahar", ozet: "Bingöl’de bahar gelince aile bahçe işleri yapar.", sehir: "Bingöl", yazar: "Selma Yıldız" });
+    tumHikayeler.push({ baslik: "11) Elazığ’ın Nağmeleri", ozet: "Elazığ’da akşam bahçede eski şarkılar ve anılar paylaşılır.", sehir: "Elazığ", yazar: "Hasan Çelik" });
+    tumHikayeler.push({ baslik: "12) Munzur’un Suyunda", ozet: "Tunceli’de Munzur kenarında piknik yapan aile doğayı dinler.", sehir: "Tunceli", yazar: "Leyla Demir" });
+    tumHikayeler.push({ baslik: "13) Bitlis’in Akşamüstü", ozet: "Bitlis’te gün batarken aile evin önünde oturur.", sehir: "Bitlis", yazar: "Emine Kaya" });
+    tumHikayeler.push({ baslik: "14) Siirt’in Sıcacık Evi", ozet: "Siirt’te sıcak yaz günü verandada sohbet.", sehir: "Siirt", yazar: "Ahmet Yıldırım" });
+    tumHikayeler.push({ baslik: "15) Hakkari’nin Zirvesinde", ozet: "Hakkari’de dağ köyünde aile yamaçta yürüyüş yapar.", sehir: "Hakkari", yazar: "Zeynel Demir" });
+    tumHikayeler.push({ baslik: "16) Şırnak’ın Rüzgarı", ozet: "Şırnak’ta rüzgarlı günde evde yemek yapılır, hikayeler anlatılır.", sehir: "Şırnak", yazar: "Fatma Arslan" });
+    tumHikayeler.push({ baslik: "17) Van’ın Göl Kenarı", ozet: "Van Gölü kenarında piknik, manzara eşliğinde vakit.", sehir: "Van", yazar: "Murat Yılmaz" });
+    tumHikayeler.push({ baslik: "18) Muş’un Yaylası", ozet: "Muş’ta yaylada hayvanlarla ilgilenilir.", sehir: "Muş", yazar: "Sevim Tekin" });
+    tumHikayeler.push({ baslik: "19) Erzincan’ın Serin Akşamı", ozet: "Erzincan’da bahçede oturup çocukların okul anıları dinlenir.", sehir: "Erzincan", yazar: "Nesrin Koç" });
+    tumHikayeler.push({ baslik: "20) Ağrı’nın Tepelerinde", ozet: "Ağrı’nın tepelerinde yürüyüş, doğa sevgisi öğretilir.", sehir: "Ağrı", yazar: "Baran Yıldırım" });
+    tumHikayeler.push({ baslik: "21) Elazığ’ın Meydanı", ozet: "Elazığ’da pazar alışverişi, küçük sürprizlerle sevgi.", sehir: "Elazığ", yazar: "Hacer Çelik" });
+    tumHikayeler.push({ baslik: "22) Bingöl’ün Yeşil Yaylası", ozet: "Bingöl yaylasında hayvan otlatmak, doğa içinde sorumluluk.", sehir: "Bingöl", yazar: "Cemre Yıldız" });
+    tumHikayeler.push({ baslik: "23) Tunceli’nin Göl Kenarı", ozet: "Tunceli’de göl kenarında piknik, yemek ve hikayeler.", sehir: "Tunceli", yazar: "Elif Demir" });
+    tumHikayeler.push({ baslik: "24) Kars’ın Rüzgarlı Tepeleri", ozet: "Kars’ta rüzgarlı yürüyüş, dayanışma öğretilir.", sehir: "Kars", yazar: "Orhan Eren" });
+    tumHikayeler.push({ baslik: "25) Şırnak’ın Sıcak Evi", ozet: "Şırnak’ta akşam yemek hazırlığı ve küçük oyunlar.", sehir: "Şırnak", yazar: "Hatun Arslan" });
+    tumHikayeler.push({ baslik: "26) Van’ın Sakin Günleri", ozet: "Van Gölü kenarında eski aile hikayeleri anlatılır.", sehir: "Van", yazar: "Selim Yılmaz" });
+    tumHikayeler.push({ baslik: "27) Muş’un Akşam Rüzgarı", ozet: "Muş’ta akşam ev önünde günün olayları anlatılır.", sehir: "Muş", yazar: "Figen Tekin" });
+    tumHikayeler.push({ baslik: "28) Erzurum’un Karla Kaplı Köyü", ozet: "Erzurum’da kar yağarken evde yemek hazırlığı, sıcaklık.", sehir: "Erzurum", yazar: "Murat Koç" });
+
+    // Klasik edebiyat (20 adet)
+    tumHikayeler.push({ baslik: "Kaşağı – Ömer Seyfettin", ozet: "Kardeş kıskançlığı, yalan ve pişmanlık.", sehir: "İstanbul", yazar: "Ömer Seyfettin" });
+    tumHikayeler.push({ baslik: "Falaka – Ömer Seyfettin", ozet: "Otoriter disiplin ve korku.", sehir: "İstanbul", yazar: "Ömer Seyfettin" });
+    tumHikayeler.push({ baslik: "Semaver – Sait Faik Abasıyanık", ozet: "Anne-oğul sevgisi, sade hayat.", sehir: "İstanbul", yazar: "Sait Faik" });
+    tumHikayeler.push({ baslik: "Eskici – Refik Halit Karay", ozet: "Gurbette aile özlemi.", sehir: "Ankara", yazar: "Refik Halit Karay" });
+    tumHikayeler.push({ baslik: "Oğlumuz – Tarık Buğra", ozet: "Evlat sevgisi, fedakarlık.", sehir: "Bursa", yazar: "Tarık Buğra" });
+    tumHikayeler.push({ baslik: "Kağnı – Sabahattin Ali", ozet: "Yoksul anne mücadelesi, fedakarlık.", sehir: "Erzurum", yazar: "Sabahattin Ali" });
+    tumHikayeler.push({ baslik: "Ayran – Sabahattin Ali", ozet: "Çocuk ailesine yardım eder, sorumluluk.", sehir: "Erzurum", yazar: "Sabahattin Ali" });
+    tumHikayeler.push({ baslik: "Son Kuşlar – Sait Faik Abasıyanık", ozet: "Değişen değerler, eski-yeni aile.", sehir: "İstanbul", yazar: "Sait Faik" });
+    tumHikayeler.push({ baslik: "Mahalle Kahvesi – Sait Faik", ozet: "Mahalle ve komşuluk ilişkileri.", sehir: "İstanbul", yazar: "Sait Faik" });
+    tumHikayeler.push({ baslik: "Dağ Evi – Yaşar Kemal", ozet: "Doğayla iç içe dayanışma.", sehir: "Çukurova", yazar: "Yaşar Kemal" });
+    tumHikayeler.push({ baslik: "Ay Büyürken Uyuyamam – Necati Cumalı", ozet: "Çocuk gözüyle aile sevgisi.", sehir: "İzmir", yazar: "Necati Cumalı" });
+    tumHikayeler.push({ baslik: "Dağa Çıkan Kurt – Halide Edib Adıvar", ozet: "Kendini ve ailesini koruma.", sehir: "İstanbul", yazar: "Halide Edib" });
+    tumHikayeler.push({ baslik: "Küçük Ağa – Tarık Buğra", ozet: "Çocuğun sorumluluk alması.", sehir: "Balıkesir", yazar: "Tarık Buğra" });
+    tumHikayeler.push({ baslik: "Mendil Altında – Memduh Şevket Esendal", ozet: "Küçük olaylarla sevgi.", sehir: "İstanbul", yazar: "M.Ş. Esendal" });
+    tumHikayeler.push({ baslik: "Ekmek Kavgası – Orhan Kemal", ozet: "Fakir ailenin mücadelesi, dayanışma.", sehir: "Adana", yazar: "Orhan Kemal" });
+    tumHikayeler.push({ baslik: "Hanende Melek – Sabahattin Ali", ozet: "Kadının aile baskısı altında yalnızlığı.", sehir: "Erzurum", yazar: "Sabahattin Ali" });
+    tumHikayeler.push({ baslik: "Gurbet Hikâyeleri – Refik Halit Karay", ozet: "Uzakta aile özlemi.", sehir: "Ankara", yazar: "Refik Halit" });
+    tumHikayeler.push({ baslik: "Bir Serencam – Yakup Kadri Karaosmanoğlu", ozet: "Genç birey aile desteği arar.", sehir: "İstanbul", yazar: "Yakup Kadri" });
+    tumHikayeler.push({ baslik: "Susuz Yaz – Necati Cumalı", ozet: "Kardeş çatışması.", sehir: "Muğla", yazar: "Necati Cumalı" });
+    tumHikayeler.push({ baslik: "Yarın Diye Bir Şey Yoktur – Tarık Buğra", ozet: "Gelecek kaygısıyla dayanışma.", sehir: "Bursa", yazar: "Tarık Buğra" });
+
+    // 91-110 (20 adet)
+    tumHikayeler.push({ baslik: "91) Yağmurun Sesi", ozet: "Rize’de yağmur altında aile bir araya gelir, eski anılar.", sehir: "Rize", yazar: "Emine Yılmaz" });
+    tumHikayeler.push({ baslik: "92) Köyde Bir Gün", ozet: "Ordu’da birlikte çalışma, ortak emek.", sehir: "Ordu", yazar: "Hasan Arslan" });
+    tumHikayeler.push({ baslik: "93) Dalgaların Arasında", ozet: "Sinop’ta baba balık tutmayı öğretir.", sehir: "Sinop", yazar: "Kerem Demir" });
+    tumHikayeler.push({ baslik: "94) Yayla Akşamı", ozet: "Artvin’de ateş başında hikayeler.", sehir: "Artvin", yazar: "Zeynep Kaya" });
+    tumHikayeler.push({ baslik: "95) Sahilde Bir Gün", ozet: "Samsun’da sahilde oyunlar, ortak anılar.", sehir: "Samsun", yazar: "Mehmet Koç" });
+    tumHikayeler.push({ baslik: "96) Baba Ocağı", ozet: "Giresun’da köye dönüş, ailenin değeri.", sehir: "Giresun", yazar: "Ali Yıldız" });
+    tumHikayeler.push({ baslik: "97) Kış Gecesi", ozet: "Kastamonu’da soba başında sohbet.", sehir: "Kastamonu", yazar: "Fatma Demir" });
+    tumHikayeler.push({ baslik: "98) Anne Kokusu", ozet: "Trabzon’da anne yemekleri, güven duygusu.", sehir: "Trabzon", yazar: "Ayşe Arslan" });
+    tumHikayeler.push({ baslik: "99) Birlikte Beklemek", ozet: "Rize’de hastane bekleyişi, destek.", sehir: "Rize", yazar: "Yusuf Koç" });
+    tumHikayeler.push({ baslik: "100) Sonbahar Yaprakları", ozet: "Ordu’da yaprak toplarken sohbet.", sehir: "Ordu", yazar: "Elif Yılmaz" });
+    tumHikayeler.push({ baslik: "101) Zeytin Hasadı", ozet: "İzmir’de zeytin toplama, ortak emek.", sehir: "İzmir", yazar: "Ayşe Demir" });
+    tumHikayeler.push({ baslik: "102) Deniz Kenarında", ozet: "Muğla’da gün batımı izlemek.", sehir: "Muğla", yazar: "Mehmet Yıldız" });
+    tumHikayeler.push({ baslik: "103) Bağ Bozumu", ozet: "Manisa’da üzüm hasadı, eğlence.", sehir: "Manisa", yazar: "Hasan Koç" });
+    tumHikayeler.push({ baslik: "104) Kahvaltı Sofrası", ozet: "Aydın’da uzun kahvaltı, sohbet.", sehir: "Aydın", yazar: "Elif Arslan" });
+    tumHikayeler.push({ baslik: "105) Yazlık Ev", ozet: "İzmir’de tatil, oyunlar, deniz.", sehir: "İzmir", yazar: "Kerem Demir" });
+    tumHikayeler.push({ baslik: "106) Balıkçı Kasabası", ozet: "Balıkesir’de balıkçı ailesi dayanışması.", sehir: "Balıkesir", yazar: "Ali Yılmaz" });
+    tumHikayeler.push({ baslik: "107) Lavanta Kokusu", ozet: "Isparta’da lavanta tarlasında çalışma.", sehir: "Isparta", yazar: "Zeynep Kaya" });
+    tumHikayeler.push({ baslik: "108) Köy Düğünü", ozet: "Denizli’de düğün, akraba buluşması.", sehir: "Denizli", yazar: "Murat Arslan" });
+    tumHikayeler.push({ baslik: "109) Akşamüstü Çayı", ozet: "İzmir’de her gün çay saati.", sehir: "İzmir", yazar: "Dilan Yıldız" });
+    tumHikayeler.push({ baslik: "110) Birlikte Tamir", ozet: "Muğla’da tekne tamiri, ortak çaba.", sehir: "Muğla", yazar: "Emre Arslan" });
+
+    // ===================== 2) İÇ ANADOLU İÇİN YENİ HİKAYELER (29'dan 40'a kadar) =====================
+    tumHikayeler.push({ baslik: "29) Bozkırda Bir Sabah", ozet: "Konya'nın bozkırında yaşayan bir aile, sabahın erken saatlerinde tarlaya gider. Birlikte çalışarak hem ekmek parası kazanır hem de bağlarını güçlendirirler.", sehir: "Konya", yazar: "Mehmet Taş" });
+    tumHikayeler.push({ baslik: "30) Peri Bacalarının Gölgesinde", ozet: "Nevşehir'de bir aile, peri bacaları arasında yaptıkları piknikte eski günleri anar. Çocuklara bölgenin tarihini ve aile büyüklerini tanıtırlar.", sehir: "Nevşehir", yazar: "Ayşe Kaymak" });
+    tumHikayeler.push({ baslik: "31) Ankara'nın İlk Karı", ozet: "Başkentte yaşayan bir aile, yılın ilk karında evde toplanır, birlikte kestane pişirir ve sohbet eder. Küçük anılar büyük mutluluklar yaratır.", sehir: "Ankara", yazar: "Caner Yılmaz" });
+    tumHikayeler.push({ baslik: "32) Kayseri'nin Mantısı", ozet: "Kayseri'de hafta sonu tüm aile mantı yapmak için mutfakta toplanır. Herkesin bir görevi vardır; ortaya çıkan lezzet sadece yemek değil, birlikteliktir.", sehir: "Kayseri", yazar: "Zeynep Bulut" });
+    tumHikayeler.push({ baslik: "33) Kırşehir'de Cuma Sohbetleri", ozet: "Kırşehir'de dede, torunlarına her cuma akşamı eski aile hikayelerini anlatır. Bu sohbetler sayesinde nesiller arası bağ kuvvetlenir.", sehir: "Kırşehir", yazar: "Hasan Kılıç" });
+    tumHikayeler.push({ baslik: "34) Aksaray'da Bağ Bozumu", ozet: "Aksaray'da aile birlikte üzüm bağlarında çalışır. Çocuklar da yardım edince işler erken biter ve akşam hep birlikte şarkılar söylerler.", sehir: "Aksaray", yazar: "Gülseren Ak" });
+    tumHikayeler.push({ baslik: "35) Niğde'nin Elma Bahçeleri", ozet: "Niğde'de elma toplama mevsiminde tüm aile bahçede bir araya gelir. Toplanan elmalar hem satılır hem de komşularla paylaşılır.", sehir: "Niğde", yazar: "Ali Demirtaş" });
+    tumHikayeler.push({ baslik: "36) Karaman'da Yayla Göçü", ozet: "Karaman yaylalarına göç eden aile, birlikte çadır kurar, hayvanları otlatır. Akşam ateş başında türküler söylerler.", sehir: "Karaman", yazar: "Hatice Özkan" });
+    tumHikayeler.push({ baslik: "37) Eskişehir'in Porsuk'unda", ozet: "Eskişehir'de bir aile, Porsuk çayı kenarında yürüyüş yapar, çocuklar ördekleri besler. Bu basit anılar aileyi mutlu eder.", sehir: "Eskişehir", yazar: "Murat Sevim" });
+    tumHikayeler.push({ baslik: "38) Yozgat'ın Soğuk Kışı", ozet: "Yozgat'ın çetin kışında aile, sobayı yakar, birlikte kışlık erişe keser. Dışarıda tipi varken içerisi sıcak ve samimidir.", sehir: "Yozgat", yazar: "Sema Yüksel" });
+    tumHikayeler.push({ baslik: "39) Sivas'ta Yılbaşı Gecesi", ozet: "Sivas'ta bir aile, yılbaşı gecesi birlikte yemek yer, eski yılı uğurlar. Yeni yıl dilekleri aile büyükleri tarafından okunur.", sehir: "Sivas", yazar: "Cengiz Yıldırım" });
+    tumHikayeler.push({ baslik: "40) Çankırı'nın Tuz Mağarası", ozet: "Çankırı'da bir aile, tuz mağarasını gezmeye gider. Çocuklara hem doğayı hem de aile işletmeciliğini öğretirler.", sehir: "Çankırı", yazar: "Songül Aydın" });
+    // Kırıkkale için de bir hikaye ekleyelim (41 yapalım)
+    tumHikayeler.push({ baslik: "41) Kırıkkale'de Fabrika İşçileri", ozet: "Kırıkkale'de bir işçi ailesi, babalarının fabrikada kazandığı ekmekle geçinir. Çocuklar birlikte ders çalışır, anneleri onlara destek olur.", sehir: "Kırıkkale", yazar: "Nesrin Gök" });
+
+    // Toplam şu an: 20(61-80) +28(1-28) +20(klasik) +20(91-110) +13 (İç Anadolu 29-41) = 101 hikaye.
+    // Hadi 100'e tamamlamak için bir tane daha ekleyelim (42)
+    tumHikayeler.push({ baslik: "42) Konya'nın Mevlana Sohbetleri", ozet: "Konya'da bir aile, Mevlana müzesini ziyaret eder, ardından evde sema gösterisi yaparlar. Manevi bağları kuvvetlenir.", sehir: "Konya", yazar: "Rıza Terzi" });
+
+    // Şimdi hikayeleri numaraya göre sırala (önceki sistem)
+    function extractNumber(title) {
+        const match = title.match(/^(\d+)\)/);
+        if (match) return parseInt(match[1], 10);
+        return 9999; // numarasız klasikler sona
+    }
+    tumHikayeler.sort((a, b) => extractNumber(a.baslik) - extractNumber(b.baslik));
+
+    // Jitter (her hikaye ayrı nokta)
     function jitterCoord(coord, idx) {
-        let latJ = (Math.sin(idx*12.34)*0.025) + (Math.cos(idx*7.89)*0.015);
-        let lngJ = (Math.cos(idx*23.45)*0.025) + (Math.sin(idx*9.87)*0.015);
-        return [coord[0]+latJ, coord[1]+lngJ];
+        const latJ = (Math.sin(idx * 12.34) * 0.025) + (Math.cos(idx * 7.89) * 0.015);
+        const lngJ = (Math.cos(idx * 23.45) * 0.025) + (Math.sin(idx * 9.87) * 0.015);
+        return [coord[0] + latJ, coord[1] + lngJ];
     }
 
-    // Harita
-    const map = L.map('harita').setView([39.0, 35.0], 6);
+    // Harita kurulumu
+    const map = L.map('harita').setView([39.5, 33.5], 6); // İç Anadolu daha görünür
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; OpenStreetMap & CartoDB',
         maxZoom: 18, minZoom: 5
     }).addTo(map);
 
-    // Türkiye sınırları
     const turkiyeBounds = [[35.5, 25.5], [42.5, 45.0]];
     map.setMaxBounds(turkiyeBounds);
     map.on('drag', () => map.panInsideBounds(turkiyeBounds, { animate: false }));
 
-    // Özel ikon (kırmızı halka)
+    // Kırmızı halka ikon
     const halkaIkon = L.divIcon({
         html: '<div style="width:28px; height:28px;"></div>',
         className: 'kirmizi-halka',
@@ -198,11 +311,16 @@
     });
 
     const listeDiv = document.getElementById('hikayeListesi');
+    listeDiv.innerHTML = '';
+
     tumHikayeler.forEach((hik, idx) => {
         let city = hik.sehir;
         if (city === "Çukurova") city = "Adana";
         const merkez = sehirMerkezleri[city];
-        if (!merkez) return;
+        if (!merkez) {
+            console.warn("Koordinat yok:", city);
+            return;
+        }
         const konum = jitterCoord(merkez, idx);
         const popupHtml = `
             <div class="popup-title">📖 ${hik.baslik}</div>
@@ -213,20 +331,23 @@
             .bindPopup(popupHtml, { className: 'custom-popup', maxWidth: 280 })
             .addTo(map);
 
-        // Panel kartı
         const kart = document.createElement('div');
         kart.className = 'hikaye-karti';
         kart.innerHTML = `
             <div class="hikaye-baslik">${hik.baslik}</div>
-            <div class="hikaye-ozet">${hik.ozet.substring(0,90)}...</div>
+            <div class="hikaye-ozet">${hik.ozet.substring(0, 90)}${hik.ozet.length > 90 ? '...' : ''}</div>
             <div class="hikaye-sehir">📍 ${hik.sehir} · ${hik.yazar}</div>
         `;
         kart.addEventListener('click', () => {
             map.setView(konum, 12);
             marker.openPopup();
+            kart.style.background = '#2a6b7c';
+            setTimeout(() => kart.style.background = '#1e2e3b', 1000);
         });
         listeDiv.appendChild(kart);
     });
+
+    console.log(`${tumHikayeler.length} hikaye yüklendi. İç Anadolu eklendi.`);
 </script>
 </body>
 </html>
