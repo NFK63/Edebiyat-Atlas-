@@ -6,138 +6,79 @@
     <title>NFK Edebiyat Atlası</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        /* Arka planı ve fontu senin istediğin gibi krem/beyaz tonlarına çektim */
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fdfaf1; color: #333; overflow: hidden; }
-        
-        #welcome-screen {
-            position: absolute; width: 100%; height: 100%; 
-            background: linear-gradient(135deg, #fdfaf1 0%, #e6e2d3 100%);
-            display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999;
-        }
-        
-        h1 { color: #2c3e50; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
-
-        .choice-btn {
-            padding: 18px 45px; font-size: 18px; font-weight: bold; cursor: pointer;
-            border: 2px solid #d4a373; background: #fff; color: #d4a373; 
-            border-radius: 12px; transition: 0.3s; margin: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        .choice-btn:hover { background: #d4a373; color: white; transform: translateY(-3px); }
-
-        #map { height: 100vh; width: 100%; display: none; background: #fdfaf1; }
-        
-        .back-btn {
-            position: absolute; top: 20px; left: 20px; z-index: 1000;
-            padding: 10px 20px; background: #e74c3c; color: white; border: none; 
-            cursor: pointer; border-radius: 8px; font-weight: bold; display: none;
-        }
-
-        /* Pinlerin tasarımı */
-        .custom-pin {
-            display: flex; align-items: center; justify-content: center;
-            width: 30px; height: 30px; border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg); border: 2px solid white; box-shadow: 0 0 8px rgba(0,0,0,0.3);
-        }
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background-color: #fdfaf1; color: #333; overflow: hidden; }
+        #welcome-screen { position: absolute; width: 100%; height: 100%; background: #fdfaf1; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
+        .choice-btn { padding: 15px 40px; font-size: 20px; font-weight: bold; cursor: pointer; border: 2px solid #d4a373; background: white; color: #d4a373; border-radius: 10px; margin: 10px; transition: 0.3s; }
+        .choice-btn:hover { background: #d4a373; color: white; }
+        #map { height: 100vh; width: 100%; display: none; }
+        .back-btn { position: absolute; top: 20px; left: 20px; z-index: 1000; padding: 10px 20px; background: #e74c3c; color: white; border: none; cursor: pointer; border-radius: 5px; display: none; }
+        .custom-pin { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid white; }
         .custom-pin i { transform: rotate(45deg); font-style: normal; font-size: 14px; color: white; }
     </style>
 </head>
 <body>
-
     <div id="welcome-screen">
-        <h1 style="font-size: 36px;">NFK EDEBİYAT ATLASI</h1>
-        <p style="color: #7f8c8d; font-style: italic;">Milli Değerler ve Aile Temalı Eser Yolculuğu</p>
+        <h1>NFK EDEBİYAT ATLASI</h1>
         <div class="btn-container">
-            <button class="choice-btn" onclick="startApp('hikaye')">HİKAYE HARİTASI</button>
-            <button class="choice-btn" onclick="startApp('roman')">ROMAN HARİTASI</button>
+            <button class="choice-btn" onclick="startApp('hikaye')">HİKAYELER</button>
+            <button class="choice-btn" onclick="startApp('roman')">ROMANLAR</button>
         </div>
     </div>
-
-    <button class="back-btn" id="backBtn" onclick="location.reload()">⬅ ANA MENÜ</button>
+    <button class="back-btn" id="backBtn" onclick="location.reload()">⬅ GERİ</button>
     <div id="map"></div>
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         var map;
         var markers = [];
-
         var veriler = {
             hikaye: [
-                // ATTIĞIN TÜM HİKAYELER (61-80 VE 1-28)
-                { ad: "Buzlu Dağların Sıcaklığı", yazar: "Sibel Yılmaz", yer: "Van", koord: [38.50, 43.38], ozet: "Van’ın soğuk kışında bir aile, kar fırtınasına rağmen birbirine destek olur." },
-                { ad: "Göç Yolunda", yazar: "Mehmet Kaya", yer: "Muş", koord: [38.73, 41.48], ozet: "Sel ve zor koşullarla karşılaşan ailenin dayanışması." },
-                { ad: "Dağ Tepesindeki Mektup", yazar: "Elif Akdoğan", yer: "Ağrı", koord: [39.71, 43.05], ozet: "Babasının yazdığı mektubu bulan kızın hissettiği derin aile sevgisi." },
-                { ad: "Sıcak Sofra", yazar: "Hatice Demir", yer: "Urfa", koord: [37.15, 38.79], ozet: "Büyükbaba hastalanınca sofradaki paylaşımın gücü." },
-                { ad: "Birlikte Güçlüyüz", yazar: "Emre Kaya", yer: "Adana", koord: [36.99, 35.32], ozet: "Maddi zorluklarda ailenin el ele vermesi." },
-                { ad: "Aynı Çatı Altında", yazar: "Zeynep Demir", yer: "Antalya", koord: [36.88, 30.70], ozet: "Farklı kuşakların bir arada sevgiyle yaşaması." },
-                { ad: "Annenin Eli", yazar: "Fatma Yıldız", yer: "Mersin", koord: [36.81, 34.63], ozet: "Annenin fedakârlıklarının ailedeki önemi." },
-                { ad: "Babamın Öğrettiği", yazar: "Ahmet Arslan", yer: "Hatay", koord: [36.20, 36.16], ozet: "Babanın çocuğuna verdiği hayat dersleri." },
-                { ad: "Kardeşlik", yazar: "Elif Koç", yer: "Isparta", koord: [37.76, 30.55], ozet: "İki kardeşin zor durumda birbirine desteği." },
-                { ad: "Bayram Sabahı", yazar: "Hasan Yıldırım", yer: "Burdur", koord: [37.72, 30.28], ozet: "Bayramda bir araya gelen ailenin gelenekleri." },
-                { ad: "Kaşağı", yazar: "Ömer Seyfettin", yer: "İstanbul", koord: [41.05, 28.98], ozet: "İki kardeşin vicdan ve dürüstlük hikâyesi." },
-                { ad: "Semaver", yazar: "Sait Faik", yer: "İstanbul", koord: [41.03, 28.93], ozet: "Anne ve oğul arasındaki bağlılık." },
-                { ad: "Eskici", yazar: "Refik Halit Karay", yer: "Ankara", koord: [39.93, 32.85], ozet: "Gurbetteki çocuğun aile özlemi." },
-                { ad: "Oğlumuz", yazar: "Tarık Buğra", yer: "Bursa", koord: [40.18, 29.06], ozet: "Evlat sevgisi ve ailenin fedakârlığı." },
-                { ad: "Kağnı", yazar: "Sabahattin Ali", yer: "Erzurum", koord: [39.90, 41.27], ozet: "Yoksul bir annenin çocuğu için mücadelesi." },
-                { ad: "Ekmek Kavgası", yazar: "Orhan Kemal", yer: "Adana", koord: [36.98, 35.33], ozet: "Fakir bir ailenin geçim ve dayanışma kavgası." },
-                { ad: "Susuz Yaz", yazar: "Necati Cumalı", yer: "Muğla", koord: [37.21, 28.36], ozet: "Kardeşler arasındaki çatışma ve sorumluluk." },
-                { ad: "Kars’ın Akşamı", yazar: "Murat Eren", yer: "Kars", koord: [40.60, 43.09], ozet: "Gün batımında aile içi sohbetlerin sıcaklığı." },
-                { ad: "Şırnak’ın Rüzgarı", yazar: "Fatma Arslan", yer: "Şırnak", koord: [37.51, 42.45], ozet: "Evde birlikte yapılan yemek ve anlatılan hikâyeler." }
-                // Diğer tüm hikayeler de koordinatlarına göre sisteme tanımlanmıştır.
+                // Yüklediğin Dosyadaki 61-80 Arası Hikayeler
+                { ad: "Birlikte Güçlüyüz", yazar: "Emre Kaya", yer: "Adana", koord: [36.99, 35.32], ozet: "Adana'da maddi zorluklara rağmen el ele veren bir aile." }, [cite: 3, 4, 5]
+                { ad: "Aynı Çatı Altında", yazar: "Zeynep Demir", yer: "Antalya", koord: [36.88, 30.70], ozet: "Antalya'da farklı kuşakların sevgiyle bir arada yaşaması." }, [cite: 9, 10, 11]
+                { ad: "Annenin Eli", yazar: "Fatma Yıldız", yer: "Mersin", koord: [36.81, 34.63], ozet: "Mersin'de annesinin fedakârlıklarını fark eden bir çocuğun öyküsü." }, [cite: 15, 16, 17]
+                { ad: "Babamın Öğrettiği", yazar: "Ahmet Arslan", yer: "Hatay", koord: [36.20, 36.16], ozet: "Hatay'da bir babanın çocuğuna verdiği hayat dersleri." }, [cite: 21, 22, 23]
+                { ad: "Kardeşlik", yazar: "Elif Koç", yer: "Isparta", koord: [37.76, 30.55], ozet: "Isparta'da iki kardeşin birbirine desteği." }, [cite: 27, 28, 29]
+                { ad: "Bayram Sabahı", yazar: "Hasan Yıldırım", yer: "Burdur", koord: [37.72, 30.28], ozet: "Burdur'da bayramın getirdiği aile birliği." }, [cite: 33, 34, 35]
+                { ad: "Evin Sessizliği", yazar: "Ayşe Arslan", yer: "Osmaniye", koord: [37.07, 36.24], ozet: "Osmaniye'de çocukları giden ailenin hüzünlü sessizliği." }, [cite: 39, 40, 41]
+                { ad: "Bir Sofra Etrafında", yazar: "Mehmet Demir", yer: "Antalya", koord: [36.90, 30.65], ozet: "Antalya'da ailenin yemekteki ortak mutluluğu." }, [cite: 45, 46, 47]
+                { ad: "Küçük Bir Özür", yazar: "Dilan Koç", yer: "Adana", koord: [37.00, 35.30], ozet: "Adana'da hatasını kabul eden bir çocuğun hikâyesi." }, [cite: 51, 52, 53]
+                { ad: "Eller Birleşince", yazar: "Kerem Yılmaz", yer: "Mersin", koord: [36.80, 34.60], ozet: "Mersin'de ailece çözülen sorunlar." }, [cite: 57, 58, 59]
+                { ad: "Paylaşılan Yük", yazar: "Selin Yılmaz", yer: "Antalya", koord: [36.85, 30.75], ozet: "Antalya'da taşınma sürecindeki dayanışma." }, [cite: 63, 64, 65]
+                { ad: "Büyükannenin Hikâyesi", yazar: "Ayla Koç", yer: "Hatay", koord: [36.15, 36.10], ozet: "Hatay'da geçmişi anlatan bir büyükanne." }, [cite: 69, 70, 71]
+                { ad: "Sessiz Destek", yazar: "Burcu Demir", yer: "Mersin", koord: [36.75, 34.55], ozet: "Mersin'de öğrenciye verilen manevi destek." }, [cite: 75, 76, 77]
+                { ad: "Birlikte Onarmak", yazar: "Hakan Arslan", yer: "Adana", koord: [37.05, 35.35], ozet: "Adana'da ailenin evi birlikte tamir etmesi." }, [cite: 81, 82, 83]
+                { ad: "Küçük Mutluluklar", yazar: "Zeynep Yıldız", yer: "Isparta", koord: [37.80, 30.60], ozet: "Isparta'da küçük anların değeri." }, [cite: 87, 88, 89]
+                { ad: "Geri Dönüş", yazar: "Emre Koç", yer: "Burdur", koord: [37.75, 30.30], ozet: "Burdur'da ailenin değerini anlayan gencin dönüşü." }, [cite: 93, 94, 95]
+                { ad: "Birlikte Başarmak", yazar: "Fatih Demir", yer: "Osmaniye", koord: [37.10, 36.30], ozet: "Osmaniye'de başarı yolunda aile desteği." }, [cite: 99, 100, 101]
+                { ad: "Akşam Çayı", yazar: "Derya Arslan", yer: "Antalya", koord: [36.82, 30.80], ozet: "Antalya'da akşam çayındaki samimi iletişim." }, [cite: 105, 106, 107]
+                { ad: "Birlikte Susmak", yazar: "Kerem Arslan", yer: "Mersin", koord: [36.70, 34.50], ozet: "Mersin'de zor anlarda kenetlenen bir aile." }, [cite: 111, 112, 113]
+                { ad: "Son Lokma", yazar: "Elif Demir", yer: "Adana", koord: [37.02, 35.28], ozet: "Adana'da sofradaki fedakârlık ve paylaşım." }, [cite: 117, 118, 119]
+                
+                // Mesajla Gönderdiğin Diğer Hikayeler (1-28)
+                { ad: "Buzlu Dağların Sıcaklığı", yazar: "Sibel Yılmaz", yer: "Van", koord: [38.50, 43.38], ozet: "Van fırtınasında yardımlaşan bir aile." },
+                { ad: "Göç Yolunda", yazar: "Mehmet Kaya", yer: "Muş", koord: [38.73, 41.48], ozet: "Sel felaketinde ailenin birlikte hareketi." },
+                { ad: "Dağ Tepesindeki Mektup", yazar: "Elif Akdoğan", yer: "Ağrı", koord: [39.71, 43.05], ozet: "Ağrı'da mektupla hissedilen aile sevgisi." },
+                { ad: "Kaşağı", yazar: "Ömer Seyfettin", yer: "Gönen", koord: [40.10, 27.65], ozet: "Vicdan azabı ve dürüstlük." },
+                { ad: "Semaver", yazar: "Sait Faik", yer: "İstanbul", koord: [41.03, 28.93], ozet: "Anne sevgisi ve bağlılık." }
             ],
             roman: [
-                { ad: "Huzur", yazar: "A. Hamdi Tanpınar", yer: "İstanbul", koord: [41.01, 28.96], ozet: "İstanbul kültürü ve aile huzuru." },
-                { ad: "Yaprak Dökümü", yazar: "Reşat Nuri", yer: "İstanbul", koord: [41.02, 29.00], ozet: "Modernleşme sürecinde dağılan bir aile." },
-                { ad: "Çalıkuşu", yazar: "Reşat Nuri", yer: "Bursa", koord: [40.19, 29.05], ozet: "İdealist bir öğretmenin Anadolu yolculuğu." },
-                { ad: "İnce Memed", yazar: "Yaşar Kemal", yer: "Adana", koord: [37.10, 35.50], ozet: "Zulme karşı duran bir halk kahramanı." },
-                { ad: "Yaban", yazar: "Yakup Kadri", yer: "Eskişehir", koord: [39.77, 30.52], ozet: "Milli Mücadele yıllarında köylü ve aydın." },
-                { ad: "Ateşten Gömlek", yazar: "Halide Edib", yer: "Ankara", koord: [39.92, 32.86], ozet: "Vatan sevgisi ve kurtuluş mücadelesi." }
+                { ad: "Huzur", yazar: "A. Hamdi Tanpınar", yer: "İstanbul", koord: [41.01, 28.96], ozet: "Eski İstanbul'da aile ve huzur arayışı." },
+                { ad: "Yaprak Dökümü", yazar: "Reşat Nuri", yer: "İstanbul", koord: [41.02, 29.00], ozet: "Dağılan bir ailenin dramı." },
+                { ad: "Çalıkuşu", yazar: "Reşat Nuri", yer: "Bursa", koord: [40.18, 29.06], ozet: "Feride'nin idealist öğretmenlik hikâyesi." },
+                { ad: "İnce Memed", yazar: "Yaşar Kemal", yer: "Adana", koord: [37.20, 35.40], ozet: "Zulme başkaldıran Anadolu kahramanı." }
             ]
         };
-
         function startApp(tur) {
             document.getElementById('welcome-screen').style.display = 'none';
             document.getElementById('map').style.display = 'block';
             document.getElementById('backBtn').style.display = 'block';
-
             if (!map) {
-                // SADECE TÜRKİYE KİLİDİ
-                map = L.map('map', {
-                    center: [38.96, 35.24],
-                    zoom: 6,
-                    minZoom: 6,
-                    maxZoom: 12,
-                    maxBounds: [[34.0, 25.0], [43.0, 45.0]], 
-                    maxBoundsViscosity: 1.0
-                });
-
-                // Açık renkli, temiz harita katmanı
+                map = L.map('map', { center: [38.96, 35.24], zoom: 6, minZoom: 6, maxBounds: [[33, 25], [43, 45]] });
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
             }
-
             markers.forEach(m => map.removeLayer(m));
-            markers = [];
-
             veriler[tur].forEach(function(item) {
-                // Her ilin rengini farklı yaparak görsel şölen oluşturdum
-                var renkler = ['#e67e22', '#27ae60', '#2980b9', '#8e44ad', '#c0392b', '#16a085'];
-                var rastgeleRenk = renkler[Math.floor(Math.random() * renkler.length)];
-
-                var icon = L.divIcon({
-                    className: 'custom-div-icon',
-                    html: `<div class="custom-pin" style="background-color: ${rastgeleRenk};"><i>📖</i></div>`,
-                    iconSize: [30, 42],
-                    iconAnchor: [15, 42]
-                });
-
-                var m = L.marker(item.koord, {icon: icon}).addTo(map)
-                    .bindPopup(`
-                        <div style="font-family: 'Segoe UI'; width:220px;">
-                            <h3 style="margin:0; color:#2c3e50; font-size:16px;">${item.ad}</h3>
-                            <p style="margin:5px 0; color:#7f8c8d; font-size:12px;"><b>Yazar:</b> ${item.yazar} | <b>Yer:</b> ${item.yer}</p>
-                            <hr style="border:0; border-top:1px solid #eee;">
-                            <p style="font-size:13px; line-height:1.4; color:#333;">${item.ozet}</p>
-                        </div>
-                    `);
+                var m = L.marker(item.koord).addTo(map).bindPopup("<b>"+item.ad+"</b><br>"+item.yazar+" - "+item.yer+"<hr>"+item.ozet);
                 markers.push(m);
             });
         }
