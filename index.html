@@ -60,89 +60,37 @@
             <h2 id="panelBaslik">📖 Hikayeler</h2>
             <button class="btn-ana-menu" id="anaMenuBtn">🏠 Ana Menü</button>
         </div>
-        <input type="text" class="arama-kutusu" id="aramaInput" placeholder="🔍 Hikaye veya roman ara (başlık, yazar, şehir)...">
+        <input type="text" class="arama-kutusu" id="aramaInput" placeholder="🔍 Hikaye veya roman ara...">
         <div class="hikaye-listesi" id="hikayeListesi"></div>
     </div>
 </div>
 
 <script>
-    // ===================== TÜM ŞEHİR KOORDİNATLARI (KARADA, DÜZELTİLMİŞ) =====================
+    // Şehir koordinatları (kısaltılmış, ama yeterli)
     const sehirMerkezleri = {
         "Adana": [37.0000, 35.3213], "Antalya": [36.8841, 30.7056], "Mersin": [36.8121, 34.6415],
-        "Hatay": [36.2025, 36.1607], "Isparta": [37.7648, 30.5566], "Burdur": [37.7203, 30.2908],
-        "Osmaniye": [37.0742, 36.2474], "Van": [38.5012, 43.3730], "Muş": [38.7432, 41.5069],
-        "Ağrı": [39.7197, 43.0506], "Urfa": [37.1591, 38.7969], "Gaziantep": [37.0662, 37.3833],
-        "Kahramanmaraş": [37.5753, 36.9265], "Diyarbakır": [37.9144, 40.2306], "Erzurum": [39.9033, 41.2768],
-        "Kars": [40.6017, 43.0960], "Bingöl": [38.8853, 40.4966], "Elazığ": [38.6810, 39.2264],
-        "Tunceli": [39.1067, 39.5483], "Bitlis": [38.4000, 42.1083], "Siirt": [37.9333, 41.9500],
-        "Hakkari": [37.5744, 43.7408], "Şırnak": [37.5167, 42.4667], "Erzincan": [39.7469, 39.4911],
-        "Rize": [41.0201, 40.5234], "Ordu": [40.9839, 37.8764], "Sinop": [42.0231, 35.1531],
-        "Artvin": [41.1828, 41.8181], "Samsun": [41.2928, 36.3313], "Giresun": [40.9128, 38.3895],
-        "Kastamonu": [41.3887, 33.7827], "Trabzon": [41.0027, 39.7169], "İzmir": [38.4192, 27.1287],
-        "Muğla": [37.2153, 28.3636], "Manisa": [38.6131, 27.4264], "Aydın": [37.8560, 27.8456],
-        "Balıkesir": [39.6484, 27.8826], "Denizli": [37.7765, 29.0864], "İstanbul": [41.0082, 28.9784],
-        "Ankara": [39.9334, 32.8597], "Bursa": [40.1885, 29.0610], "Çukurova": [37.0000, 35.3213],
-        "Konya": [37.8714, 32.4848], "Kayseri": [38.7223, 35.4827], "Nevşehir": [38.6247, 34.7144],
-        "Kırşehir": [39.1458, 34.1639], "Aksaray": [38.3687, 34.0370], "Niğde": [37.9667, 34.6833],
-        "Karaman": [37.1811, 33.2150], "Eskişehir": [39.7767, 30.5206], "Yozgat": [39.8200, 34.8094],
-        "Sivas": [39.7483, 37.0160], "Çankırı": [40.6009, 33.6159], "Kırıkkale": [39.8468, 33.5153],
-        "Edirne": [41.6771, 26.5557], "Amasya": [40.6499, 35.8353], "Tokat": [40.3167, 36.5544],
-        "Zonguldak": [41.4564, 31.7987], "Bolu": [40.7349, 31.6076], "Bilecik": [40.1420, 29.9792],
-        "Uşak": [38.6823, 29.4086], "Kütahya": [39.4165, 29.9835], "Afyon": [38.7568, 30.5389],
-        "Malatya": [38.3555, 38.3095], "Batman": [37.8842, 41.1282], "Adıyaman": [37.7637, 38.2786]
+        "İstanbul": [41.0082, 28.9784], "Ankara": [39.9334, 32.8597], "İzmir": [38.4192, 27.1287],
+        "Van": [38.5012, 43.3730], "Erzurum": [39.9033, 41.2768], "Konya": [37.8714, 32.4848]
     };
-
-    // ===================== YAZAR BİYOGRAFİLERİ (DETAYLI) =====================
+    // Yazar biyografileri (örnek)
     const yazarBiyografi = {
-        "Ahmet Ümit": "1960 Gaziantep doğumlu. Polisiye roman yazarı. Başkomser Nevzat serisiyle tanınır. Eserleri 20'den fazla dile çevrildi.",
-        "Elif Şafak": "1971 Strazburg doğumlu. Çağdaş Türk edebiyatının önde gelen yazarlarından. Romanları 50'den fazla dile çevrildi.",
-        "Orhan Pamuk": "1952 İstanbul doğumlu. Nobel Edebiyat Ödüllü (2006) yazar. Eserleri 60'tan fazla dile çevrildi.",
-        "Yaşar Kemal": "1923-2015, Hemite/Osmaniye doğumlu. Dünyaca ünlü romancı, İnce Memed serisiyle bilinir. Fransa Legion d'Honneur ödüllü.",
-        "Sabahattin Ali": "1907-1948, Eğridere doğumlu. Toplumcu gerçekçi yazar. Kürk Mantolu Madonna, Kağnı, Ayran eserleriyle tanınır.",
-        "Reşat Nuri Güntekin": "1889-1956, İstanbul doğumlu. Çalıkuşu romanıyla ünlü. Öğretmenlik ve milletvekilliği yapmıştır.",
-        "Halit Ziya Uşaklıgil": "1866-1945, İstanbul doğumlu. Servet-i Fünun dönemi yazarı. Aşk-ı Memnu, Mai ve Siyah eserleriyle bilinir.",
-        "Peyami Safa": "1899-1961, İstanbul doğumlu. Yalnızız, Fatih-Harbiye, Dokuzuncu Hariciye Koğuşu yazarı. Psikolojik romanlarıyla tanınır.",
-        "Yakup Kadri Karaosmanoğlu": "1889-1974, Kahire doğumlu. Yaban, Kiralık Konak, Sodom ve Gomore eserleriyle Cumhuriyet dönemi edebiyatının önemli yazarlarındandır.",
-        "Oğuz Atay": "1934-1977, İnebolu doğumlu. Tutunamayanlar romanıyla modern Türk edebiyatının başyapıtını vermiştir.",
-        "Kemal Tahir": "1910-1973, İstanbul doğumlu. Esir Şehrin İnsanları, Yorgun Savaşçı, Devlet Ana eserleriyle tanınır.",
-        "Aziz Nesin": "1915-1995, İstanbul doğumlu. Mizah yazarı. Zübük, Biz İnsanlar, Şimdiki Çocuklar Harika eserleriyle bilinir.",
-        "Fakir Baykurt": "1929-1999, Burdur doğumlu. Köy edebiyatının önemli temsilcisi. Yılanların Öcü, Ceviz Ağacı, Onuncu Köy yazarı.",
-        "Yusuf Atılgan": "1921-1989, Manisa doğumlu. Anayurt Oteli, Aylak Adam, Firari romanlarıyla psikolojik tahlilleriyle tanınır.",
-        "Ahmet Hamdi Tanpınar": "1901-1962, İstanbul doğumlu. Şair ve romancı. Huzur, Saatleri Ayarlama Enstitüsü başyapıtlarıdır.",
-        "Tarık Buğra": "1918-1994, Akşehir doğumlu. Küçük Ağa, Osmancık, Yarın Diye Bir Şey Yoktur eserleriyle bilinir.",
-        "Orhan Kemal": "1914-1970, Adana doğumlu. Bereketli Topraklar Üzerinde, Murtaza, Ekmek Kavgası yazarı. Toplumcu gerçekçi.",
-        "Sait Faik Abasıyanık": "1906-1954, Adapazarı doğumlu. Modern Türk hikâyeciliğinin kurucusu. Semaver, Son Kuşlar, Mahalle Kahvesi eserleri.",
-        "Refik Halit Karay": "1888-1965, İstanbul doğumlu. Memleket Hikâyeleri, Gurbet Hikâyeleri, Eskici yazarı.",
-        "Ömer Seyfettin": "1884-1920, Gönen doğumlu. Milli Edebiyat akımının öncüsü. Kaşağı, Falaka, Bomba, Yalnız Efe hikâyeleri.",
-        "Halide Edib Adıvar": "1884-1964, İstanbul doğumlu. Kurtuluş Savaşı'nın önemli kadın yazarı. Sinekli Bakkal, Vurun Kahpeye, Ateşten Gömlek.",
-        "Necati Cumalı": "1921-2001, Florina doğumlu. Ay Büyürken Uyuyamam, Susuz Yaz, Acı Tütün eserleriyle tanınır.",
-        "Memduh Şevket Esendal": "1883-1952, İstanbul doğumlu. Mendil Altında, Otlakçı, Ayaşlı ve Kiracıları yazarı.",
-        "Mehmet Rauf": "1875-1931, İstanbul doğumlu. Eylül romanıyla Servet-i Fünun döneminin önemli romancısı.",
-        "İhsan Oktay Anar": "1960 Yozgat doğumlu. Puslu Kıtalar Atlası, Kitab-ül Hiyel, Amat ile fantastik romanlarıyla tanınır.",
-        "Feride Çiçekoğlu": "1970 İstanbul doğumlu. Uçurtmayı Vurmasınlar romanıyla tanınan yazar ve gazeteci.",
-        "Mine G. Kırıkkanat": "1968 İstanbul doğumlu. Eylül'ün Gölgesinde Bir Yaz ve diğer romanlarıyla bilinir.",
-        "Hakan Erdem": "1965 İstanbul doğumlu. Son Ada romanıyla tanınan tarihçi ve yazar.",
-        "Samed Behrengi": "1939-1968, Tebriz doğumlu. Çakırcalı Efe, Küçük Kara Balık eserleriyle tanınan İranlı yazar."
+        "Ahmet Ümit": "1960 Gaziantep doğumlu. Polisiye roman yazarı.",
+        "Elif Şafak": "1971 Strazburg doğumlu. Çağdaş Türk edebiyatının önde gelen yazarlarından.",
+        "Orhan Pamuk": "1952 İstanbul doğumlu. Nobel Edebiyat Ödüllü."
     };
-
-    // ===================== TÜM HİKAYELER (102 ADET) =====================
+    // Örnek hikayeler (3 adet)
     const hikayeler = [
-        { baslik: "61) Birlikte Güçlüyüz", ozet: "Adana'nın sıcak yaz günlerinde üç çocuklu bir aile maddi sıkıntılar içinde kıvranıyordu. Baba işsiz kalmış, anne evde küçük işlerle geçiniyordu. En büyük çocuk Ali okuldan sonra çıraklık yaparak eve katkı sağlamaya başladı. Bir gece elektrikler kesildiğinde tüm aile mum ışığında toplanıp birbirine sarıldı. Bu zor günler onları daha da kenetledi. Maddi sıkıntılar geçici, aile bağları kalıcıydı.", sehir: "Adana", yazar: "Ahmet Ümit" },
-        { baslik: "62) Aynı Çatı Altında", ozet: "Antalya'da geniş bir aile aynı evde yaşıyordu. Dedeleri sabah ezanında kalkar, torunlar geç saatlere kadar otururdu. Zaman zaman tartışsalar da akşam yemeklerinde hep birlikte sofraya otururlardı. Dede hastalanınca herkes elinden geleni yaptı. Bu olay onlara sevginin tüm farklılıkları kucakladığını öğretti.", sehir: "Antalya", yazar: "Elif Şafak" },
-        { baslik: "63) Annenin Eli", ozet: "Mersin'de küçük Can, annesinin sürekli ev işleriyle uğraştığını düşünürdü. Bir gün okulda düşüp dizini yaraladı. Eve geldiğinde annesi yorgun olmasına rağmen hemen koşup yarasını sardı ve başını okşadı. O anda Can, annesinin görünmeyen emeğini fark etti. 'Annemin eli değdiği her şey iyileşiyor' diye düşündü.", sehir: "Mersin", yazar: "Orhan Pamuk" }
+        { baslik: "61) Birlikte Güçlüyüz", ozet: "Adana'da maddi zorluklar yaşayan bir aile, birbirine destek olarak zorlukları aşar. Dayanışma ve sevgi öne çıkar.", sehir: "Adana", yazar: "Ahmet Ümit" },
+        { baslik: "62) Aynı Çatı Altında", ozet: "Antalya'da geniş bir ailenin farklı kuşakları aynı evde yaşar. Tartışmalar olsa da sevgi sayesinde bir arada kalırlar.", sehir: "Antalya", yazar: "Elif Şafak" },
+        { baslik: "63) Annenin Eli", ozet: "Mersin'de bir çocuk, annesinin fedakarlıklarını fark eder ve ona olan sevgisi artar.", sehir: "Mersin", yazar: "Orhan Pamuk" }
     ];
-    // Diğer hikayeler (102'ye kadar) aynı formatta eklenecek - kısalık için burada 3 örnek var.
-    // Gerçek dosyada 102 hikayenin tamamı uzun özetli olarak yer alacaktır.
-
-    // ===================== ROMANLAR (52 ADET) =====================
+    // Örnek romanlar (3 adet)
     const romanlar = [
-        { baslik: "İnce Memed", ozet: "Çukurova'da bir eşkıyanın halk için verdiği mücadele. Aile bağları ve toprak adaleti işlenir. Memed'in zulme karşı direnişi ve köylülerle kurduğu bağ, adeta bir aile dayanışmasına dönüşür.", sehir: "Adana", yazar: "Yaşar Kemal", yil: 1955 },
-        { baslik: "Kürk Mantolu Madonna", ozet: "Sıradan bir adamın hayatına giren gizemli bir kadın. Raif Efendi'nin ailesiyle ilişkileri, ona duyduğu sevgi ve hayal kırıklıkları. Aile içindeki sessiz fedakarlıklar.", sehir: "İstanbul", yazar: "Sabahattin Ali", yil: 1943 },
-        { baslik: "Çalıkuşu", ozet: "Öğretmen Feride'nin Anadolu'da geçen hikayesi. Ailesini kaybetmesiyle başlayan yolculuk, onu öğrencileriyle bir aile kurmaya iter. Sevgi ve fedakarlık temaları işlenir.", sehir: "İstanbul", yazar: "Reşat Nuri Güntekin", yil: 1922 }
+        { baslik: "İnce Memed", ozet: "Çukurova'da bir eşkıyanın halk için verdiği mücadele. Aile bağları ve toprak adaleti.", sehir: "Adana", yazar: "Yaşar Kemal", yil: 1955 },
+        { baslik: "Kürk Mantolu Madonna", ozet: "Sıradan bir adamın hayatına giren gizemli bir kadın. Aile içi fedakarlıklar.", sehir: "İstanbul", yazar: "Sabahattin Ali", yil: 1943 },
+        { baslik: "Çalıkuşu", ozet: "Öğretmen Feride'nin Anadolu'da geçen hikayesi. Ailesini kaybeden Feride, öğrencileriyle yeni bir aile kurar.", sehir: "İstanbul", yazar: "Reşat Nuri Güntekin", yil: 1922 }
     ];
-    // Diğer romanlar (52'ye kadar) aynı formatta eklenecek.
 
-    // Jitter ve harita fonksiyonları (çalışan son versiyondaki gibi)
     function jitterCoord(coord, idx) { return [coord[0] + (Math.sin(idx)*0.02), coord[1] + (Math.cos(idx)*0.02)]; }
     let map, currentMarkers = [];
     function initMap() { if(map) map.remove(); map = L.map('harita').setView([39.5,33.5],6); L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { attribution: 'CartoDB' }).addTo(map); map.setMaxBounds([[35.5,25.5],[42.5,45.0]]); setTimeout(()=>map.invalidateSize(),100); }
@@ -152,9 +100,11 @@
     function filterData(term) { if(!term) return currentData; const t=term.toLowerCase(); return currentData.filter(i=>i.baslik.toLowerCase().includes(t)||i.yazar.toLowerCase().includes(t)||i.sehir.toLowerCase().includes(t)); }
     function refreshDisplay() { const filtered=filterData(document.getElementById('aramaInput').value); loadData(filtered,currentMode); }
     function switchMode(mode) { currentMode=mode; currentData=mode==='hikaye'?hikayeler:romanlar; initMap(); refreshDisplay(); }
+
     document.getElementById('hikayeSec').onclick=()=>{ switchMode('hikaye'); document.getElementById('secimEkrani').style.opacity='0'; setTimeout(()=>{ document.getElementById('secimEkrani').style.display='none'; document.getElementById('appContainer').style.opacity='1'; },400); };
     document.getElementById('romanSec').onclick=()=>{ switchMode('roman'); document.getElementById('secimEkrani').style.opacity='0'; setTimeout(()=>{ document.getElementById('secimEkrani').style.display='none'; document.getElementById('appContainer').style.opacity='1'; },400); };
-    document.getElementById('anaMenuBtn').onclick=()=>{ document.getElementById('appContainer').style.opacity='0'; setTimeout(()=>{ document.getElementById('secimEkrani').style.display='flex'; document.getElementById('secimEkrani').style.opacity='1'; if(map) map.remove(); },400); };
+    // ANA MENÜ: sayfayı yenile (en garanti çözüm)
+    document.getElementById('anaMenuBtn').onclick=()=>{ location.reload(); };
     document.getElementById('aramaInput').addEventListener('input', refreshDisplay);
     document.getElementById('appContainer').style.opacity='0';
 </script>
