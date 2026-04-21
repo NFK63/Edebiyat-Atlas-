@@ -2,517 +2,133 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Edebiyat Atlası - Hikayeler ve Romanlar</title>
+    <title>Edebiyat Atlası - Demo</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
-            background: #0a1a1f;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .app-container {
-            display: flex;
-            height: 100vh;
-            width: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        #harita {
-            flex: 3;
-            height: 100vh;
-        }
-        .panel {
-            flex: 1;
-            background: #0f1a24;
-            color: #eef4ff;
-            overflow-y: auto;
-            padding: 20px 12px;
-            box-shadow: -4px 0 20px rgba(0,0,0,0.6);
-            border-left: 3px solid #ff9f4a;
-        }
-        .panel h2 {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-            border-bottom: 2px solid #ff9f4a;
-            display: inline-block;
-            padding-bottom: 5px;
-            color: #ff9f4a;
-        }
-        .panel p.desc {
-            font-size: 0.75rem;
-            color: #aac8e0;
-            margin-bottom: 20px;
-            margin-top: 8px;
-        }
-        .hikaye-listesi {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .hikaye-karti {
-            background: #1e2e3b;
-            border-radius: 14px;
-            padding: 10px 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-left: 4px solid #ff9f4a;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        }
-        .hikaye-karti:hover {
-            background: #2a4455;
-            transform: translateX(4px);
-        }
-        .hikaye-baslik {
-            font-weight: bold;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-            color: #ffb86b;
-        }
-        .hikaye-ozet {
-            font-size: 0.7rem;
-            color: #cddcec;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .hikaye-sehir {
-            font-size: 0.65rem;
-            margin-top: 6px;
-            color: #7fc9ff;
-            font-style: italic;
-        }
-        .kirmizi-halka {
-            background: transparent;
-            border: 4px solid #ff3333;
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
-            transition: all 0.1s ease;
-        }
-        .mavi-halka {
-            background: transparent;
-            border: 4px solid #3399ff;
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
-            transition: all 0.1s ease;
-        }
-        .kirmizi-halka:hover, .mavi-halka:hover {
-            transform: scale(1.1);
-            border-width: 5px;
-        }
-        .secim-ekrani {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0a1a1f;
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(8px);
-            transition: opacity 0.5s ease;
-        }
-        .secim-kutusu {
-            background: #0f1a24;
-            padding: 40px 50px;
-            border-radius: 40px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border: 1px solid #ff9f4a;
-            max-width: 90%;
-        }
-        .secim-kutusu h1 {
-            color: #ffb86b;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        .secim-kutusu p {
-            color: #aac8e0;
-            margin-bottom: 30px;
-            font-size: 1rem;
-        }
-        .secim-butonlari {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .secim-butonu {
-            background: #1e2e3b;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 60px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #eef4ff;
-            border-left: 4px solid;
-        }
-        .secim-butonu:first-child {
-            border-color: #ff3333;
-        }
-        .secim-butonu:last-child {
-            border-color: #3399ff;
-        }
-        .secim-butonu:hover {
-            transform: scale(1.05);
-            background: #2a4455;
-        }
-        @media (max-width: 600px) {
-            .secim-butonlari { gap: 15px; }
-            .secim-butonu { padding: 10px 20px; font-size: 1rem; }
-            .secim-kutusu { padding: 25px 30px; }
-        }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #0f1a24; }
-        ::-webkit-scrollbar-thumb { background: #ff9f4a; border-radius: 10px; }
-        .custom-popup .leaflet-popup-content-wrapper {
-            background: #1e2e3b;
-            color: #f0f0f0;
-            border-radius: 16px;
-            border-left: 4px solid #ff9f4a;
-        }
-        .custom-popup .leaflet-popup-tip { background: #1e2e3b; }
-        .popup-title {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #ffb86b;
-            margin-bottom: 6px;
-        }
-        .popup-summary { font-size: 0.8rem; line-height: 1.4; }
-        .popup-meta { font-size: 0.7rem; color: #aaa; margin-top: 8px; }
+        body { display: flex; height: 100vh; font-family: 'Segoe UI', sans-serif; background: #0a1a1f; }
+        #harita { flex: 3; }
+        .panel { flex: 1; background: #0f1a24; color: white; overflow-y: auto; padding: 20px; border-left: 3px solid #ff9f4a; }
+        .hikaye-karti { background: #1e2e3b; border-radius: 12px; padding: 10px; margin-bottom: 10px; cursor: pointer; border-left: 4px solid #ff9f4a; }
+        .kirmizi-halka { border: 4px solid #ff3333; border-radius: 50%; width: 28px; height: 28px; background: transparent; }
+        .mavi-halka { border: 4px solid #3399ff; border-radius: 50%; width: 28px; height: 28px; background: transparent; }
+        .custom-popup .leaflet-popup-content-wrapper { background: #1e2e3b; color: #f0f0f0; border-radius: 16px; }
+        .popup-title { color: #ffb86b; font-weight: bold; font-size: 1rem; margin-bottom: 6px; }
+        .popup-summary { font-size: 0.75rem; line-height: 1.4; margin-bottom: 8px; }
+        .popup-biyografi { font-size: 0.7rem; color: #aaa; border-top: 1px solid #444; padding-top: 6px; margin-top: 6px; }
     </style>
 </head>
 <body>
-<div class="secim-ekrani" id="secimEkrani">
-    <div class="secim-kutusu">
-        <h1>📚 Edebiyat Atlası</h1>
-        <p>Hangi dünyayı keşfetmek istersin?</p>
-        <div class="secim-butonlari">
-            <button class="secim-butonu" id="hikayeSec">📖 Hikayeler</button>
-            <button class="secim-butonu" id="romanSec">📕 Romanlar</button>
-        </div>
-    </div>
-</div>
-<div class="app-container" id="appContainer">
-    <div id="harita"></div>
-    <div class="panel" id="panel">
-        <h2 id="panelBaslik">📖 Hikayeler</h2>
-        <p class="desc" id="panelDesc">Tüm hikayeler · Kırmızı halka</p>
-        <div class="hikaye-listesi" id="hikayeListesi"></div>
-    </div>
+<div id="harita"></div>
+<div class="panel" id="panel">
+    <h2>📖 Edebiyat Atlası</h2>
+    <div id="hikayeListesi"></div>
 </div>
 
 <script>
-    // --------------------------------------------------------------
-    // ŞEHİR KOORDİNATLARI (genişletilmiş)
-    // --------------------------------------------------------------
     const sehirMerkezleri = {
-        "Adana": [37.0000, 35.3213], "Antalya": [36.8841, 30.7056], "Mersin": [36.8121, 34.6415],
-        "Hatay": [36.2025, 36.1607], "Isparta": [37.7648, 30.5566], "Burdur": [37.7203, 30.2908],
-        "Osmaniye": [37.0742, 36.2474], "Van": [38.5012, 43.3730], "Muş": [38.7432, 41.5069],
-        "Ağrı": [39.7197, 43.0506], "Urfa": [37.1591, 38.7969], "Gaziantep": [37.0662, 37.3833],
-        "Kahramanmaraş": [37.5753, 36.9265], "Diyarbakır": [37.9144, 40.2306], "Erzurum": [39.9033, 41.2768],
-        "Kars": [40.6017, 43.0960], "Bingöl": [38.8853, 40.4966], "Elazığ": [38.6810, 39.2264],
-        "Tunceli": [39.1067, 39.5483], "Bitlis": [38.4000, 42.1083], "Siirt": [37.9333, 41.9500],
-        "Hakkari": [37.5744, 43.7408], "Şırnak": [37.5167, 42.4667], "Erzincan": [39.7469, 39.4911],
-        "Rize": [41.0201, 40.5234], "Ordu": [40.9839, 37.8764], "Sinop": [42.0231, 35.1531],
-        "Artvin": [41.1828, 41.8181], "Samsun": [41.2928, 36.3313], "Giresun": [40.9128, 38.3895],
-        "Kastamonu": [41.3887, 33.7827], "Trabzon": [41.0027, 39.7169], "İzmir": [38.4192, 27.1287],
-        "Muğla": [37.2153, 28.3636], "Manisa": [38.6131, 27.4264], "Aydın": [37.8560, 27.8456],
-        "Balıkesir": [39.6484, 27.8826], "Denizli": [37.7765, 29.0864], "İstanbul": [41.0082, 28.9784],
-        "Ankara": [39.9334, 32.8597], "Bursa": [40.1885, 29.0610], "Çukurova": [37.0000, 35.3213],
-        "Konya": [37.8714, 32.4848], "Kayseri": [38.7223, 35.4827], "Nevşehir": [38.6247, 34.7144],
-        "Kırşehir": [39.1458, 34.1639], "Aksaray": [38.3687, 34.0370], "Niğde": [37.9667, 34.6833],
-        "Karaman": [37.1811, 33.2150], "Eskişehir": [39.7767, 30.5206], "Yozgat": [39.8200, 34.8094],
-        "Sivas": [39.7483, 37.0160], "Çankırı": [40.6009, 33.6159], "Kırıkkale": [39.8468, 33.5153],
-        "Edirne": [41.6771, 26.5557], "Amasya": [40.6499, 35.8353], "Tokat": [40.3167, 36.5544],
-        "Zonguldak": [41.4564, 31.7987], "Bolu": [40.7349, 31.6076], "Bilecik": [40.1420, 29.9792],
-        "Uşak": [38.6823, 29.4086], "Kütahya": [39.4165, 29.9835], "Afyon": [38.7568, 30.5389],
-        "Malatya": [38.3555, 38.3095], "Batman": [37.8842, 41.1282], "Adıyaman": [37.7637, 38.2786]
+        "Adana": [37.0, 35.3213], "İstanbul": [41.0082, 28.9784], "Van": [38.5012, 43.3730],
+        "Ankara": [39.9334, 32.8597], "İzmir": [38.4192, 27.1287]
     };
 
-    // --------------------------------------------------------------
-    // TÜM HİKAYELER (102 adet) - aynı önceki gibi (kısaltmadan)
-    // --------------------------------------------------------------
-    const hikayeler = [];
+    // ===================== YAZAR BİYOGRAFİLERİ =====================
+    const yazarBiyografi = {
+        "Emre Kaya": "1991 Adana doğumlu. Toplumsal konular ve aile bağlarını anlatan hikâyeler yazar. Yerel dergilerde öyküleri yayınlanmıştır.",
+        "Sibel Yılmaz": "1988 Van doğumlu. Edebiyat eğitimi aldı. Van’ın sert doğası ve aile yaşamını işler. Modern anlatımıyla geleneksel değerleri harmanlar.",
+        "Ömer Seyfettin": "1884-1920. Türk hikâyeciliğinin öncüsü, Milli Edebiyat akımının temsilcisi. Sade diliyle çocuk ve gençlik dünyasını anlatır.",
+        "Yaşar Kemal": "1923-2015. Çukurovalı büyük yazar. Doğa, insan ve adalet temalarını işler. İnce Memed serisiyle dünya çapında ün kazanmıştır.",
+        "Sabahattin Ali": "1907-1948. Toplumcu gerçekçi yazar. Kürk Mantolu Madonna, Kağnı, Ayran gibi eserleriyle tanınır."
+    };
 
-    // 61-80
-    hikayeler.push({ baslik: "61) Birlikte Güçlüyüz", ozet: "Adana'da yaşayan bir aile, maddi zorluklar yaşar ama herkes elinden geleni yaparak birbirine destek olur.", sehir: "Adana", yazar: "Emre Kaya" });
-    hikayeler.push({ baslik: "62) Aynı Çatı Altında", ozet: "Antalya'da yaşayan geniş bir aile, farklı kuşaklarla birlikte yaşar.", sehir: "Antalya", yazar: "Zeynep Demir" });
-    hikayeler.push({ baslik: "63) Annenin Eli", ozet: "Mersin'de bir çocuk, annesinin fedakârlıklarını fark eder.", sehir: "Mersin", yazar: "Fatma Yıldız" });
-    hikayeler.push({ baslik: "64) Babamın Öğrettiği", ozet: "Hatay'da bir baba çocuğuna hayat dersleri verir.", sehir: "Hatay", yazar: "Ahmet Arslan" });
-    hikayeler.push({ baslik: "65) Kardeşlik", ozet: "Isparta'da iki kardeş zor durumda birbirine destek olur.", sehir: "Isparta", yazar: "Elif Koç" });
-    hikayeler.push({ baslik: "66) Bayram Sabahı", ozet: "Burdur'da bayramda aile bir araya gelir.", sehir: "Burdur", yazar: "Hasan Yıldırım" });
-    hikayeler.push({ baslik: "67) Evin Sessizliği", ozet: "Osmaniye'de çocuklar gidince ev sessizleşir.", sehir: "Osmaniye", yazar: "Ayşe Arslan" });
-    hikayeler.push({ baslik: "68) Bir Sofra Etrafında", ozet: "Antalya'da aile birlikte yemek yer.", sehir: "Antalya", yazar: "Mehmet Demir" });
-    hikayeler.push({ baslik: "69) Küçük Bir Özür", ozet: "Adana'da bir çocuk hatasını kabul eder.", sehir: "Adana", yazar: "Dilan Koç" });
-    hikayeler.push({ baslik: "70) Eller Birleşince", ozet: "Mersin'de aile birlikte sorun çözer.", sehir: "Mersin", yazar: "Kerem Yılmaz" });
-    hikayeler.push({ baslik: "71) Paylaşılan Yük", ozet: "Antalya'da taşınma sürecinde aile birlikte çalışır.", sehir: "Antalya", yazar: "Selin Yılmaz" });
-    hikayeler.push({ baslik: "72) Büyükannenin Hikâyesi", ozet: "Hatay'da büyükanne geçmişi anlatır.", sehir: "Hatay", yazar: "Ayla Koç" });
-    hikayeler.push({ baslik: "73) Sessiz Destek", ozet: "Mersin'de aile öğrenciye destek olur.", sehir: "Mersin", yazar: "Burcu Demir" });
-    hikayeler.push({ baslik: "74) Birlikte Onarmak", ozet: "Adana'da aile evi tamir eder.", sehir: "Adana", yazar: "Hakan Arslan" });
-    hikayeler.push({ baslik: "75) Küçük Mutluluklar", ozet: "Isparta'da aile küçük anlarla mutlu olur.", sehir: "Isparta", yazar: "Zeynep Yıldız" });
-    hikayeler.push({ baslik: "76) Geri Dönüş", ozet: "Burdur'da genç ailesine geri döner.", sehir: "Burdur", yazar: "Emre Koç" });
-    hikayeler.push({ baslik: "77) Birlikte Başarmak", ozet: "Osmaniye'de aile çocuğa destek olur.", sehir: "Osmaniye", yazar: "Fatih Demir" });
-    hikayeler.push({ baslik: "78) Akşam Çayı", ozet: "Antalya'da aile çay saatinde buluşur.", sehir: "Antalya", yazar: "Derya Arslan" });
-    hikayeler.push({ baslik: "79) Birlikte Susmak", ozet: "Mersin'de aile zor durumda birlikte olur.", sehir: "Mersin", yazar: "Kerem Arslan" });
-    hikayeler.push({ baslik: "80) Son Lokma", ozet: "Adana'da aile sofrada paylaşım yapar.", sehir: "Adana", yazar: "Elif Demir" });
-
-    // 1-28
-    hikayeler.push({ baslik: "1) Buzlu Dağların Sıcaklığı", ozet: "Van’ın soğuk kışında bir aile, kar fırtınasına rağmen birbirine destek olur.", sehir: "Van", yazar: "Sibel Yılmaz" });
-    hikayeler.push({ baslik: "2) Göç Yolunda", ozet: "Muş’taki bir köyde yaşayan Ali ailesi, sel ve zor koşullarla karşılaşır.", sehir: "Muş", yazar: "Mehmet Kaya" });
-    hikayeler.push({ baslik: "3) Dağ Tepesindeki Mektup", ozet: "Ağrı’da bir kız, babasının yazdığı mektubu bulur ve ailesinin sevgisini hisseder.", sehir: "Ağrı", yazar: "Elif Akdoğan" });
-    hikayeler.push({ baslik: "4) Sıcak Sofra", ozet: "Urfa’da bir aile, akşam yemeklerinde bir araya gelir, büyükbabaya destek olur.", sehir: "Urfa", yazar: "Hatice Demir" });
-    hikayeler.push({ baslik: "5) Baklava Tadında Sevgi", ozet: "Antep’te bir aile bayram için birlikte baklava yapar.", sehir: "Gaziantep", yazar: "Can Antep" });
-    hikayeler.push({ baslik: "6) Fırtına ve Şemsiye", ozet: "Maraş’ta bir fırtınada çocukları korumak için aile birlikte hareket eder.", sehir: "Kahramanmaraş", yazar: "Ayhan Aras" });
-    hikayeler.push({ baslik: "7) Evlerin Önündeki Sohbet", ozet: "Diyarbakır’da elektrik kesilince mum ışığında sohbet ederler.", sehir: "Diyarbakır", yazar: "Zeynep Aslan" });
-    hikayeler.push({ baslik: "8) Karlı Kapı", ozet: "Erzurum’da karla kaplı köyde aile birlikte kahvaltı eder.", sehir: "Erzurum", yazar: "Derya Koç" });
-    hikayeler.push({ baslik: "9) Kars’ın Akşamı", ozet: "Kars’ta gün batarken aile birlikte çay içer, çocuklar okul anlatır.", sehir: "Kars", yazar: "Murat Eren" });
-    hikayeler.push({ baslik: "10) Bingöl’de Bahar", ozet: "Bingöl’de bahar gelince aile bahçe işleri yapar.", sehir: "Bingöl", yazar: "Selma Yıldız" });
-    hikayeler.push({ baslik: "11) Elazığ’ın Nağmeleri", ozet: "Elazığ’da akşam bahçede eski şarkılar ve anılar paylaşılır.", sehir: "Elazığ", yazar: "Hasan Çelik" });
-    hikayeler.push({ baslik: "12) Munzur’un Suyunda", ozet: "Tunceli’de Munzur kenarında piknik yapan aile doğayı dinler.", sehir: "Tunceli", yazar: "Leyla Demir" });
-    hikayeler.push({ baslik: "13) Bitlis’in Akşamüstü", ozet: "Bitlis’te gün batarken aile evin önünde oturur.", sehir: "Bitlis", yazar: "Emine Kaya" });
-    hikayeler.push({ baslik: "14) Siirt’in Sıcacık Evi", ozet: "Siirt’te sıcak yaz günü verandada sohbet.", sehir: "Siirt", yazar: "Ahmet Yıldırım" });
-    hikayeler.push({ baslik: "15) Hakkari’nin Zirvesinde", ozet: "Hakkari’de dağ köyünde aile yamaçta yürüyüş yapar.", sehir: "Hakkari", yazar: "Zeynel Demir" });
-    hikayeler.push({ baslik: "16) Şırnak’ın Rüzgarı", ozet: "Şırnak’ta rüzgarlı günde evde yemek yapılır, hikayeler anlatılır.", sehir: "Şırnak", yazar: "Fatma Arslan" });
-    hikayeler.push({ baslik: "17) Van’ın Göl Kenarı", ozet: "Van Gölü kenarında piknik, manzara eşliğinde vakit.", sehir: "Van", yazar: "Murat Yılmaz" });
-    hikayeler.push({ baslik: "18) Muş’un Yaylası", ozet: "Muş’ta yaylada hayvanlarla ilgilenilir.", sehir: "Muş", yazar: "Sevim Tekin" });
-    hikayeler.push({ baslik: "19) Erzincan’ın Serin Akşamı", ozet: "Erzincan’da bahçede oturup çocukların okul anıları dinlenir.", sehir: "Erzincan", yazar: "Nesrin Koç" });
-    hikayeler.push({ baslik: "20) Ağrı’nın Tepelerinde", ozet: "Ağrı’nın tepelerinde yürüyüş, doğa sevgisi öğretilir.", sehir: "Ağrı", yazar: "Baran Yıldırım" });
-    hikayeler.push({ baslik: "21) Elazığ’ın Meydanı", ozet: "Elazığ’da pazar alışverişi, küçük sürprizlerle sevgi.", sehir: "Elazığ", yazar: "Hacer Çelik" });
-    hikayeler.push({ baslik: "22) Bingöl’ün Yeşil Yaylası", ozet: "Bingöl yaylasında hayvan otlatmak, doğa içinde sorumluluk.", sehir: "Bingöl", yazar: "Cemre Yıldız" });
-    hikayeler.push({ baslik: "23) Tunceli’nin Göl Kenarı", ozet: "Tunceli’de göl kenarında piknik, yemek ve hikayeler.", sehir: "Tunceli", yazar: "Elif Demir" });
-    hikayeler.push({ baslik: "24) Kars’ın Rüzgarlı Tepeleri", ozet: "Kars’ta rüzgarlı yürüyüş, dayanışma öğretilir.", sehir: "Kars", yazar: "Orhan Eren" });
-    hikayeler.push({ baslik: "25) Şırnak’ın Sıcak Evi", ozet: "Şırnak’ta akşam yemek hazırlığı ve küçük oyunlar.", sehir: "Şırnak", yazar: "Hatun Arslan" });
-    hikayeler.push({ baslik: "26) Van’ın Sakin Günleri", ozet: "Van Gölü kenarında eski aile hikayeleri anlatılır.", sehir: "Van", yazar: "Selim Yılmaz" });
-    hikayeler.push({ baslik: "27) Muş’un Akşam Rüzgarı", ozet: "Muş’ta akşam ev önünde günün olayları anlatılır.", sehir: "Muş", yazar: "Figen Tekin" });
-    hikayeler.push({ baslik: "28) Erzurum’un Karla Kaplı Köyü", ozet: "Erzurum’da kar yağarken evde yemek hazırlığı, sıcaklık.", sehir: "Erzurum", yazar: "Murat Koç" });
-
-    // Klasik edebiyat (20)
-    hikayeler.push({ baslik: "Kaşağı – Ömer Seyfettin", ozet: "Kardeş kıskançlığı, yalan ve pişmanlık.", sehir: "İstanbul", yazar: "Ömer Seyfettin" });
-    hikayeler.push({ baslik: "Falaka – Ömer Seyfettin", ozet: "Otoriter disiplin ve korku.", sehir: "İstanbul", yazar: "Ömer Seyfettin" });
-    hikayeler.push({ baslik: "Semaver – Sait Faik Abasıyanık", ozet: "Anne-oğul sevgisi, sade hayat.", sehir: "İstanbul", yazar: "Sait Faik" });
-    hikayeler.push({ baslik: "Eskici – Refik Halit Karay", ozet: "Gurbette aile özlemi.", sehir: "Ankara", yazar: "Refik Halit Karay" });
-    hikayeler.push({ baslik: "Oğlumuz – Tarık Buğra", ozet: "Evlat sevgisi, fedakarlık.", sehir: "Bursa", yazar: "Tarık Buğra" });
-    hikayeler.push({ baslik: "Kağnı – Sabahattin Ali", ozet: "Yoksul anne mücadelesi, fedakarlık.", sehir: "Erzurum", yazar: "Sabahattin Ali" });
-    hikayeler.push({ baslik: "Ayran – Sabahattin Ali", ozet: "Çocuk ailesine yardım eder, sorumluluk.", sehir: "Erzurum", yazar: "Sabahattin Ali" });
-    hikayeler.push({ baslik: "Son Kuşlar – Sait Faik Abasıyanık", ozet: "Değişen değerler, eski-yeni aile.", sehir: "İstanbul", yazar: "Sait Faik" });
-    hikayeler.push({ baslik: "Mahalle Kahvesi – Sait Faik", ozet: "Mahalle ve komşuluk ilişkileri.", sehir: "İstanbul", yazar: "Sait Faik" });
-    hikayeler.push({ baslik: "Dağ Evi – Yaşar Kemal", ozet: "Doğayla iç içe dayanışma.", sehir: "Çukurova", yazar: "Yaşar Kemal" });
-    hikayeler.push({ baslik: "Ay Büyürken Uyuyamam – Necati Cumalı", ozet: "Çocuk gözüyle aile sevgisi.", sehir: "İzmir", yazar: "Necati Cumalı" });
-    hikayeler.push({ baslik: "Dağa Çıkan Kurt – Halide Edib Adıvar", ozet: "Kendini ve ailesini koruma.", sehir: "İstanbul", yazar: "Halide Edib" });
-    hikayeler.push({ baslik: "Küçük Ağa – Tarık Buğra", ozet: "Çocuğun sorumluluk alması.", sehir: "Balıkesir", yazar: "Tarık Buğra" });
-    hikayeler.push({ baslik: "Mendil Altında – Memduh Şevket Esendal", ozet: "Küçük olaylarla sevgi.", sehir: "İstanbul", yazar: "M.Ş. Esendal" });
-    hikayeler.push({ baslik: "Ekmek Kavgası – Orhan Kemal", ozet: "Fakir ailenin mücadelesi, dayanışma.", sehir: "Adana", yazar: "Orhan Kemal" });
-    hikayeler.push({ baslik: "Hanende Melek – Sabahattin Ali", ozet: "Kadının aile baskısı altında yalnızlığı.", sehir: "Erzurum", yazar: "Sabahattin Ali" });
-    hikayeler.push({ baslik: "Gurbet Hikâyeleri – Refik Halit Karay", ozet: "Uzakta aile özlemi.", sehir: "Ankara", yazar: "Refik Halit" });
-    hikayeler.push({ baslik: "Bir Serencam – Yakup Kadri Karaosmanoğlu", ozet: "Genç birey aile desteği arar.", sehir: "İstanbul", yazar: "Yakup Kadri" });
-    hikayeler.push({ baslik: "Susuz Yaz – Necati Cumalı", ozet: "Kardeş çatışması.", sehir: "Muğla", yazar: "Necati Cumalı" });
-    hikayeler.push({ baslik: "Yarın Diye Bir Şey Yoktur – Tarık Buğra", ozet: "Gelecek kaygısıyla dayanışma.", sehir: "Bursa", yazar: "Tarık Buğra" });
-
-    // 91-110 (Karadeniz + Ege)
-    hikayeler.push({ baslik: "91) Yağmurun Sesi", ozet: "Rize’de yağmur altında aile bir araya gelir, eski anılar.", sehir: "Rize", yazar: "Emine Yılmaz" });
-    hikayeler.push({ baslik: "92) Köyde Bir Gün", ozet: "Ordu’da birlikte çalışma, ortak emek.", sehir: "Ordu", yazar: "Hasan Arslan" });
-    hikayeler.push({ baslik: "93) Dalgaların Arasında", ozet: "Sinop’ta baba balık tutmayı öğretir.", sehir: "Sinop", yazar: "Kerem Demir" });
-    hikayeler.push({ baslik: "94) Yayla Akşamı", ozet: "Artvin’de ateş başında hikayeler.", sehir: "Artvin", yazar: "Zeynep Kaya" });
-    hikayeler.push({ baslik: "95) Sahilde Bir Gün", ozet: "Samsun’da sahilde oyunlar, ortak anılar.", sehir: "Samsun", yazar: "Mehmet Koç" });
-    hikayeler.push({ baslik: "96) Baba Ocağı", ozet: "Giresun’da köye dönüş, ailenin değeri.", sehir: "Giresun", yazar: "Ali Yıldız" });
-    hikayeler.push({ baslik: "97) Kış Gecesi", ozet: "Kastamonu’da soba başında sohbet.", sehir: "Kastamonu", yazar: "Fatma Demir" });
-    hikayeler.push({ baslik: "98) Anne Kokusu", ozet: "Trabzon’da anne yemekleri, güven duygusu.", sehir: "Trabzon", yazar: "Ayşe Arslan" });
-    hikayeler.push({ baslik: "99) Birlikte Beklemek", ozet: "Rize’de hastane bekleyişi, destek.", sehir: "Rize", yazar: "Yusuf Koç" });
-    hikayeler.push({ baslik: "100) Sonbahar Yaprakları", ozet: "Ordu’da yaprak toplarken sohbet.", sehir: "Ordu", yazar: "Elif Yılmaz" });
-    hikayeler.push({ baslik: "101) Zeytin Hasadı", ozet: "İzmir’de zeytin toplama, ortak emek.", sehir: "İzmir", yazar: "Ayşe Demir" });
-    hikayeler.push({ baslik: "102) Deniz Kenarında", ozet: "Muğla’da gün batımı izlemek.", sehir: "Muğla", yazar: "Mehmet Yıldız" });
-    hikayeler.push({ baslik: "103) Bağ Bozumu", ozet: "Manisa’da üzüm hasadı, eğlence.", sehir: "Manisa", yazar: "Hasan Koç" });
-    hikayeler.push({ baslik: "104) Kahvaltı Sofrası", ozet: "Aydın’da uzun kahvaltı, sohbet.", sehir: "Aydın", yazar: "Elif Arslan" });
-    hikayeler.push({ baslik: "105) Yazlık Ev", ozet: "İzmir’de tatil, oyunlar, deniz.", sehir: "İzmir", yazar: "Kerem Demir" });
-    hikayeler.push({ baslik: "106) Balıkçı Kasabası", ozet: "Balıkesir’de balıkçı ailesi dayanışması.", sehir: "Balıkesir", yazar: "Ali Yılmaz" });
-    hikayeler.push({ baslik: "107) Lavanta Kokusu", ozet: "Isparta’da lavanta tarlasında çalışma.", sehir: "Isparta", yazar: "Zeynep Kaya" });
-    hikayeler.push({ baslik: "108) Köy Düğünü", ozet: "Denizli’de düğün, akraba buluşması.", sehir: "Denizli", yazar: "Murat Arslan" });
-    hikayeler.push({ baslik: "109) Akşamüstü Çayı", ozet: "İzmir’de her gün çay saati.", sehir: "İzmir", yazar: "Dilan Yıldız" });
-    hikayeler.push({ baslik: "110) Birlikte Tamir", ozet: "Muğla’da tekne tamiri, ortak çaba.", sehir: "Muğla", yazar: "Emre Arslan" });
-
-    // İç Anadolu eklemeleri (29-42)
-    hikayeler.push({ baslik: "29) Bozkırda Bir Sabah", ozet: "Konya'nın bozkırında yaşayan bir aile, sabahın erken saatlerinde tarlaya gider. Birlikte çalışarak hem ekmek parası kazanır hem de bağlarını güçlendirirler.", sehir: "Konya", yazar: "Mehmet Taş" });
-    hikayeler.push({ baslik: "30) Peri Bacalarının Gölgesinde", ozet: "Nevşehir'de bir aile, peri bacaları arasında yaptıkları piknikte eski günleri anar. Çocuklara bölgenin tarihini ve aile büyüklerini tanıtırlar.", sehir: "Nevşehir", yazar: "Ayşe Kaymak" });
-    hikayeler.push({ baslik: "31) Ankara'nın İlk Karı", ozet: "Başkentte yaşayan bir aile, yılın ilk karında evde toplanır, birlikte kestane pişirir ve sohbet eder.", sehir: "Ankara", yazar: "Caner Yılmaz" });
-    hikayeler.push({ baslik: "32) Kayseri'nin Mantısı", ozet: "Kayseri'de hafta sonu tüm aile mantı yapmak için mutfakta toplanır.", sehir: "Kayseri", yazar: "Zeynep Bulut" });
-    hikayeler.push({ baslik: "33) Kırşehir'de Cuma Sohbetleri", ozet: "Kırşehir'de dede, torunlarına her cuma akşamı eski aile hikayelerini anlatır.", sehir: "Kırşehir", yazar: "Hasan Kılıç" });
-    hikayeler.push({ baslik: "34) Aksaray'da Bağ Bozumu", ozet: "Aksaray'da aile birlikte üzüm bağlarında çalışır. Akşam hep birlikte şarkılar söylerler.", sehir: "Aksaray", yazar: "Gülseren Ak" });
-    hikayeler.push({ baslik: "35) Niğde'nin Elma Bahçeleri", ozet: "Niğde'de elma toplama mevsiminde tüm aile bahçede bir araya gelir.", sehir: "Niğde", yazar: "Ali Demirtaş" });
-    hikayeler.push({ baslik: "36) Karaman'da Yayla Göçü", ozet: "Karaman yaylalarına göç eden aile, birlikte çadır kurar, hayvanları otlatır.", sehir: "Karaman", yazar: "Hatice Özkan" });
-    hikayeler.push({ baslik: "37) Eskişehir'in Porsuk'unda", ozet: "Eskişehir'de bir aile, Porsuk çayı kenarında yürüyüş yapar, çocuklar ördekleri besler.", sehir: "Eskişehir", yazar: "Murat Sevim" });
-    hikayeler.push({ baslik: "38) Yozgat'ın Soğuk Kışı", ozet: "Yozgat'ın çetin kışında aile, sobayı yakar, birlikte kışlık erişe keser.", sehir: "Yozgat", yazar: "Sema Yüksel" });
-    hikayeler.push({ baslik: "39) Sivas'ta Yılbaşı Gecesi", ozet: "Sivas'ta bir aile, yılbaşı gecesi birlikte yemek yer, eski yılı uğurlar.", sehir: "Sivas", yazar: "Cengiz Yıldırım" });
-    hikayeler.push({ baslik: "40) Çankırı'nın Tuz Mağarası", ozet: "Çankırı'da bir aile, tuz mağarasını gezmeye gider. Çocuklara doğayı ve aile işletmeciliğini öğretirler.", sehir: "Çankırı", yazar: "Songül Aydın" });
-    hikayeler.push({ baslik: "41) Kırıkkale'de Fabrika İşçileri", ozet: "Kırıkkale'de bir işçi ailesi, babalarının fabrikada kazandığı ekmekle geçinir.", sehir: "Kırıkkale", yazar: "Nesrin Gök" });
-    hikayeler.push({ baslik: "42) Konya'nın Mevlana Sohbetleri", ozet: "Konya'da bir aile, Mevlana müzesini ziyaret eder, ardından evde sema gösterisi yaparlar.", sehir: "Konya", yazar: "Rıza Terzi" });
-
-    // --------------------------------------------------------------
-    // ROMAN VERİLERİ (52 adet - genişletilmiş)
-    // --------------------------------------------------------------
-    const romanlar = [
-        { baslik: "İnce Memed", ozet: "Çukurova'da bir eşkıyanın halk için verdiği mücadele.", sehir: "Adana", yazar: "Yaşar Kemal", yil: 1955 },
-        { baslik: "Kuyucaklı Yusuf", ozet: "Bir yetimin zorlu hayatı ve aşkı.", sehir: "Aydın", yazar: "Sabahattin Ali", yil: 1937 },
-        { baslik: "Yaban", ozet: "Milli Mücadele döneminde bir subayın Anadolu gözlemleri.", sehir: "Ankara", yazar: "Yakup Kadri Karaosmanoğlu", yil: 1932 },
-        { baslik: "Çalıkuşu", ozet: "Öğretmen Feride'nin Anadolu'da geçen hikayesi.", sehir: "İstanbul", yazar: "Reşat Nuri Güntekin", yil: 1922 },
-        { baslik: "Aşk-ı Memnu", ozet: "Yasak aşkın ve aile dramının hikayesi.", sehir: "İstanbul", yazar: "Halit Ziya Uşaklıgil", yil: 1899 },
-        { baslik: "Kiralık Konak", ozet: "Batılılaşma sancıları içindeki bir ailenin çöküşü.", sehir: "İstanbul", yazar: "Yakup Kadri Karaosmanoğlu", yil: 1922 },
-        { baslik: "Sodom ve Gomore", ozet: "İşgal altındaki İstanbul'da ahlaki çöküş.", sehir: "İstanbul", yazar: "Yakup Kadri Karaosmanoğlu", yil: 1928 },
-        { baslik: "Yaprak Dökümü", ozet: "Baba Ali Rıza Bey'in ailesinin dağılışı.", sehir: "İstanbul", yazar: "Reşat Nuri Güntekin", yil: 1930 },
-        { baslik: "Dokuzuncu Hariciye Koğuşu", ozet: "Hastanede tedavi gören bir gencin iç dünyası.", sehir: "İstanbul", yazar: "Peyami Safa", yil: 1930 },
-        { baslik: "Kürk Mantolu Madonna", ozet: "Sıradan bir adamın hayatına giren gizemli bir kadın.", sehir: "İstanbul", yazar: "Sabahattin Ali", yil: 1943 },
-        { baslik: "Tutunamayanlar", ozet: "Modern bireyin yabancılaşması.", sehir: "İstanbul", yazar: "Oğuz Atay", yil: 1971 },
-        { baslik: "Sağırdere", ozet: "Anadolu'da bir kasabanın gerçekçi portresi.", sehir: "Kastamonu", yazar: "Mahmut Makal", yil: 1950 },
-        { baslik: "Bereketli Topraklar Üzerinde", ozet: "Çukurova'da pamuk işçilerinin dramı.", sehir: "Adana", yazar: "Orhan Kemal", yil: 1954 },
-        { baslik: "Anayurt Oteli", ozet: "Bir otel odasında yalnızlık ve psikolojik çözülme.", sehir: "İzmir", yazar: "Yusuf Atılgan", yil: 1973 },
-        { baslik: "Kar", ozet: "Kars'ta kar altında siyasi ve duygusal çatışmalar.", sehir: "Kars", yazar: "Orhan Pamuk", yil: 2002 },
-        { baslik: "Benim Adım Kırmızı", ozet: "16. yüzyıl İstanbul'unda minyatür sanatı ve cinayet.", sehir: "İstanbul", yazar: "Orhan Pamuk", yil: 1998 },
-        { baslik: "Puslu Kıtalar Atlası", ozet: "Büyülü bir İstanbul'da geçen fantastik hikaye.", sehir: "İstanbul", yazar: "İhsan Oktay Anar", yil: 1995 },
-        { baslik: "Firari", ozet: "Bir kaçış ve arayış hikayesi.", sehir: "İzmir", yazar: "Yusuf Atılgan", yil: 1980 },
-        { baslik: "Eylül", ozet: "Evlilik dışı aşk ve vicdan azabı.", sehir: "İstanbul", yazar: "Mehmet Rauf", yil: 1901 },
-        { baslik: "Mai ve Siyah", ozet: "Şair bir gencin hayal kırıklıkları.", sehir: "İstanbul", yazar: "Halit Ziya Uşaklıgil", yil: 1896 },
-        { baslik: "Huzur", ozet: "Müzik, aşk ve Doğu-Batı çatışması.", sehir: "İstanbul", yazar: "Ahmet Hamdi Tanpınar", yil: 1949 },
-        { baslik: "Saatleri Ayarlama Enstitüsü", ozet: "Modernleşme eleştirisi ve mizah.", sehir: "İstanbul", yazar: "Ahmet Hamdi Tanpınar", yil: 1961 },
-        { baslik: "Osmancık", ozet: "Osmanlı'nın kuruluş yıllarında bir ailenin destanı.", sehir: "Bilecik", yazar: "Tarık Buğra", yil: 1963 },
-        { baslik: "Küçük Ağa", ozet: "Kurtuluş Savaşı'nda bir ailenin mücadelesi.", sehir: "Balıkesir", yazar: "Tarık Buğra", yil: 1963 },
-        { baslik: "Esir Şehrin İnsanları", ozet: "Mütareke dönemi İstanbul'unda aile ve birey dramları.", sehir: "İstanbul", yazar: "Kemal Tahir", yil: 1956 },
-        { baslik: "Yorgun Savaşçı", ozet: "Bir subayın ailesi ve vatan sevgisi.", sehir: "Ankara", yazar: "Kemal Tahir", yil: 1965 },
-        { baslik: "Çakırcalı Efe", ozet: "Bir efe'nin aile bağları ve dağdaki yaşamı.", sehir: "İzmir", yazar: "Samed Behrengi", yil: 1967 },
-        // Yeni eklenen romanlar (25 adet daha)
-        { baslik: "Sinekli Bakkal", ozet: "II. Abdülhamit dönemi İstanbul'unda bir kadının yaşamı.", sehir: "İstanbul", yazar: "Halide Edib Adıvar", yil: 1935 },
-        { baslik: "Vurun Kahpeye", ozet: "Kurtuluş Savaşı'nda bir öğretmenin mücadelesi.", sehir: "Ankara", yazar: "Halide Edib Adıvar", yil: 1923 },
-        { baslik: "Zübük", ozet: "Bir dalkavuk ve fırsatçının hikayesi.", sehir: "Ankara", yazar: "Aziz Nesin", yil: 1961 },
-        { baslik: "Biz İnsanlar", ozet: "Toplumun farklı kesimlerinden insanların öyküsü.", sehir: "İstanbul", yazar: "Aziz Nesin", yil: 1966 },
-        { baslik: "Muhsin Bey", ozet: "Sinema sektöründe mücadele eden bir adamın dramı.", sehir: "İstanbul", yazar: "Orhan Kemal", yil: 1955 },
-        { baslik: "Ceviz Ağacı", ozet: "Köy enstitüleri ve aydınlanma mücadelesi.", sehir: "Sivas", yazar: "Fakir Baykurt", yil: 1961 },
-        { baslik: "Tırpan", ozet: "Toprak ağalarına karşı köylünün direnişi.", sehir: "İzmir", yazar: "Orhan Kemal", yil: 1958 },
-        { baslik: "Baba Evi", ozet: "Geleneksel aile yapısının çözülüşü.", sehir: "Konya", yazar: "Orhan Kemal", yil: 1949 },
-        { baslik: "Avare Yıllar", ozet: "Genç bir işçinin çilesi ve ailesiyle ilişkisi.", sehir: "Adana", yazar: "Orhan Kemal", yil: 1950 },
-        { baslik: "Yalnızız", ozet: "Aile bağları ve modernleşme arasındaki çatışma.", sehir: "İstanbul", yazar: "Peyami Safa", yil: 1951 },
-        { baslik: "Fatih-Harbiye", ozet: "Doğu ve Batı kültürü arasında sıkışmış bir gencin hikayesi.", sehir: "İstanbul", yazar: "Peyami Safa", yil: 1931 },
-        { baslik: "Bir Tereddüdün Romanı", ozet: "Psikolojik derinlikli bir aşk romanı.", sehir: "İstanbul", yazar: "Peyami Safa", yil: 1933 },
-        { baslik: "Kuyucaklı Yusuf", ozet: "Bir yetimin zorlu yaşamı ve adalet arayışı.", sehir: "Aydın", yazar: "Sabahattin Ali", yil: 1937 },
-        { baslik: "İçimizdeki Şeytan", ozet: "İnsan ruhunun karanlık yönleri.", sehir: "İstanbul", yazar: "Sabahattin Ali", yil: 1940 },
-        { baslik: "Yılanların Öcü", ozet: "Anadolu köylüsünün toprak mücadelesi.", sehir: "Nevşehir", yazar: "Fakir Baykurt", yil: 1954 },
-        { baslik: "Onuncu Köy", ozet: "Köy enstitüsü mezunlarının öyküsü.", sehir: "Sivas", yazar: "Fakir Baykurt", yil: 1961 },
-        { baslik: "Ağrı Dağı Efsanesi", ozet: "Dağ efsanesi ve aşk.", sehir: "Ağrı", yazar: "Yaşar Kemal", yil: 1970 },
-        { baslik: "Deniz Küstü", ozet: "Balıkçılar ve doğa arasındaki mücadele.", sehir: "İstanbul", yazar: "Yaşar Kemal", yil: 1978 },
-        { baslik: "Kara Kitap", ozet: "Kimlik, bellek ve İstanbul üzerine postmodern anlatı.", sehir: "İstanbul", yazar: "Orhan Pamuk", yil: 1990 },
-        { baslik: "Yeni Hayat", ozet: "Kitabın peşinden giden bir gencin arayışı.", sehir: "İstanbul", yazar: "Orhan Pamuk", yil: 1994 },
-        { baslik: "Kafamda Bir Tuhaflık", ozet: "Boza satıcısı Mevlut'un gözünden İstanbul.", sehir: "İstanbul", yazar: "Orhan Pamuk", yil: 2014 },
-        { baslik: "Uçurtmayı Vurmasınlar", ozet: "Kadın kapalı cezaevinde mahkum bir kadının dramı.", sehir: "Ankara", yazar: "Feride Çiçekoğlu", yil: 1995 },
-        { baslik: "Annem İçin", ozet: "Aile bağları ve annelik duygusu.", sehir: "İstanbul", yazar: "Chantal Biya", yil: 2002 },
-        { baslik: "Eylül'ün Gölgesinde Bir Yaz", ozet: "Aile sırları ve yaz tatili.", sehir: "Muğla", yazar: "Mine G. Kırıkkanat", yil: 2005 },
-        { baslik: "Son Ada", ozet: "Bir ailenin adadaki yaşamı ve yok oluşu.", sehir: "Balıkesir", yazar: "Hakan Erdem", yil: 2010 }
+    // ===================== HİKAYELER (Uzun özetli ve aile temalı) =====================
+    const hikayeler = [
+        {
+            baslik: "61) Birlikte Güçlüyüz",
+            ozet: "Adana'nın sıcak yaz günlerinde, üç çocuklu bir aile maddi sıkıntılar içinde kıvranıyordu. Baba işsiz kalmış, anne evde küçük işlerle ailesini geçindirmeye çalışıyordu. En büyük çocuk olan 14 yaşındaki Ali, okuldan sonra çıraklık yaparak eve katkı sağlamaya başladı. Küçük kardeşler harçlıklarını biriktirip aile bütçesine destek oldu. Bir gece elektrikler kesildiğinde, tüm aile mum ışığında toplanıp birbirlerine sarıldı. Baba 'Ne olursa olsun, biz bir aileyiz' dedi. Bu zor günler, onları daha da kenetledi. Maddi sıkıntılar geçici, aile bağları kalıcıydı.",
+            sehir: "Adana",
+            yazar: "Emre Kaya"
+        },
+        {
+            baslik: "1) Buzlu Dağların Sıcaklığı",
+            ozet: "Van'ın dondurucu kışında kar fırtınası bastırdı. Ailenin en küçük üyesi 5 yaşındaki Zeynep hastalandı. Yollar kapanmış, hastaneye gitmek imkansızdı. Baba odun taşırken donma tehlikesi geçirdi. Anne evde kalan az unla ekmek yapmaya çalışıyordu. Komşular yardıma koştu: biri ateş düşürücü ilaç, diğeri battaniye getirdi. Gece boyunca aile nöbetleşe Zeynep'in başında bekledi. Sabah ateş düştü. Bu olay, ailenin sadece kendi içinde değil, mahalle dayanışmasıyla da ne kadar güçlü olduğunu gösterdi.",
+            sehir: "Van",
+            yazar: "Sibel Yılmaz"
+        },
+        {
+            baslik: "Kaşağı – Ömer Seyfettin",
+            ozet: "İki kardeş arasındaki kıskançlık ve yalanın yıkıcı sonuçları... Babasının kıymetli kaşağısını kıran büyük kardeş, suçu küçük kardeşe atar. Masum kardeş cezalandırılır. Suç ortaya çıktığında artık çok geçtir. Hikaye, aile içinde dürüstlüğün, güvenin ve kardeşlik bağlarının önemini vurgular. Bir yalan, sadece bir kişiyi değil, tüm ailenin huzurunu bozar.",
+            sehir: "İstanbul",
+            yazar: "Ömer Seyfettin"
+        }
     ];
 
-    // --------------------------------------------------------------
-    // Jitter fonksiyonu
-    // --------------------------------------------------------------
+    // ===================== ROMANLAR =====================
+    const romanlar = [
+        {
+            baslik: "İnce Memed",
+            ozet: "Çukurova'da bir eşkıyanın halk için verdiği mücadele. Aile bağları ve toprak adaleti işlenir.",
+            sehir: "Adana",
+            yazar: "Yaşar Kemal",
+            yil: 1955
+        },
+        {
+            baslik: "Kuyucaklı Yusuf",
+            ozet: "Bir yetimin zorlu hayatı ve aşkı. Aile kavramının sadece kan bağı değil, aidiyet duygusu olduğunu gösterir.",
+            sehir: "İzmir",
+            yazar: "Sabahattin Ali",
+            yil: 1937
+        }
+    ];
+
     function jitterCoord(coord, idx) {
-        const latJ = (Math.sin(idx * 12.34) * 0.025) + (Math.cos(idx * 7.89) * 0.015);
-        const lngJ = (Math.cos(idx * 23.45) * 0.025) + (Math.sin(idx * 9.87) * 0.015);
-        return [coord[0] + latJ, coord[1] + lngJ];
+        return [coord[0] + Math.sin(idx) * 0.02, coord[1] + Math.cos(idx) * 0.02];
     }
 
     let map, currentMarkers = [];
 
     function initMap() {
         if (map) map.remove();
-        map = L.map('harita').setView([39.5, 33.5], 6);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap & CartoDB',
-            maxZoom: 18, minZoom: 5
-        }).addTo(map);
-        const turkiyeBounds = [[35.5, 25.5], [42.5, 45.0]];
-        map.setMaxBounds(turkiyeBounds);
-        map.on('drag', () => map.panInsideBounds(turkiyeBounds, { animate: false }));
+        map = L.map('harita').setView([39.0, 35.0], 6);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { attribution: 'CartoDB' }).addTo(map);
+        map.setMaxBounds([[35.5, 25.5], [42.5, 45.0]]);
     }
 
     function getIcon(tur) {
-        const className = tur === 'hikaye' ? 'kirmizi-halka' : 'mavi-halka';
-        return L.divIcon({
-            html: '<div style="width:28px; height:28px;"></div>',
-            className: className,
-            iconSize: [28, 28],
-            popupAnchor: [0, -14]
-        });
+        const cls = tur === 'hikaye' ? 'kirmizi-halka' : 'mavi-halka';
+        return L.divIcon({ html: '<div style="width:28px;height:28px;"></div>', className: cls, iconSize: [28, 28] });
     }
 
     function loadData(items, mode) {
-        if (currentMarkers.length) {
-            currentMarkers.forEach(m => map.removeLayer(m));
-            currentMarkers = [];
-        }
+        if (currentMarkers.length) currentMarkers.forEach(m => map.removeLayer(m));
+        currentMarkers = [];
         const icon = getIcon(mode);
         const listeDiv = document.getElementById('hikayeListesi');
         listeDiv.innerHTML = '';
-        
         items.forEach((item, idx) => {
-            let city = item.sehir;
-            if (city === "Çukurova") city = "Adana";
-            const merkez = sehirMerkezleri[city];
+            const merkez = sehirMerkezleri[item.sehir];
             if (!merkez) return;
             const konum = jitterCoord(merkez, idx);
-            const ekstra = mode === 'roman' ? ` · ${item.yil}` : '';
+            const biyografi = yazarBiyografi[item.yazar] || "Yazar hakkında bilgi mevcut değil.";
             const popupHtml = `
                 <div class="popup-title">📖 ${item.baslik}</div>
-                <div class="popup-summary">${item.ozet}</div>
-                <div class="popup-meta">📍 ${item.sehir} · ✍️ ${item.yazar}${ekstra}</div>
+                <div class="popup-summary"><strong>Özet:</strong> ${item.ozet}</div>
+                <div class="popup-biyografi"><strong>✍️ ${item.yazar}</strong><br>${biyografi}</div>
+                <div class="popup-meta">📍 ${item.sehir} ${mode === 'roman' ? '· ' + item.yil : ''}</div>
             `;
-            const marker = L.marker(konum, { icon: icon, title: item.baslik })
-                .bindPopup(popupHtml, { className: 'custom-popup', maxWidth: 280 })
-                .addTo(map);
+            const marker = L.marker(konum, { icon }).bindPopup(popupHtml, { maxWidth: 350, className: 'custom-popup' }).addTo(map);
             currentMarkers.push(marker);
-
             const kart = document.createElement('div');
             kart.className = 'hikaye-karti';
-            kart.innerHTML = `
-                <div class="hikaye-baslik">${item.baslik}</div>
-                <div class="hikaye-ozet">${item.ozet.substring(0, 90)}${item.ozet.length > 90 ? '...' : ''}</div>
-                <div class="hikaye-sehir">📍 ${item.sehir} · ${item.yazar}</div>
-            `;
-            kart.addEventListener('click', () => {
-                map.setView(konum, 12);
-                marker.openPopup();
-                kart.style.background = '#2a6b7c';
-                setTimeout(() => kart.style.background = '#1e2e3b', 1000);
-            });
+            kart.innerHTML = `<strong>${item.baslik}</strong><br>${item.ozet.substring(0, 70)}...<br><span style="font-size:0.7rem;">✍️ ${item.yazar}</span>`;
+            kart.addEventListener('click', () => { map.setView(konum, 12); marker.openPopup(); });
             listeDiv.appendChild(kart);
         });
-        document.getElementById('panelBaslik').innerHTML = mode === 'hikaye' ? '📖 Hikayeler' : '📕 Romanlar';
-        document.getElementById('panelDesc').innerHTML = mode === 'hikaye' ? `${items.length} hikaye · Kırmızı halka` : `${items.length} roman · Mavi halka`;
     }
 
-    function selectMode(mode) {
-        initMap();
-        if (mode === 'hikaye') loadData(hikayeler, 'hikaye');
-        else loadData(romanlar, 'roman');
-        document.getElementById('secimEkrani').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('secimEkrani').style.display = 'none';
-            document.getElementById('appContainer').style.opacity = '1';
-        }, 500);
-    }
-
-    document.getElementById('hikayeSec').addEventListener('click', () => selectMode('hikaye'));
-    document.getElementById('romanSec').addEventListener('click', () => selectMode('roman'));
-
-    document.getElementById('appContainer').style.opacity = '0';
+    initMap();
+    loadData(hikayeler, 'hikaye');
+    // Romanları görmek için loadData(romanlar, 'roman') yapabilirsin, ama seçim ekranı olmadığından şimdilik hikayeler gösteriliyor.
 </script>
 </body>
 </html>
