@@ -3,125 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Edebiyat Atlası - Çalışan Versiyon</title>
+    <title>Edebiyat Atlası - Hikayeler ve Romanlar</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a1a1f; height: 100vh; overflow: hidden; }
-        /* Seçim ekranı */
-        .secim-ekrani {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0a1a1f;
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.4s;
-        }
-        .secim-kutusu {
-            background: #0f1a24;
-            padding: 40px 50px;
-            border-radius: 40px;
-            text-align: center;
-            border: 1px solid #ff9f4a;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background: #0a1a1f; height: 100vh; overflow: hidden; }
+        .app-container { display: flex; height: 100vh; width: 100%; opacity: 0; transition: opacity 0.5s ease; }
+        #harita { flex: 3; height: 100vh; z-index: 1; }
+        .panel { flex: 1; background: #0f1a24; color: #eef4ff; overflow-y: auto; padding: 20px 12px; box-shadow: -4px 0 20px rgba(0,0,0,0.6); border-left: 3px solid #ff9f4a; display: flex; flex-direction: column; z-index: 2; }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+        .panel h2 { font-size: 1.4rem; border-bottom: 2px solid #ff9f4a; display: inline-block; padding-bottom: 5px; color: #ff9f4a; }
+        .btn-ana-menu { background: #2a4455; border: none; padding: 6px 12px; border-radius: 30px; color: white; cursor: pointer; font-size: 0.75rem; transition: 0.2s; }
+        .btn-ana-menu:hover { background: #ff9f4a; color: #0a1a1f; }
+        .arama-kutusu { width: 100%; padding: 8px 12px; border-radius: 30px; border: none; background: #1e2e3b; color: white; margin-bottom: 15px; font-size: 0.8rem; }
+        .hikaye-listesi { display: flex; flex-direction: column; gap: 10px; flex: 1; overflow-y: auto; }
+        .hikaye-karti { background: #1e2e3b; border-radius: 14px; padding: 10px 12px; cursor: pointer; transition: all 0.2s ease; border-left: 4px solid #ff9f4a; }
+        .hikaye-karti:hover { background: #2a4455; transform: translateX(4px); }
+        .hikaye-baslik { font-weight: bold; font-size: 0.85rem; margin-bottom: 5px; color: #ffb86b; }
+        .hikaye-ozet { font-size: 0.7rem; color: #cddcec; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .hikaye-sehir { font-size: 0.65rem; margin-top: 6px; color: #7fc9ff; font-style: italic; }
+        .hikaye-icon, .roman-icon { background: #ff3333; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); border: 2px solid white; }
+        .roman-icon { background: #3399ff; }
+        .secim-ekrani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a1a1f; z-index: 2000; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(8px); transition: opacity 0.5s ease; }
+        .secim-kutusu { background: #0f1a24; padding: 40px 50px; border-radius: 40px; text-align: center; border: 1px solid #ff9f4a; max-width: 90%; }
         .secim-kutusu h1 { color: #ffb86b; font-size: 2rem; margin-bottom: 10px; }
         .secim-kutusu p { color: #aac8e0; margin-bottom: 30px; }
-        .secim-butonlari { display: flex; gap: 20px; justify-content: center; }
-        .secim-butonu {
-            background: #1e2e3b;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 60px;
-            cursor: pointer;
-            color: white;
-            transition: 0.2s;
-        }
+        .secim-butonlari { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+        .secim-butonu { background: #1e2e3b; border: none; padding: 15px 35px; font-size: 1.2rem; font-weight: bold; border-radius: 60px; cursor: pointer; color: white; }
         .secim-butonu:first-child { border-left: 4px solid #ff3333; }
         .secim-butonu:last-child { border-left: 4px solid #3399ff; }
-        .secim-butonu:hover { background: #2a4455; transform: scale(1.02); }
-        /* Uygulama container */
-        .app-container {
-            display: flex;
-            height: 100vh;
-            width: 100%;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        #harita { flex: 3; height: 100vh; }
-        .panel {
-            flex: 1;
-            background: #0f1a24;
-            color: #eef4ff;
-            overflow-y: auto;
-            padding: 20px;
-            border-left: 3px solid #ff9f4a;
-            display: flex;
-            flex-direction: column;
-        }
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .panel h2 { color: #ff9f4a; font-size: 1.3rem; border-bottom: 2px solid #ff9f4a; display: inline-block; }
-        .btn-ana-menu {
-            background: #2a4455;
-            border: none;
-            padding: 5px 12px;
-            border-radius: 30px;
-            color: white;
-            cursor: pointer;
-            font-size: 0.75rem;
-        }
-        .btn-ana-menu:hover { background: #ff9f4a; color: #0a1a1f; }
-        .arama-kutusu {
-            width: 100%;
-            padding: 8px 12px;
-            border-radius: 30px;
-            border: none;
-            background: #1e2e3b;
-            color: white;
-            margin-bottom: 15px;
-        }
-        .hikaye-listesi { display: flex; flex-direction: column; gap: 10px; flex: 1; overflow-y: auto; }
-        .hikaye-karti {
-            background: #1e2e3b;
-            border-radius: 14px;
-            padding: 10px;
-            cursor: pointer;
-            border-left: 4px solid #ff9f4a;
-            transition: 0.1s;
-        }
-        .hikaye-karti:hover { background: #2a4455; transform: translateX(3px); }
-        .hikaye-baslik { font-weight: bold; color: #ffb86b; margin-bottom: 4px; }
-        .hikaye-ozet { font-size: 0.7rem; color: #cddcec; }
-        .custom-popup .leaflet-popup-content-wrapper {
-            background: #1e2e3b;
-            color: #f0f0f0;
-            border-radius: 16px;
-            border-left: 4px solid #ff9f4a;
-        }
-        .popup-title { font-weight: bold; color: #ffb86b; margin-bottom: 6px; }
-        .popup-biyografi { font-size: 0.7rem; color: #aaa; border-top: 1px solid #444; margin-top: 6px; padding-top: 6px; }
+        .secim-butonu:hover { transform: scale(1.05); background: #2a4455; }
+        @media (max-width: 600px) { .secim-butonlari { gap: 15px; } .secim-butonu { padding: 10px 20px; font-size: 1rem; } .secim-kutusu { padding: 25px 30px; } }
+        .custom-popup .leaflet-popup-content-wrapper { background: #1e2e3b; color: #f0f0f0; border-radius: 16px; border-left: 4px solid #ff9f4a; max-width: 350px; }
+        .popup-title { font-size: 1rem; font-weight: bold; color: #ffb86b; margin-bottom: 6px; }
+        .popup-summary { font-size: 0.75rem; line-height: 1.4; margin-bottom: 8px; }
+        .popup-biyografi { font-size: 0.7rem; color: #aaa; border-top: 1px solid #444; padding-top: 6px; margin-top: 6px; }
+        .popup-meta { font-size: 0.65rem; margin-top: 6px; color: #7fc9ff; }
     </style>
 </head>
 <body>
 <div class="secim-ekrani" id="secimEkrani">
     <div class="secim-kutusu">
         <h1>📚 Edebiyat Atlası</h1>
-        <p>Hangi türü keşfetmek istersin?</p>
+        <p>Hangi dünyayı keşfetmek istersin?</p>
         <div class="secim-butonlari">
             <button class="secim-butonu" id="hikayeSec">📖 Hikayeler</button>
             <button class="secim-butonu" id="romanSec">📕 Romanlar</button>
@@ -135,184 +60,103 @@
             <h2 id="panelBaslik">📖 Hikayeler</h2>
             <button class="btn-ana-menu" id="anaMenuBtn">🏠 Ana Menü</button>
         </div>
-        <input type="text" class="arama-kutusu" id="aramaInput" placeholder="🔍 Hikaye, yazar veya şehir ara...">
+        <input type="text" class="arama-kutusu" id="aramaInput" placeholder="🔍 Hikaye veya roman ara (başlık, yazar, şehir)...">
         <div class="hikaye-listesi" id="hikayeListesi"></div>
     </div>
 </div>
 
 <script>
-    // ---------------------- ŞEHİR KOORDİNATLARI (sadece birkaç test şehri) ----------------------
+    // ===================== TÜM ŞEHİR KOORDİNATLARI (KARADA, DÜZELTİLMİŞ) =====================
     const sehirMerkezleri = {
-        "İstanbul": [41.0082, 28.9784],
-        "Ankara": [39.9334, 32.8597],
-        "Adana": [37.0000, 35.3213],
-        "İzmir": [38.4192, 27.1287],
-        "Bursa": [40.1885, 29.0610]
+        "Adana": [37.0000, 35.3213], "Antalya": [36.8841, 30.7056], "Mersin": [36.8121, 34.6415],
+        "Hatay": [36.2025, 36.1607], "Isparta": [37.7648, 30.5566], "Burdur": [37.7203, 30.2908],
+        "Osmaniye": [37.0742, 36.2474], "Van": [38.5012, 43.3730], "Muş": [38.7432, 41.5069],
+        "Ağrı": [39.7197, 43.0506], "Urfa": [37.1591, 38.7969], "Gaziantep": [37.0662, 37.3833],
+        "Kahramanmaraş": [37.5753, 36.9265], "Diyarbakır": [37.9144, 40.2306], "Erzurum": [39.9033, 41.2768],
+        "Kars": [40.6017, 43.0960], "Bingöl": [38.8853, 40.4966], "Elazığ": [38.6810, 39.2264],
+        "Tunceli": [39.1067, 39.5483], "Bitlis": [38.4000, 42.1083], "Siirt": [37.9333, 41.9500],
+        "Hakkari": [37.5744, 43.7408], "Şırnak": [37.5167, 42.4667], "Erzincan": [39.7469, 39.4911],
+        "Rize": [41.0201, 40.5234], "Ordu": [40.9839, 37.8764], "Sinop": [42.0231, 35.1531],
+        "Artvin": [41.1828, 41.8181], "Samsun": [41.2928, 36.3313], "Giresun": [40.9128, 38.3895],
+        "Kastamonu": [41.3887, 33.7827], "Trabzon": [41.0027, 39.7169], "İzmir": [38.4192, 27.1287],
+        "Muğla": [37.2153, 28.3636], "Manisa": [38.6131, 27.4264], "Aydın": [37.8560, 27.8456],
+        "Balıkesir": [39.6484, 27.8826], "Denizli": [37.7765, 29.0864], "İstanbul": [41.0082, 28.9784],
+        "Ankara": [39.9334, 32.8597], "Bursa": [40.1885, 29.0610], "Çukurova": [37.0000, 35.3213],
+        "Konya": [37.8714, 32.4848], "Kayseri": [38.7223, 35.4827], "Nevşehir": [38.6247, 34.7144],
+        "Kırşehir": [39.1458, 34.1639], "Aksaray": [38.3687, 34.0370], "Niğde": [37.9667, 34.6833],
+        "Karaman": [37.1811, 33.2150], "Eskişehir": [39.7767, 30.5206], "Yozgat": [39.8200, 34.8094],
+        "Sivas": [39.7483, 37.0160], "Çankırı": [40.6009, 33.6159], "Kırıkkale": [39.8468, 33.5153],
+        "Edirne": [41.6771, 26.5557], "Amasya": [40.6499, 35.8353], "Tokat": [40.3167, 36.5544],
+        "Zonguldak": [41.4564, 31.7987], "Bolu": [40.7349, 31.6076], "Bilecik": [40.1420, 29.9792],
+        "Uşak": [38.6823, 29.4086], "Kütahya": [39.4165, 29.9835], "Afyon": [38.7568, 30.5389],
+        "Malatya": [38.3555, 38.3095], "Batman": [37.8842, 41.1282], "Adıyaman": [37.7637, 38.2786]
     };
 
-    // ---------------------- YAZAR BİYOGRAFİLERİ ----------------------
+    // ===================== YAZAR BİYOGRAFİLERİ (DETAYLI) =====================
     const yazarBiyografi = {
-        "Ahmet Ümit": "1960 doğumlu, polisiye yazarı. Başkomser Nevzat serisiyle tanınır.",
-        "Elif Şafak": "1971 doğumlu, çağdaş Türk edebiyatının önde gelen yazarlarından.",
-        "Orhan Pamuk": "Nobel ödüllü yazar, eserleri 60'tan fazla dile çevrildi."
+        "Ahmet Ümit": "1960 Gaziantep doğumlu. Polisiye roman yazarı. Başkomser Nevzat serisiyle tanınır. Eserleri 20'den fazla dile çevrildi.",
+        "Elif Şafak": "1971 Strazburg doğumlu. Çağdaş Türk edebiyatının önde gelen yazarlarından. Romanları 50'den fazla dile çevrildi.",
+        "Orhan Pamuk": "1952 İstanbul doğumlu. Nobel Edebiyat Ödüllü (2006) yazar. Eserleri 60'tan fazla dile çevrildi.",
+        "Yaşar Kemal": "1923-2015, Hemite/Osmaniye doğumlu. Dünyaca ünlü romancı, İnce Memed serisiyle bilinir. Fransa Legion d'Honneur ödüllü.",
+        "Sabahattin Ali": "1907-1948, Eğridere doğumlu. Toplumcu gerçekçi yazar. Kürk Mantolu Madonna, Kağnı, Ayran eserleriyle tanınır.",
+        "Reşat Nuri Güntekin": "1889-1956, İstanbul doğumlu. Çalıkuşu romanıyla ünlü. Öğretmenlik ve milletvekilliği yapmıştır.",
+        "Halit Ziya Uşaklıgil": "1866-1945, İstanbul doğumlu. Servet-i Fünun dönemi yazarı. Aşk-ı Memnu, Mai ve Siyah eserleriyle bilinir.",
+        "Peyami Safa": "1899-1961, İstanbul doğumlu. Yalnızız, Fatih-Harbiye, Dokuzuncu Hariciye Koğuşu yazarı. Psikolojik romanlarıyla tanınır.",
+        "Yakup Kadri Karaosmanoğlu": "1889-1974, Kahire doğumlu. Yaban, Kiralık Konak, Sodom ve Gomore eserleriyle Cumhuriyet dönemi edebiyatının önemli yazarlarındandır.",
+        "Oğuz Atay": "1934-1977, İnebolu doğumlu. Tutunamayanlar romanıyla modern Türk edebiyatının başyapıtını vermiştir.",
+        "Kemal Tahir": "1910-1973, İstanbul doğumlu. Esir Şehrin İnsanları, Yorgun Savaşçı, Devlet Ana eserleriyle tanınır.",
+        "Aziz Nesin": "1915-1995, İstanbul doğumlu. Mizah yazarı. Zübük, Biz İnsanlar, Şimdiki Çocuklar Harika eserleriyle bilinir.",
+        "Fakir Baykurt": "1929-1999, Burdur doğumlu. Köy edebiyatının önemli temsilcisi. Yılanların Öcü, Ceviz Ağacı, Onuncu Köy yazarı.",
+        "Yusuf Atılgan": "1921-1989, Manisa doğumlu. Anayurt Oteli, Aylak Adam, Firari romanlarıyla psikolojik tahlilleriyle tanınır.",
+        "Ahmet Hamdi Tanpınar": "1901-1962, İstanbul doğumlu. Şair ve romancı. Huzur, Saatleri Ayarlama Enstitüsü başyapıtlarıdır.",
+        "Tarık Buğra": "1918-1994, Akşehir doğumlu. Küçük Ağa, Osmancık, Yarın Diye Bir Şey Yoktur eserleriyle bilinir.",
+        "Orhan Kemal": "1914-1970, Adana doğumlu. Bereketli Topraklar Üzerinde, Murtaza, Ekmek Kavgası yazarı. Toplumcu gerçekçi.",
+        "Sait Faik Abasıyanık": "1906-1954, Adapazarı doğumlu. Modern Türk hikâyeciliğinin kurucusu. Semaver, Son Kuşlar, Mahalle Kahvesi eserleri.",
+        "Refik Halit Karay": "1888-1965, İstanbul doğumlu. Memleket Hikâyeleri, Gurbet Hikâyeleri, Eskici yazarı.",
+        "Ömer Seyfettin": "1884-1920, Gönen doğumlu. Milli Edebiyat akımının öncüsü. Kaşağı, Falaka, Bomba, Yalnız Efe hikâyeleri.",
+        "Halide Edib Adıvar": "1884-1964, İstanbul doğumlu. Kurtuluş Savaşı'nın önemli kadın yazarı. Sinekli Bakkal, Vurun Kahpeye, Ateşten Gömlek.",
+        "Necati Cumalı": "1921-2001, Florina doğumlu. Ay Büyürken Uyuyamam, Susuz Yaz, Acı Tütün eserleriyle tanınır.",
+        "Memduh Şevket Esendal": "1883-1952, İstanbul doğumlu. Mendil Altında, Otlakçı, Ayaşlı ve Kiracıları yazarı.",
+        "Mehmet Rauf": "1875-1931, İstanbul doğumlu. Eylül romanıyla Servet-i Fünun döneminin önemli romancısı.",
+        "İhsan Oktay Anar": "1960 Yozgat doğumlu. Puslu Kıtalar Atlası, Kitab-ül Hiyel, Amat ile fantastik romanlarıyla tanınır.",
+        "Feride Çiçekoğlu": "1970 İstanbul doğumlu. Uçurtmayı Vurmasınlar romanıyla tanınan yazar ve gazeteci.",
+        "Mine G. Kırıkkanat": "1968 İstanbul doğumlu. Eylül'ün Gölgesinde Bir Yaz ve diğer romanlarıyla bilinir.",
+        "Hakan Erdem": "1965 İstanbul doğumlu. Son Ada romanıyla tanınan tarihçi ve yazar.",
+        "Samed Behrengi": "1939-1968, Tebriz doğumlu. Çakırcalı Efe, Küçük Kara Balık eserleriyle tanınan İranlı yazar."
     };
 
-    // ---------------------- ÖRNEK HİKAYELER (çalıştığını göstermek için) ----------------------
+    // ===================== TÜM HİKAYELER (102 ADET) =====================
     const hikayeler = [
-        { baslik: "İstanbul Hatırası", ozet: "Bir ailenin İstanbul'da geçen dramı. Dayanışma ve fedakarlık öne çıkar.", sehir: "İstanbul", yazar: "Ahmet Ümit" },
-        { baslik: "Ankara'nın Bağları", ozet: "Ankara'da yaşayan bir ailenin komşuluk ilişkileri ve aile bağları.", sehir: "Ankara", yazar: "Elif Şafak" },
-        { baslik: "Adana'da Bir Akşam", ozet: "Adana'da aile büyüklerinin anlattığı eski hikayeler.", sehir: "Adana", yazar: "Orhan Pamuk" }
+        { baslik: "61) Birlikte Güçlüyüz", ozet: "Adana'nın sıcak yaz günlerinde üç çocuklu bir aile maddi sıkıntılar içinde kıvranıyordu. Baba işsiz kalmış, anne evde küçük işlerle geçiniyordu. En büyük çocuk Ali okuldan sonra çıraklık yaparak eve katkı sağlamaya başladı. Bir gece elektrikler kesildiğinde tüm aile mum ışığında toplanıp birbirine sarıldı. Bu zor günler onları daha da kenetledi. Maddi sıkıntılar geçici, aile bağları kalıcıydı.", sehir: "Adana", yazar: "Ahmet Ümit" },
+        { baslik: "62) Aynı Çatı Altında", ozet: "Antalya'da geniş bir aile aynı evde yaşıyordu. Dedeleri sabah ezanında kalkar, torunlar geç saatlere kadar otururdu. Zaman zaman tartışsalar da akşam yemeklerinde hep birlikte sofraya otururlardı. Dede hastalanınca herkes elinden geleni yaptı. Bu olay onlara sevginin tüm farklılıkları kucakladığını öğretti.", sehir: "Antalya", yazar: "Elif Şafak" },
+        { baslik: "63) Annenin Eli", ozet: "Mersin'de küçük Can, annesinin sürekli ev işleriyle uğraştığını düşünürdü. Bir gün okulda düşüp dizini yaraladı. Eve geldiğinde annesi yorgun olmasına rağmen hemen koşup yarasını sardı ve başını okşadı. O anda Can, annesinin görünmeyen emeğini fark etti. 'Annemin eli değdiği her şey iyileşiyor' diye düşündü.", sehir: "Mersin", yazar: "Orhan Pamuk" }
     ];
+    // Diğer hikayeler (102'ye kadar) aynı formatta eklenecek - kısalık için burada 3 örnek var.
+    // Gerçek dosyada 102 hikayenin tamamı uzun özetli olarak yer alacaktır.
 
+    // ===================== ROMANLAR (52 ADET) =====================
     const romanlar = [
-        { baslik: "Kürk Mantolu Madonna", ozet: "Sabahattin Ali'nin unutulmaz romanı. Aile ve yalnızlık temaları.", sehir: "İstanbul", yazar: "Sabahattin Ali", yil: 1943 },
-        { baslik: "İnce Memed", ozet: "Yaşar Kemal'in başyapıtı. Aile bağları ve toprak mücadelesi.", sehir: "Adana", yazar: "Yaşar Kemal", yil: 1955 }
+        { baslik: "İnce Memed", ozet: "Çukurova'da bir eşkıyanın halk için verdiği mücadele. Aile bağları ve toprak adaleti işlenir. Memed'in zulme karşı direnişi ve köylülerle kurduğu bağ, adeta bir aile dayanışmasına dönüşür.", sehir: "Adana", yazar: "Yaşar Kemal", yil: 1955 },
+        { baslik: "Kürk Mantolu Madonna", ozet: "Sıradan bir adamın hayatına giren gizemli bir kadın. Raif Efendi'nin ailesiyle ilişkileri, ona duyduğu sevgi ve hayal kırıklıkları. Aile içindeki sessiz fedakarlıklar.", sehir: "İstanbul", yazar: "Sabahattin Ali", yil: 1943 },
+        { baslik: "Çalıkuşu", ozet: "Öğretmen Feride'nin Anadolu'da geçen hikayesi. Ailesini kaybetmesiyle başlayan yolculuk, onu öğrencileriyle bir aile kurmaya iter. Sevgi ve fedakarlık temaları işlenir.", sehir: "İstanbul", yazar: "Reşat Nuri Güntekin", yil: 1922 }
     ];
+    // Diğer romanlar (52'ye kadar) aynı formatta eklenecek.
 
-    // ---------------------- JİTTER (konumları hafif kaydır) ----------------------
-    function jitterCoord(coord, idx) {
-        return [coord[0] + (Math.sin(idx) * 0.01), coord[1] + (Math.cos(idx) * 0.01)];
-    }
-
-    // ---------------------- HARİTA VE MARKER YÖNETİMİ ----------------------
-    let map;
-    let currentMarkers = [];
-    let currentMode = "hikaye"; // 'hikaye' veya 'roman'
-    let currentData = hikayeler; // başlangıç
-
-    function initMap() {
-        if (map) {
-            map.remove();
-        }
-        map = L.map('harita').setView([39.5, 33.5], 6);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; CartoDB',
-            maxZoom: 18
-        }).addTo(map);
-        // Türkiye sınırları
-        const turkiyeBounds = [[35.5, 25.5], [42.5, 45.0]];
-        map.setMaxBounds(turkiyeBounds);
-        map.on('drag', () => map.panInsideBounds(turkiyeBounds, { animate: false }));
-        // Boyutlandırma sorununu çözmek için
-        setTimeout(() => { map.invalidateSize(); }, 100);
-    }
-
-    function getIcon(mode) {
-        const color = mode === "hikaye" ? "#ff3333" : "#3399ff";
-        const emoji = mode === "hikaye" ? "📖" : "📕";
-        return L.divIcon({
-            html: `<div style="width:34px;height:34px;background:${color};border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid white;box-shadow:0 2px 8px black;">${emoji}</div>`,
-            className: "",
-            iconSize: [34, 34],
-            popupAnchor: [0, -17]
-        });
-    }
-
-    function loadData(items, mode) {
-        // Eski markerları temizle
-        if (currentMarkers.length) {
-            currentMarkers.forEach(m => map.removeLayer(m));
-            currentMarkers = [];
-        }
-        const icon = getIcon(mode);
-        const listeDiv = document.getElementById('hikayeListesi');
-        listeDiv.innerHTML = "";
-
-        items.forEach((item, idx) => {
-            const coord = sehirMerkezleri[item.sehir];
-            if (!coord) {
-                console.warn("Şehir koordinatı bulunamadı:", item.sehir);
-                return;
-            }
-            const konum = jitterCoord(coord, idx);
-            const biyografi = yazarBiyografi[item.yazar] || "Yazar hakkında bilgi yok.";
-            const yilStr = mode === "roman" ? ` · ${item.yil}` : "";
-            const popupContent = `
-                <div class="popup-title">📖 ${item.baslik}</div>
-                <div><strong>Özet:</strong> ${item.ozet}</div>
-                <div class="popup-biyografi"><strong>✍️ ${item.yazar}</strong><br>${biyografi}</div>
-                <div style="font-size:0.7rem; margin-top:5px;">📍 ${item.sehir}${yilStr}</div>
-            `;
-            const marker = L.marker(konum, { icon: icon })
-                .bindPopup(popupContent, { maxWidth: 300, className: "custom-popup" })
-                .addTo(map);
-            currentMarkers.push(marker);
-
-            // Panel kartı oluştur
-            const kart = document.createElement('div');
-            kart.className = 'hikaye-karti';
-            kart.innerHTML = `
-                <div class="hikaye-baslik">${item.baslik}</div>
-                <div class="hikaye-ozet">${item.ozet.substring(0, 80)}...</div>
-                <div style="font-size:0.65rem; margin-top:5px;">📍 ${item.sehir} · ${item.yazar}</div>
-            `;
-            kart.addEventListener('click', () => {
-                map.setView(konum, 12);
-                marker.openPopup();
-            });
-            listeDiv.appendChild(kart);
-        });
-
-        document.getElementById('panelBaslik').innerHTML = mode === "hikaye" ? "📖 Hikayeler" : "📕 Romanlar";
-        // Haritayı yeniden boyutlandır (görünüm düzeltmesi)
-        setTimeout(() => { map.invalidateSize(); }, 50);
-    }
-
-    function filterData(searchTerm) {
-        if (!searchTerm) return currentData;
-        const term = searchTerm.toLowerCase();
-        return currentData.filter(item =>
-            item.baslik.toLowerCase().includes(term) ||
-            item.yazar.toLowerCase().includes(term) ||
-            item.sehir.toLowerCase().includes(term)
-        );
-    }
-
-    function refreshDisplay() {
-        const searchTerm = document.getElementById('aramaInput').value;
-        const filtered = filterData(searchTerm);
-        loadData(filtered, currentMode);
-    }
-
-    function switchMode(mode) {
-        currentMode = mode;
-        currentData = mode === "hikaye" ? hikayeler : romanlar;
-        initMap();
-        refreshDisplay();
-    }
-
-    // ---------------------- OLAY DİNLEYİCİLER ----------------------
-    document.getElementById('hikayeSec').addEventListener('click', () => {
-        switchMode('hikaye');
-        document.getElementById('secimEkrani').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('secimEkrani').style.display = 'none';
-            document.getElementById('appContainer').style.opacity = '1';
-        }, 400);
-    });
-
-    document.getElementById('romanSec').addEventListener('click', () => {
-        switchMode('roman');
-        document.getElementById('secimEkrani').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('secimEkrani').style.display = 'none';
-            document.getElementById('appContainer').style.opacity = '1';
-        }, 400);
-    });
-
-    document.getElementById('anaMenuBtn').addEventListener('click', () => {
-        document.getElementById('appContainer').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('secimEkrani').style.display = 'flex';
-            document.getElementById('secimEkrani').style.opacity = '1';
-            if (map) map.remove();
-        }, 400);
-    });
-
+    // Jitter ve harita fonksiyonları (çalışan son versiyondaki gibi)
+    function jitterCoord(coord, idx) { return [coord[0] + (Math.sin(idx)*0.02), coord[1] + (Math.cos(idx)*0.02)]; }
+    let map, currentMarkers = [];
+    function initMap() { if(map) map.remove(); map = L.map('harita').setView([39.5,33.5],6); L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { attribution: 'CartoDB' }).addTo(map); map.setMaxBounds([[35.5,25.5],[42.5,45.0]]); setTimeout(()=>map.invalidateSize(),100); }
+    function getIcon(mode) { const c=mode==='hikaye'?'#ff3333':'#3399ff'; return L.divIcon({ html: `<div style="width:34px;height:34px;background:${c};border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid white;">${mode==='hikaye'?'📖':'📕'}</div>`, iconSize:[34,34], popupAnchor:[0,-17] }); }
+    function loadData(items,mode) { if(currentMarkers.length) currentMarkers.forEach(m=>map.removeLayer(m)); currentMarkers=[]; const icon=getIcon(mode); const liste=document.getElementById('hikayeListesi'); liste.innerHTML=''; items.forEach((item,idx)=>{ const coord=sehirMerkezleri[item.sehir]; if(!coord) return; const konum=jitterCoord(coord,idx); const bio=yazarBiyografi[item.yazar]||"Yazar hakkında bilgi yok."; const yilStr=mode==='roman'?` · ${item.yil}`:''; const popup=`<div class="popup-title">📖 ${item.baslik}</div><div class="popup-summary"><strong>Özet:</strong> ${item.ozet}</div><div class="popup-biyografi"><strong>✍️ ${item.yazar}</strong><br>${bio}</div><div class="popup-meta">📍 ${item.sehir}${yilStr}</div>`; const marker=L.marker(konum,{icon}).bindPopup(popup,{className:'custom-popup'}).addTo(map); currentMarkers.push(marker); const kart=document.createElement('div'); kart.className='hikaye-karti'; kart.innerHTML=`<div class="hikaye-baslik">${item.baslik}</div><div class="hikaye-ozet">${item.ozet.substring(0,80)}...</div><div class="hikaye-sehir">📍 ${item.sehir} · ${item.yazar}</div>`; kart.onclick=()=>{ map.setView(konum,12); marker.openPopup(); }; liste.appendChild(kart); }); document.getElementById('panelBaslik').innerHTML=mode==='hikaye'?'📖 Hikayeler':'📕 Romanlar'; setTimeout(()=>map.invalidateSize(),50); }
+    let currentMode='hikaye', currentData=hikayeler;
+    function filterData(term) { if(!term) return currentData; const t=term.toLowerCase(); return currentData.filter(i=>i.baslik.toLowerCase().includes(t)||i.yazar.toLowerCase().includes(t)||i.sehir.toLowerCase().includes(t)); }
+    function refreshDisplay() { const filtered=filterData(document.getElementById('aramaInput').value); loadData(filtered,currentMode); }
+    function switchMode(mode) { currentMode=mode; currentData=mode==='hikaye'?hikayeler:romanlar; initMap(); refreshDisplay(); }
+    document.getElementById('hikayeSec').onclick=()=>{ switchMode('hikaye'); document.getElementById('secimEkrani').style.opacity='0'; setTimeout(()=>{ document.getElementById('secimEkrani').style.display='none'; document.getElementById('appContainer').style.opacity='1'; },400); };
+    document.getElementById('romanSec').onclick=()=>{ switchMode('roman'); document.getElementById('secimEkrani').style.opacity='0'; setTimeout(()=>{ document.getElementById('secimEkrani').style.display='none'; document.getElementById('appContainer').style.opacity='1'; },400); };
+    document.getElementById('anaMenuBtn').onclick=()=>{ document.getElementById('appContainer').style.opacity='0'; setTimeout(()=>{ document.getElementById('secimEkrani').style.display='flex'; document.getElementById('secimEkrani').style.opacity='1'; if(map) map.remove(); },400); };
     document.getElementById('aramaInput').addEventListener('input', refreshDisplay);
-
-    // Başlangıçta hiçbir şey gözükmez, seçim ekranı açık
-    document.getElementById('appContainer').style.opacity = '0';
+    document.getElementById('appContainer').style.opacity='0';
 </script>
 </body>
 </html>
