@@ -1,0 +1,137 @@
+[
+  {
+    "sehir": "Adana",
+    "koordinat": [37.0000, 35.3213],
+    "eserler": [
+      {
+        "baslik": "Birlikte Güçlüyüz",
+        "yazar": "Emre Kaya",
+        "tur": "Hikaye",
+        "ozet": "Adana'da yaşayan bir aile, maddi zorluklar yaşar ama herkes elinden geleni yaparak birbirine destek olur.",
+        "yazarBio": "Emre Kaya (1991, Adana) toplumsal konular ve aile bağlarını anlatan hikâyeler yazar."
+      },
+      {
+        "baslik": "Küçük Bir Özür",
+        "yazar": "Dilan Koç",
+        "tur": "Hikaye",
+        "ozet": "Adana'da bir çocuk hatasını kabul eder ve ailesinden özür diler.",
+        "yazarBio": "Dilan Koç (1994, Adana) çocuk hikâyeleri yazar."
+      },
+      {
+        "baslik": "Birlikte Onarmak",
+        "yazar": "Hakan Arslan",
+        "tur": "Hikaye",
+        "ozet": "Adana'da aile birlikte evlerini tamir eder, dayanışma içinde çalışır.",
+        "yazarBio": "Hakan Arslan (1991, Adana) emek ve dayanışma temalarını işler."
+      },
+      {
+        "baslik": "Son Lokma",
+        "yazar": "Elif Demir",
+        "tur": "Hikaye",
+        "ozet": "Adana'da aile sofrada paylaşım yapar, son lokmayı birbirine ikram eder.",
+        "yazarBio": "Elif Demir (1994, Adana) aile sevgisini ve fedakârlığı işler."
+      },
+      {
+        "baslik": "Ekmek Kavgası",
+        "yazar": "Orhan Kemal",
+        "tur": "Roman",
+        "ozet": "Adana'da yoksul bir ailenin günlük ekmek mücadelesi ve dayanışması anlatılır.",
+        "yazarBio": "Orhan Kemal (1914-1970), işçi sınıfının yaşamını gerçekçi bir dille anlatan usta yazardır."
+      }
+    ]
+  },
+  {
+    "sehir": "Antalya",
+    "koordinat": [36.8969, 30.7133],
+    "eserler": [
+      {
+        "baslik": "Aynı Çatı Altında",
+        "yazar": "Zeynep Demir",
+        "tur": "Hikaye",
+        "ozet": "Antalya'da yaşayan geniş bir aile, farklı kuşaklarla birlikte yaşar, sevgiyle birbirine bağlanır.",
+        "yazarBio": "Zeynep Demir (1994, Antalya) aile ilişkilerini konu alan hikâyeler yazar."
+      },
+      {
+        "baslik": "Bir Sofra Etrafında",
+        "yazar": "Mehmet Demir",
+        "tur": "Hikaye",
+        "ozet": "Antalya'da aile birlikte yemek yer, sohbet eder, bağlarını güçlendirir.",
+        "yazarBio": "Mehmet Demir (1991, Antalya) aile ilişkilerini anlatır."
+      },
+      {
+        "baslik": "Paylaşılan Yük",
+        "yazar": "Selin Yılmaz",
+        "tur": "Hikaye",
+        "ozet": "Antalya'da taşınma sürecinde aile birlikte çalışır, sorumluluğu paylaşır.",
+        "yazarBio": "Selin Yılmaz (1993, Antalya) aile dayanışmasını anlatır."
+      },
+      {
+        "baslik": "Akşam Çayı",
+        "yazar": "Derya Arslan",
+        "tur": "Hikaye",
+        "ozet": "Antalya'da aile çay saatinde buluşur, günlük sohbetlerle iletişimi güçlendirir.",
+        "yazarBio": "Derya Arslan (1993, Antalya) günlük yaşamın tatlı anlarını hikayeleştirir."
+      }
+    ]
+  },
+  {
+    "sehir": "Ankara",
+    "koordinat": [39.9334, 32.8597],
+    "eserler": [
+      {
+        "baslik": "Ankara",
+        "yazar": "Yakup Kadri Karaosmanoğlu",
+        "tur": "Roman",
+        "ozet": "Milli Mücadele yıllarından Cumhuriyet'in ilk dönemlerine kadar Ankara'nın ve Türk toplumunun geçirdiği değişimi anlatan önemli bir eserdir.",
+        "yazarBio": "Yakup Kadri Karaosmanoğlu (1889-1974), Türk roman, öykü ve deneme yazarı, diplomattır."
+      },
+      {
+        "baslik": "Eskici",
+        "yazar": "Refik Halit Karay",
+        "tur": "Hikaye",
+        "ozet": "Gurbetteki bir çocuğun memleket özlemini ve bir eskiciyle kurduğu kısa ama anlamlı diyaloğu anlatır.",
+        "yazarBio": "Refik Halit Karay (1888-1965), Anadolu'yu ve sürgün yıllarını en iyi anlatan yazarlardandır."
+      },
+      {
+        "baslik": "Gurbet Hikâyeleri",
+        "yazar": "Refik Halit Karay",
+        "tur": "Hikaye",
+        "ozet": "Ankara'ya gurbete gelenlerin aile özlemi ve yaşam mücadelesi.",
+        "yazarBio": "Refik Halit Karay, Türkçeyi ustalıkla kullanan, realizmin önemli temsilcilerindendir."
+      }
+    ]
+  },
+  {
+    "sehir": "Ağrı",
+    "koordinat": [39.7191, 43.0506],
+    "eserler": [
+      {
+        "baslik": "Dağ Tepesindeki Mektup",
+        "yazar": "Elif Akdoğan",
+        "tur": "Hikaye",
+        "ozet": "Ayşe, babasının gurbet yıllarına ait bir mektup bulur; ailesinin sessiz sevgi bağlarını keşfeder.",
+        "yazarBio": "Elif Akdoğan (1995, Ağrı) Anadolu kasabalarının iç dünyasını ve aile ilişkilerini işler."
+      }
+    ]
+  },
+  {
+    "sehir": "Aydın",
+    "koordinat": [37.8488, 27.8446],
+    "eserler": [
+      {
+        "baslik": "Kahvaltı Sofrası",
+        "yazar": "Elif Arslan",
+        "tur": "Hikaye",
+        "ozet": "Aydın'da uzun Pazar kahvaltıları, aile fertlerinin birbirine bağlandığı özel anlardır.",
+        "yazarBio": "Elif Arslan (1994, Aydın) günlük hayatın samimiyetini yazar."
+      },
+      {
+        "baslik": "Kuyucaklı Yusuf",
+        "yazar": "Sabahattin Ali",
+        "tur": "Roman",
+        "ozet": "Ailesi katledilen Yusuf, evlatlık verildiği ailede yaşadığı zorluklar ve Muazzez'e olan aşkı.",
+        "yazarBio": "Sabahattin Ali (1907-1948) Türk edebiyatının en lirik ve toplumcu yazarlarındandır."
+      }
+    ]
+  }
+]
