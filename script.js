@@ -191,8 +191,7 @@
     // ---------- GERÇEK JSON ENTEGRASYONU İÇİN HAZIRLIK ----------
     // Bu fonksiyon daha sonra fetch ile edebiyat.json'u çekip yukarıdaki test verisini değiştirecek.
     async function loadRealData() {
-        try {
-            const response = await fetch('data/edebiyat.json');
+        try {const response = await fetch('data/edebiyat.json?t=' + new Date().getTime());
             const data = await response.json();
             cityDataList = data;
             addCityMarkers(cityDataList);
