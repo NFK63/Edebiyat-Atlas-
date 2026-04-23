@@ -1,6 +1,6 @@
 // ==============================================
-// EDEBİYAT ATLASI - ANA JAVASCRIPT DOSYASI
-// Türkiye sınırlı, tam etkileşimli harita
+// EDEBİYAT ATLASI - ANA JAVASCRIPT
+// (Test verisi kaldırıldı, sadece gerçek JSON kullanır)
 // ==============================================
 
 (function() {
@@ -117,7 +117,6 @@
         }
     }
 
-    // Biyografi aç/kapat için global fonksiyon (butonda onclick ile çağrılır)
     window.toggleBio = function(headerElement) {
         const textDiv = headerElement.nextElementSibling;
         const icon = headerElement.querySelector('i');
@@ -132,32 +131,8 @@
     };
 
     // ---------- VERİ YÜKLEME VE MARKER EKLEME ----------
-    // NOT: Bu kısım gerçek JSON gelince çalışacak. Şimdilik test verisi ile gösteriyoruz.
-    
-    let cityDataList = []; // Tüm şehir verileri burada tutulacak
+    let cityDataList = [];
     let markersLayer = L.layerGroup().addTo(map);
-    
-    // Örnek test verisi (JSON gelene kadar)
-    const testCity = {
-        sehir: "Ankara",
-        koordinat: [39.9334, 32.8597],
-        eserler: [
-            {
-                baslik: "Ankara (Roman)",
-                yazar: "Yakup Kadri Karaosmanoğlu",
-                tur: "Roman",
-                ozet: "Milli Mücadele yıllarından Cumhuriyet'in ilk dönemlerine kadar Ankara'nın ve Türk toplumunun geçirdiği değişimi anlatan önemli bir eserdir.",
-                yazarBio: "Yakup Kadri Karaosmanoğlu (1889-1974), Türk roman, öykü ve deneme yazarı, diplomattır. Eserlerinde toplumsal değişimi işlemiştir."
-            },
-            {
-                baslik: "Eskici",
-                yazar: "Refik Halit Karay",
-                tur: "Hikaye",
-                ozet: "Gurbetteki bir çocuğun memleket özlemini ve bir eskiciyle kurduğu kısa ama anlamlı diyaloğu anlatır.",
-                yazarBio: "Refik Halit Karay (1888-1965), Anadolu'yu ve sürgün yıllarını en iyi anlatan yazarlardandır. 'Memleket Hikayeleri' ünlüdür."
-            }
-        ]
-    };
     
     function addCityMarkers(cities) {
         markersLayer.clearLayers();
@@ -179,29 +154,31 @@
         workCountSpan.textContent = totalWorks;
     }
     
-    // Şimdilik test verisini yükle
-    cityDataList = [testCity];
-    addCityMarkers(cityDataList);
-    
-    // Hoşgeldin mesajı için varsayılan panel içeriği (ilk yüklemede)
-    // Panelde zaten HTML olarak var, dokunmuyoruz.
-    
-    console.log('✅ Harita başarıyla yüklendi. Sınırlar: Türkiye. Veri: Ankara test.');
-    
-    // ---------- GERÇEK JSON ENTEGRASYONU İÇİN HAZIRLIK ----------
-    // Bu fonksiyon daha sonra fetch ile edebiyat.json'u çekip yukarıdaki test verisini değiştirecek.
     async function loadRealData() {
-        try {const response = await fetch('data/edebiyat.json?t=' + new Date().getTime());
+        try {
+            // Her seferinde farklı bir parametre ile önbellek tamamen atlanır
+            const response = await fetch('data/edebiyat.json?v=' + Math.random());
+            if (!response.ok) {
+                throw new Error('Dosya yüklenemedi: ' + response.status);
+            }
             const data = await response.json();
             cityDataList = data;
             addCityMarkers(cityDataList);
-            console.log('📚 Gerçek veriler yüklendi.');
+            console.log('📚 Gerçek veriler yüklendi: ' + data.length + ' şehir.');
         } catch (error) {
-            console.warn('JSON henüz eklenmedi, test verisi gösteriliyor.');
+            console.error('Veri yükleme hatası:', error);
+            // Hata mesajını panele de yazdıralım
+            panelContent.innerHTML = `
+                <div style="text-align:center; padding:40px 20px;">
+                    <i class="fas fa-exclamation-triangle" style="font-size:3rem; color:#d4a373; margin-bottom:20px;"></i>
+                    <h3>Veri Yüklenemedi</h3>
+                    <p>Lütfen internet bağlantınızı ve 'data/edebiyat.json' dosyasının varlığını kontrol edin.</p>
+                </div>
+            `;
         }
     }
     
-    // Sayfa yüklendiğinde gerçek veriyi yüklemeyi dene
+    // Sayfa yüklendiğinde gerçek veriyi yükle (test verisi yok)
     window.addEventListener('load', () => {
         loadRealData();
     });
