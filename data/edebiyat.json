@@ -3,630 +3,270 @@
     "sehir": "Adana",
     "koordinat": [37.0000, 35.3213],
     "eserler": [
-      {
-        "baslik": "Birlikte Güçlüyüz",
-        "yazar": "Emre Kaya",
-        "tur": "Hikaye",
-        "ozet": "Adana'da yaşayan bir aile, maddi zorluklar yaşar ama herkes elinden geleni yaparak birbirine destek olur.",
-        "yazarBio": "Emre Kaya (1991, Adana) toplumsal konular ve aile bağlarını anlatan hikâyeler yazar."
-      },
-      {
-        "baslik": "Küçük Bir Özür",
-        "yazar": "Dilan Koç",
-        "tur": "Hikaye",
-        "ozet": "Adana'da bir çocuk hatasını kabul eder ve ailesinden özür diler.",
-        "yazarBio": "Dilan Koç (1994, Adana) çocuk hikâyeleri yazar."
-      },
-      {
-        "baslik": "Birlikte Onarmak",
-        "yazar": "Hakan Arslan",
-        "tur": "Hikaye",
-        "ozet": "Adana'da aile birlikte evlerini tamir eder, dayanışma içinde çalışır.",
-        "yazarBio": "Hakan Arslan (1991, Adana) emek ve dayanışma temalarını işler."
-      },
-      {
-        "baslik": "Son Lokma",
-        "yazar": "Elif Demir",
-        "tur": "Hikaye",
-        "ozet": "Adana'da aile sofrada paylaşım yapar, son lokmayı birbirine ikram eder.",
-        "yazarBio": "Elif Demir (1994, Adana) aile sevgisini ve fedakârlığı işler."
-      },
-      {
-        "baslik": "Ekmek Kavgası",
-        "yazar": "Orhan Kemal",
-        "tur": "Roman",
-        "ozet": "Adana'da yoksul bir ailenin günlük ekmek mücadelesi ve dayanışması anlatılır.",
-        "yazarBio": "Orhan Kemal (1914-1970), işçi sınıfının yaşamını gerçekçi bir dille anlatan usta yazardır."
-      }
+      { "baslik": "Birlikte Güçlüyüz", "yazar": "Emre Kaya", "tur": "Hikaye", "ozet": "Adana'da yaşayan bir aile, maddi zorluklar yaşar ama herkes elinden geleni yaparak birbirine destek olur.", "yazarBio": "Emre Kaya (1991, Adana) toplumsal konular ve aile bağlarını anlatan hikâyeler yazar." },
+      { "baslik": "Küçük Bir Özür", "yazar": "Dilan Koç", "tur": "Hikaye", "ozet": "Adana'da bir çocuk hatasını kabul eder ve ailesinden özür diler.", "yazarBio": "Dilan Koç (1994, Adana) çocuk hikâyeleri yazar." },
+      { "baslik": "Birlikte Onarmak", "yazar": "Hakan Arslan", "tur": "Hikaye", "ozet": "Adana'da aile birlikte evlerini tamir eder, dayanışma içinde çalışır.", "yazarBio": "Hakan Arslan (1991, Adana) emek ve dayanışma temalarını işler." },
+      { "baslik": "Son Lokma", "yazar": "Elif Demir", "tur": "Hikaye", "ozet": "Adana'da aile sofrada paylaşım yapar, son lokmayı birbirine ikram eder.", "yazarBio": "Elif Demir (1994, Adana) aile sevgisini ve fedakârlığı işler." },
+      { "baslik": "Ekmek Kavgası", "yazar": "Orhan Kemal", "tur": "Roman", "ozet": "Adana'da yoksul bir ailenin günlük ekmek mücadelesi ve dayanışması anlatılır.", "yazarBio": "Orhan Kemal (1914-1970), işçi sınıfının yaşamını gerçekçi bir dille anlatan usta yazardır." }
     ]
   },
   {
     "sehir": "Antalya",
     "koordinat": [36.8969, 30.7133],
     "eserler": [
-      {
-        "baslik": "Aynı Çatı Altında",
-        "yazar": "Zeynep Demir",
-        "tur": "Hikaye",
-        "ozet": "Antalya'da yaşayan geniş bir aile, farklı kuşaklarla birlikte yaşar, sevgiyle birbirine bağlanır.",
-        "yazarBio": "Zeynep Demir (1994, Antalya) aile ilişkilerini konu alan hikâyeler yazar."
-      },
-      {
-        "baslik": "Bir Sofra Etrafında",
-        "yazar": "Mehmet Demir",
-        "tur": "Hikaye",
-        "ozet": "Antalya'da aile birlikte yemek yer, sohbet eder, bağlarını güçlendirir.",
-        "yazarBio": "Mehmet Demir (1991, Antalya) aile ilişkilerini anlatır."
-      },
-      {
-        "baslik": "Paylaşılan Yük",
-        "yazar": "Selin Yılmaz",
-        "tur": "Hikaye",
-        "ozet": "Antalya'da taşınma sürecinde aile birlikte çalışır, sorumluluğu paylaşır.",
-        "yazarBio": "Selin Yılmaz (1993, Antalya) aile dayanışmasını anlatır."
-      },
-      {
-        "baslik": "Akşam Çayı",
-        "yazar": "Derya Arslan",
-        "tur": "Hikaye",
-        "ozet": "Antalya'da aile çay saatinde buluşur, günlük sohbetlerle iletişimi güçlendirir.",
-        "yazarBio": "Derya Arslan (1993, Antalya) günlük yaşamın tatlı anlarını hikayeleştirir."
-      }
+      { "baslik": "Aynı Çatı Altında", "yazar": "Zeynep Demir", "tur": "Hikaye", "ozet": "Antalya'da yaşayan geniş bir aile, farklı kuşaklarla birlikte yaşar, sevgiyle birbirine bağlanır.", "yazarBio": "Zeynep Demir (1994, Antalya) aile ilişkilerini konu alan hikâyeler yazar." },
+      { "baslik": "Bir Sofra Etrafında", "yazar": "Mehmet Demir", "tur": "Hikaye", "ozet": "Antalya'da aile birlikte yemek yer, sohbet eder, bağlarını güçlendirir.", "yazarBio": "Mehmet Demir (1991, Antalya) aile ilişkilerini anlatır." },
+      { "baslik": "Paylaşılan Yük", "yazar": "Selin Yılmaz", "tur": "Hikaye", "ozet": "Antalya'da taşınma sürecinde aile birlikte çalışır, sorumluluğu paylaşır.", "yazarBio": "Selin Yılmaz (1993, Antalya) aile dayanışmasını anlatır." },
+      { "baslik": "Akşam Çayı", "yazar": "Derya Arslan", "tur": "Hikaye", "ozet": "Antalya'da aile çay saatinde buluşur, günlük sohbetlerle iletişimi güçlendirir.", "yazarBio": "Derya Arslan (1993, Antalya) günlük yaşamın tatlı anlarını hikayeleştirir." }
     ]
   },
   {
     "sehir": "Ankara",
     "koordinat": [39.9334, 32.8597],
     "eserler": [
-      {
-        "baslik": "Ankara",
-        "yazar": "Yakup Kadri Karaosmanoğlu",
-        "tur": "Roman",
-        "ozet": "Milli Mücadele yıllarından Cumhuriyet'in ilk dönemlerine kadar Ankara'nın ve Türk toplumunun geçirdiği değişimi anlatan önemli bir eserdir.",
-        "yazarBio": "Yakup Kadri Karaosmanoğlu (1889-1974), Türk roman, öykü ve deneme yazarı, diplomattır."
-      },
-      {
-        "baslik": "Eskici",
-        "yazar": "Refik Halit Karay",
-        "tur": "Hikaye",
-        "ozet": "Gurbetteki bir çocuğun memleket özlemini ve bir eskiciyle kurduğu kısa ama anlamlı diyaloğu anlatır.",
-        "yazarBio": "Refik Halit Karay (1888-1965), Anadolu'yu ve sürgün yıllarını en iyi anlatan yazarlardandır."
-      },
-      {
-        "baslik": "Gurbet Hikâyeleri",
-        "yazar": "Refik Halit Karay",
-        "tur": "Hikaye",
-        "ozet": "Ankara'ya gurbete gelenlerin aile özlemi ve yaşam mücadelesi.",
-        "yazarBio": "Refik Halit Karay, Türkçeyi ustalıkla kullanan, realizmin önemli temsilcilerindendir."
-      }
+      { "baslik": "Ankara", "yazar": "Yakup Kadri Karaosmanoğlu", "tur": "Roman", "ozet": "Milli Mücadele yıllarından Cumhuriyet'in ilk dönemlerine kadar Ankara'nın ve Türk toplumunun geçirdiği değişimi anlatan önemli bir eserdir.", "yazarBio": "Yakup Kadri Karaosmanoğlu (1889-1974), Türk roman, öykü ve deneme yazarı, diplomattır." },
+      { "baslik": "Eskici", "yazar": "Refik Halit Karay", "tur": "Hikaye", "ozet": "Gurbetteki bir çocuğun memleket özlemini ve bir eskiciyle kurduğu kısa ama anlamlı diyaloğu anlatır.", "yazarBio": "Refik Halit Karay (1888-1965), Anadolu'yu ve sürgün yıllarını en iyi anlatan yazarlardandır." },
+      { "baslik": "Gurbet Hikâyeleri", "yazar": "Refik Halit Karay", "tur": "Hikaye", "ozet": "Ankara'ya gurbete gelenlerin aile özlemi ve yaşam mücadelesi.", "yazarBio": "Refik Halit Karay, Türkçeyi ustalıkla kullanan, realizmin önemli temsilcilerindendir." }
     ]
   },
   {
     "sehir": "Ağrı",
     "koordinat": [39.7191, 43.0506],
     "eserler": [
-      {
-        "baslik": "Dağ Tepesindeki Mektup",
-        "yazar": "Elif Akdoğan",
-        "tur": "Hikaye",
-        "ozet": "Ayşe, babasının gurbet yıllarına ait bir mektup bulur; ailesinin sessiz sevgi bağlarını keşfeder.",
-        "yazarBio": "Elif Akdoğan (1995, Ağrı) Anadolu kasabalarının iç dünyasını ve aile ilişkilerini işler."
-      }
+      { "baslik": "Dağ Tepesindeki Mektup", "yazar": "Elif Akdoğan", "tur": "Hikaye", "ozet": "Ayşe, babasının gurbet yıllarına ait bir mektup bulur; ailesinin sessiz sevgi bağlarını keşfeder.", "yazarBio": "Elif Akdoğan (1995, Ağrı) Anadolu kasabalarının iç dünyasını ve aile ilişkilerini işler." }
     ]
   },
   {
     "sehir": "Aydın",
     "koordinat": [37.8488, 27.8446],
     "eserler": [
-      {
-        "baslik": "Kahvaltı Sofrası",
-        "yazar": "Elif Arslan",
-        "tur": "Hikaye",
-        "ozet": "Aydın'da uzun Pazar kahvaltıları, aile fertlerinin birbirine bağlandığı özel anlardır.",
-        "yazarBio": "Elif Arslan (1994, Aydın) günlük hayatın samimiyetini yazar."
-      },
-      {
-        "baslik": "Kuyucaklı Yusuf",
-        "yazar": "Sabahattin Ali",
-        "tur": "Roman",
-        "ozet": "Ailesi katledilen Yusuf, evlatlık verildiği ailede yaşadığı zorluklar ve Muazzez'e olan aşkı.",
-        "yazarBio": "Sabahattin Ali (1907-1948) Türk edebiyatının en lirik ve toplumcu yazarlarındandır."
-      }
+      { "baslik": "Kahvaltı Sofrası", "yazar": "Elif Arslan", "tur": "Hikaye", "ozet": "Aydın'da uzun Pazar kahvaltıları, aile fertlerinin birbirine bağlandığı özel anlardır.", "yazarBio": "Elif Arslan (1994, Aydın) günlük hayatın samimiyetini yazar." },
+      { "baslik": "Kuyucaklı Yusuf", "yazar": "Sabahattin Ali", "tur": "Roman", "ozet": "Ailesi katledilen Yusuf, evlatlık verildiği ailede yaşadığı zorluklar ve Muazzez'e olan aşkı.", "yazarBio": "Sabahattin Ali (1907-1948) Türk edebiyatının en lirik ve toplumcu yazarlarındandır." }
     ]
-  },,
+  },
   {
     "sehir": "Adıyaman",
     "koordinat": [37.7648, 38.2768],
     "eserler": [
-      {
-        "baslik": "Nemrut'un Gölgesinde",
-        "yazar": "Mehmet Eroğlu",
-        "tur": "Hikaye",
-        "ozet": "Adıyaman'da Nemrut Dağı eteklerinde yaşayan bir ailenin inanç ve gelenekleriyle yoğrulmuş hayatı.",
-        "yazarBio": "Mehmet Eroğlu (1980, Adıyaman) yerel hikâyeleri derleyen bir araştırmacıdır."
-      }
+      { "baslik": "Nemrut'un Gölgesinde", "yazar": "Mehmet Eroğlu", "tur": "Hikaye", "ozet": "Adıyaman'da Nemrut Dağı eteklerinde yaşayan bir ailenin inanç ve gelenekleriyle yoğrulmuş hayatı.", "yazarBio": "Mehmet Eroğlu (1980, Adıyaman) yerel hikâyeleri derleyen bir araştırmacıdır." }
     ]
   },
   {
     "sehir": "Afyonkarahisar",
     "koordinat": [38.7569, 30.5414],
     "eserler": [
-      {
-        "baslik": "Mermer Tozu",
-        "yazar": "İsmail Kaya",
-        "tur": "Hikaye",
-        "ozet": "Afyon'da mermer ocaklarında çalışan işçi ailelerin zorlu yaşamı ve dayanışması.",
-        "yazarBio": "İsmail Kaya (1978, Afyon) emek ve taşra hayatını anlatan öyküler yazar."
-      }
+      { "baslik": "Mermer Tozu", "yazar": "İsmail Kaya", "tur": "Hikaye", "ozet": "Afyon'da mermer ocaklarında çalışan işçi ailelerin zorlu yaşamı ve dayanışması.", "yazarBio": "İsmail Kaya (1978, Afyon) emek ve taşra hayatını anlatan öyküler yazar." }
     ]
   },
   {
     "sehir": "Amasya",
     "koordinat": [40.6493, 35.8342],
     "eserler": [
-      {
-        "baslik": "Yeşilırmak'ın Kıyısında",
-        "yazar": "Ayşe Yamaç",
-        "tur": "Roman",
-        "ozet": "Amasya'da Yeşilırmak kenarında büyüyen bir kızın ailesiyle ve şehirle olan bağları.",
-        "yazarBio": "Ayşe Yamaç (1985, Amasya) şehir monografileri ve aile romanları yazar."
-      }
+      { "baslik": "Yeşilırmak'ın Kıyısında", "yazar": "Ayşe Yamaç", "tur": "Roman", "ozet": "Amasya'da Yeşilırmak kenarında büyüyen bir kızın ailesiyle ve şehirle olan bağları.", "yazarBio": "Ayşe Yamaç (1985, Amasya) şehir monografileri ve aile romanları yazar." }
     ]
   },
   {
     "sehir": "Artvin",
     "koordinat": [41.1828, 41.8203],
     "eserler": [
-      {
-        "baslik": "Yayla Akşamı",
-        "yazar": "Zeynep Kaya",
-        "tur": "Hikaye",
-        "ozet": "Artvin'in bulutlara komşu yaylasında ailecek yakılan ateş başında anlatılan efsaneler.",
-        "yazarBio": "Zeynep Kaya (1995, Artvin) doğanın iyileştirici gücünü ve aile bağlarını anlatır."
-      }
+      { "baslik": "Yayla Akşamı", "yazar": "Zeynep Kaya", "tur": "Hikaye", "ozet": "Artvin'in bulutlara komşu yaylasında ailecek yakılan ateş başında anlatılan efsaneler.", "yazarBio": "Zeynep Kaya (1995, Artvin) doğanın iyileştirici gücünü ve aile bağlarını anlatır." }
     ]
   },
   {
     "sehir": "Balıkesir",
     "koordinat": [39.6484, 27.8821],
     "eserler": [
-      {
-        "baslik": "Balıkçı Kasabası",
-        "yazar": "Ali Yılmaz",
-        "tur": "Hikaye",
-        "ozet": "Balıkesir'in şirin bir kasabasında balıkçı ailesinin denize bağlı kader birliği.",
-        "yazarBio": "Ali Yılmaz (1989, Balıkesir) denizle iç içe yaşayan emekçi aileleri anlatır."
-      },
-      {
-        "baslik": "Kaşağı",
-        "yazar": "Ömer Seyfettin",
-        "tur": "Hikaye",
-        "ozet": "İki kardeşin çocukluk hatırası: Kırılan kaşağı ve atılan iftira, vicdan azabı.",
-        "yazarBio": "Ömer Seyfettin (1884-1920) modern Türk hikâyeciliğinin kurucusudur."
-      }
+      { "baslik": "Balıkçı Kasabası", "yazar": "Ali Yılmaz", "tur": "Hikaye", "ozet": "Balıkesir'in şirin bir kasabasında balıkçı ailesinin denize bağlı kader birliği.", "yazarBio": "Ali Yılmaz (1989, Balıkesir) denizle iç içe yaşayan emekçi aileleri anlatır." },
+      { "baslik": "Kaşağı", "yazar": "Ömer Seyfettin", "tur": "Hikaye", "ozet": "İki kardeşin çocukluk hatırası: Kırılan kaşağı ve atılan iftira, vicdan azabı.", "yazarBio": "Ömer Seyfettin (1884-1920) modern Türk hikâyeciliğinin kurucusudur." }
     ]
   },
   {
     "sehir": "Bitlis",
     "koordinat": [38.4000, 42.1107],
     "eserler": [
-      {
-        "baslik": "Bitlis'in Akşamüstü",
-        "yazar": "Emine Kaya",
-        "tur": "Hikaye",
-        "ozet": "Bitlis'te gün batımında aile rutini; çocukların maceraları, ebeveynlerin rehberliği.",
-        "yazarBio": "Emine Kaya (1992, Bitlis) yerel kültür ve aile ilişkilerini duygusal bir dille işler."
-      }
+      { "baslik": "Bitlis'in Akşamüstü", "yazar": "Emine Kaya", "tur": "Hikaye", "ozet": "Bitlis'te gün batımında aile rutini; çocukların maceraları, ebeveynlerin rehberliği.", "yazarBio": "Emine Kaya (1992, Bitlis) yerel kültür ve aile ilişkilerini duygusal bir dille işler." }
     ]
   },
   {
     "sehir": "Bingöl",
     "koordinat": [38.8848, 40.4965],
     "eserler": [
-      {
-        "baslik": "Bingöl'de Bahar",
-        "yazar": "Selma Yıldız",
-        "tur": "Hikaye",
-        "ozet": "Bingöl'ün karlı yamaçları baharla uyanırken aile birlikte bahçeye fideler diker; doğayla iç içe bir dayanışma.",
-        "yazarBio": "Selma Yıldız (1993, Bingöl) doğa ve aile temalarını birleştiren kısa hikâyeler yazar."
-      }
+      { "baslik": "Bingöl'de Bahar", "yazar": "Selma Yıldız", "tur": "Hikaye", "ozet": "Bingöl'ün karlı yamaçları baharla uyanırken aile birlikte bahçeye fideler diker; doğayla iç içe bir dayanışma.", "yazarBio": "Selma Yıldız (1993, Bingöl) doğa ve aile temalarını birleştiren kısa hikâyeler yazar." }
     ]
   },
   {
     "sehir": "Bolu",
     "koordinat": [40.7394, 31.6067],
     "eserler": [
-      {
-        "baslik": "Yeşil Bursa'dan Bolu Yaylalarına",
-        "yazar": "Fatih Rıfkı Atay",
-        "tur": "Gezi",
-        "ozet": "Erken Cumhuriyet döneminde Bolu'nun doğası ve insanının aile yapısına dair gözlemler.",
-        "yazarBio": "Fatih Rıfkı Atay (1894-1971) gezi yazıları ve anılarıyla tanınan yazardır."
-      }
+      { "baslik": "Yeşil Bursa'dan Bolu Yaylalarına", "yazar": "Fatih Rıfkı Atay", "tur": "Gezi", "ozet": "Erken Cumhuriyet döneminde Bolu'nun doğası ve insanının aile yapısına dair gözlemler.", "yazarBio": "Fatih Rıfkı Atay (1894-1971) gezi yazıları ve anılarıyla tanınan yazardır." }
     ]
   },
   {
     "sehir": "Burdur",
     "koordinat": [37.7185, 30.2828],
     "eserler": [
-      {
-        "baslik": "Bayram Sabahı",
-        "yazar": "Hasan Yıldırım",
-        "tur": "Hikaye",
-        "ozet": "Burdur'da bayram sabahı aile bir araya gelir, geleneklerle bağlar güçlenir.",
-        "yazarBio": "Hasan Yıldırım (1988, Burdur) gelenekleri ve aile sıcaklığını anlatır."
-      },
-      {
-        "baslik": "Geri Dönüş",
-        "yazar": "Emre Koç",
-        "tur": "Hikaye",
-        "ozet": "Gurbetten Burdur'a dönen bir gencin ailesiyle yeniden kurduğu bağ.",
-        "yazarBio": "Emre Koç (1992, Burdur) özlem ve aile değerlerini işler."
-      }
+      { "baslik": "Bayram Sabahı", "yazar": "Hasan Yıldırım", "tur": "Hikaye", "ozet": "Burdur'da bayram sabahı aile bir araya gelir, geleneklerle bağlar güçlenir.", "yazarBio": "Hasan Yıldırım (1988, Burdur) gelenekleri ve aile sıcaklığını anlatır." },
+      { "baslik": "Geri Dönüş", "yazar": "Emre Koç", "tur": "Hikaye", "ozet": "Gurbetten Burdur'a dönen bir gencin ailesiyle yeniden kurduğu bağ.", "yazarBio": "Emre Koç (1992, Burdur) özlem ve aile değerlerini işler." }
     ]
   },
   {
     "sehir": "Bursa",
     "koordinat": [40.1885, 29.0609],
     "eserler": [
-      {
-        "baslik": "Oğlumuz",
-        "yazar": "Tarık Buğra",
-        "tur": "Hikaye",
-        "ozet": "Bir ailenin evlatları üzerine titremesi; büyüme sancıları ve fedakârlık.",
-        "yazarBio": "Tarık Buğra (1918-1994), Akşehir doğumlu olmakla birlikte Bursa'da öğretmenlik yapmıştır. 'Küçük Ağa' romanıyla ünlüdür."
-      },
-      {
-        "baslik": "Yarın Diye Bir Şey Yoktur",
-        "yazar": "Tarık Buğra",
-        "tur": "Hikaye",
-        "ozet": "Gelecek kaygısı karşısında ailenin bir sığınak olması ve dayanışma.",
-        "yazarBio": "Tarık Buğra, milli ve manevi değerleri modern bir anlayışla işlemiştir."
-      }
+      { "baslik": "Oğlumuz", "yazar": "Tarık Buğra", "tur": "Hikaye", "ozet": "Bir ailenin evlatları üzerine titremesi; büyüme sancıları ve fedakârlık.", "yazarBio": "Tarık Buğra (1918-1994), Akşehir doğumlu olmakla birlikte Bursa'da öğretmenlik yapmıştır." },
+      { "baslik": "Yarın Diye Bir Şey Yoktur", "yazar": "Tarık Buğra", "tur": "Hikaye", "ozet": "Gelecek kaygısı karşısında ailenin bir sığınak olması ve dayanışma.", "yazarBio": "Tarık Buğra, milli ve manevi değerleri modern bir anlayışla işlemiştir." }
     ]
   },
   {
     "sehir": "Çanakkale",
     "koordinat": [40.1553, 26.4142],
     "eserler": [
-      {
-        "baslik": "Gelibolu",
-        "yazar": "Buket Uzuner",
-        "tur": "Roman",
-        "ozet": "Çanakkale Savaşı'nın gölgesinde, bir kadının kendi köklerini ve ailesinin sırlarını keşfetmesi.",
-        "yazarBio": "Buket Uzuner (1955), çağdaş Türk edebiyatının önemli kadın yazarlarındandır."
-      }
+      { "baslik": "Gelibolu", "yazar": "Buket Uzuner", "tur": "Roman", "ozet": "Çanakkale Savaşı'nın gölgesinde, bir kadının kendi köklerini ve ailesinin sırlarını keşfetmesi.", "yazarBio": "Buket Uzuner (1955), çağdaş Türk edebiyatının önemli kadın yazarlarındandır." }
     ]
   },
   {
     "sehir": "Çankırı",
     "koordinat": [40.6013, 33.6134],
     "eserler": [
-      {
-        "baslik": "Tuz Mağarası",
-        "yazar": "Hüseyin Yürük",
-        "tur": "Hikaye",
-        "ozet": "Çankırı'nın tuz mağaralarında çalışan işçi ailelerinin yaşam mücadelesi ve dayanışması.",
-        "yazarBio": "Hüseyin Yürük (1982, Çankırı) yerel işçi hikâyeleri yazar."
-      }
+      { "baslik": "Tuz Mağarası", "yazar": "Hüseyin Yürük", "tur": "Hikaye", "ozet": "Çankırı'nın tuz mağaralarında çalışan işçi ailelerinin yaşam mücadelesi ve dayanışması.", "yazarBio": "Hüseyin Yürük (1982, Çankırı) yerel işçi hikâyeleri yazar." }
     ]
   },
   {
     "sehir": "Çorum",
     "koordinat": [40.5489, 34.9533],
     "eserler": [
-      {
-        "baslik": "Sağırdere",
-        "yazar": "Kemal Tahir",
-        "tur": "Roman",
-        "ozet": "Çorum'un bir köyünde yaşayan Mustafa'nın gurbete gidişi ve ailesinin değişen hayatı.",
-        "yazarBio": "Kemal Tahir (1910-1973), Türk romanında toplumsal gerçekçiliğin en güçlü isimlerindendir."
-      }
+      { "baslik": "Sağırdere", "yazar": "Kemal Tahir", "tur": "Roman", "ozet": "Çorum'un bir köyünde yaşayan Mustafa'nın gurbete gidişi ve ailesinin değişen hayatı.", "yazarBio": "Kemal Tahir (1910-1973), Türk romanında toplumsal gerçekçiliğin en güçlü isimlerindendir." }
     ]
   },
   {
     "sehir": "Denizli",
     "koordinat": [37.7833, 29.0963],
     "eserler": [
-      {
-        "baslik": "Köy Düğünü",
-        "yazar": "Murat Arslan",
-        "tur": "Hikaye",
-        "ozet": "Denizli'de bir düğün vesilesiyle bir araya gelen akrabaların yeniden kenetlenmesi.",
-        "yazarBio": "Murat Arslan (1990, Denizli) geleneksel törenler ve aile değerlerini anlatır."
-      }
+      { "baslik": "Köy Düğünü", "yazar": "Murat Arslan", "tur": "Hikaye", "ozet": "Denizli'de bir düğün vesilesiyle bir araya gelen akrabaların yeniden kenetlenmesi.", "yazarBio": "Murat Arslan (1990, Denizli) geleneksel törenler ve aile değerlerini anlatır." }
     ]
   },
   {
     "sehir": "Diyarbakır",
     "koordinat": [37.9144, 40.2306],
     "eserler": [
-      {
-        "baslik": "Evlerin Önündeki Sohbet",
-        "yazar": "Zeynep Aslan",
-        "tur": "Hikaye",
-        "ozet": "Diyarbakır surlarının gölgesinde, elektrik kesintisinde bir araya gelen ailenin samimi sohbeti.",
-        "yazarBio": "Zeynep Aslan (1991, Diyarbakır) tarihi dokular içinde modern aileyi işler."
-      }
+      { "baslik": "Evlerin Önündeki Sohbet", "yazar": "Zeynep Aslan", "tur": "Hikaye", "ozet": "Diyarbakır surlarının gölgesinde, elektrik kesintisinde bir araya gelen ailenin samimi sohbeti.", "yazarBio": "Zeynep Aslan (1991, Diyarbakır) tarihi dokular içinde modern aileyi işler." }
     ]
   },
   {
     "sehir": "Edirne",
     "koordinat": [41.6818, 26.5623],
     "eserler": [
-      {
-        "baslik": "Kırkpınar",
-        "yazar": "Mehmet Esen",
-        "tur": "Hikaye",
-        "ozet": "Edirne'de Kırkpınar yağlı güreşleri sırasında bir ailenin geleneklerine sahip çıkışı.",
-        "yazarBio": "Mehmet Esen (1975, Edirne) Rumeli kültürünü ve aile bağlarını hikayelerinde işler."
-      }
+      { "baslik": "Kırkpınar", "yazar": "Mehmet Esen", "tur": "Hikaye", "ozet": "Edirne'de Kırkpınar yağlı güreşleri sırasında bir ailenin geleneklerine sahip çıkışı.", "yazarBio": "Mehmet Esen (1975, Edirne) Rumeli kültürünü ve aile bağlarını hikayelerinde işler." }
     ]
   },
   {
     "sehir": "Elazığ",
     "koordinat": [38.6748, 39.2225],
     "eserler": [
-      {
-        "baslik": "Elazığ'ın Nağmeleri",
-        "yazar": "Hasan Çelik",
-        "tur": "Hikaye",
-        "ozet": "Dedenin söylediği türkülerle kuşaklar arası bağ kuran bir aile.",
-        "yazarBio": "Hasan Çelik (1991, Elazığ) müzik ve aile ilişkilerini hikâyelerine taşır."
-      }
+      { "baslik": "Elazığ'ın Nağmeleri", "yazar": "Hasan Çelik", "tur": "Hikaye", "ozet": "Dedenin söylediği türkülerle kuşaklar arası bağ kuran bir aile.", "yazarBio": "Hasan Çelik (1991, Elazığ) müzik ve aile ilişkilerini hikâyelerine taşır." }
     ]
   },
   {
     "sehir": "Erzincan",
     "koordinat": [39.7467, 39.4914],
     "eserler": [
-      {
-        "baslik": "Uzun Hikaye",
-        "yazar": "Mustafa Kutlu",
-        "tur": "Roman",
-        "ozet": "Erzincan'dan İstanbul'a uzanan bir tren yolculuğu gibi, bir baba-oğulun göçebe hayatı.",
-        "yazarBio": "Mustafa Kutlu (1947), hikâyelerinde Anadolu insanının iç dünyasını, aile ve gelenek bağlarını işler."
-      }
+      { "baslik": "Uzun Hikaye", "yazar": "Mustafa Kutlu", "tur": "Roman", "ozet": "Erzincan'dan İstanbul'a uzanan bir tren yolculuğu gibi, bir baba-oğulun göçebe hayatı.", "yazarBio": "Mustafa Kutlu (1947), hikâyelerinde Anadolu insanının iç dünyasını, aile ve gelenek bağlarını işler." }
     ]
   },
   {
     "sehir": "Erzurum",
     "koordinat": [39.9055, 41.2716],
     "eserler": [
-      {
-        "baslik": "Karlı Kapı",
-        "yazar": "Derya Koç",
-        "tur": "Hikaye",
-        "ozet": "Erzurum'un dondurucu soğuğunda soba başında kenetlenen bir ailenin sıcaklığı.",
-        "yazarBio": "Derya Koç (1994, Erzurum) kışın zorlu şartlarında insan ilişkilerini işler."
-      },
-      {
-        "baslik": "Kağnı",
-        "yazar": "Sabahattin Ali",
-        "tur": "Hikaye",
-        "ozet": "Oğlunun cenazesini kağnıyla kasabaya götüren bir annenin adalet arayışı.",
-        "yazarBio": "Sabahattin Ali, Anadolu insanının çilesini ve onurunu en iyi anlatan yazardır."
-      },
-      {
-        "baslik": "Hanende Melek",
-        "yazar": "Sabahattin Ali",
-        "tur": "Hikaye",
-        "ozet": "Toplumun baskısı altında ezilen bir kadının yalnızlığı ve aile desteğinden yoksunluğu.",
-        "yazarBio": "Sabahattin Ali, insan ruhunun derinliklerini toplumsal gerçeklerle birleştirir."
-      }
+      { "baslik": "Karlı Kapı", "yazar": "Derya Koç", "tur": "Hikaye", "ozet": "Erzurum'un dondurucu soğuğunda soba başında kenetlenen bir ailenin sıcaklığı.", "yazarBio": "Derya Koç (1994, Erzurum) kışın zorlu şartlarında insan ilişkilerini işler." },
+      { "baslik": "Kağnı", "yazar": "Sabahattin Ali", "tur": "Hikaye", "ozet": "Oğlunun cenazesini kağnıyla kasabaya götüren bir annenin adalet arayışı.", "yazarBio": "Sabahattin Ali, Anadolu insanının çilesini ve onurunu en iyi anlatan yazardır." },
+      { "baslik": "Hanende Melek", "yazar": "Sabahattin Ali", "tur": "Hikaye", "ozet": "Toplumun baskısı altında ezilen bir kadının yalnızlığı ve aile desteğinden yoksunluğu.", "yazarBio": "Sabahattin Ali, insan ruhunun derinliklerini toplumsal gerçeklerle birleştirir." }
     ]
   },
   {
     "sehir": "Eskişehir",
     "koordinat": [39.7667, 30.5256],
     "eserler": [
-      {
-        "baslik": "Porsuk Çayı",
-        "yazar": "Ayfer Tunç",
-        "tur": "Hikaye",
-        "ozet": "Eskişehir'de Porsuk kenarında bir ailenin hüzünlü ama umut dolu hikâyesi.",
-        "yazarBio": "Ayfer Tunç (1964), çağdaş Türk edebiyatının en güçlü öykücülerindendir."
-      }
+      { "baslik": "Porsuk Çayı", "yazar": "Ayfer Tunç", "tur": "Hikaye", "ozet": "Eskişehir'de Porsuk kenarında bir ailenin hüzünlü ama umut dolu hikâyesi.", "yazarBio": "Ayfer Tunç (1964), çağdaş Türk edebiyatının en güçlü öykücülerindendir." }
     ]
   },
   {
     "sehir": "Gaziantep",
     "koordinat": [37.0662, 37.3833],
     "eserler": [
-      {
-        "baslik": "Baklava Tadında Sevgi",
-        "yazar": "Can Antep",
-        "tur": "Hikaye",
-        "ozet": "Gaziantep'te bayram hazırlığında aile birlikte baklava yapar, gelenek ve sevgi paylaşılır.",
-        "yazarBio": "Can Antep (1985, Gaziantep) yöresel tatları ve aile bağlarını anlatır."
-      }
+      { "baslik": "Baklava Tadında Sevgi", "yazar": "Can Antep", "tur": "Hikaye", "ozet": "Gaziantep'te bayram hazırlığında aile birlikte baklava yapar, gelenek ve sevgi paylaşılır.", "yazarBio": "Can Antep (1985, Gaziantep) yöresel tatları ve aile bağlarını anlatır." }
     ]
   },
   {
     "sehir": "Giresun",
     "koordinat": [40.9175, 38.3877],
     "eserler": [
-      {
-        "baslik": "Baba Ocağı",
-        "yazar": "Ali Yıldız",
-        "tur": "Hikaye",
-        "ozet": "Giresun'da büyükşehirden baba ocağına dönen bir gencin duygusal yolculuğu.",
-        "yazarBio": "Ali Yıldız (1989, Giresun) özlem, göç ve aile bağlarını konu alır."
-      }
+      { "baslik": "Baba Ocağı", "yazar": "Ali Yıldız", "tur": "Hikaye", "ozet": "Giresun'da büyükşehirden baba ocağına dönen bir gencin duygusal yolculuğu.", "yazarBio": "Ali Yıldız (1989, Giresun) özlem, göç ve aile bağlarını konu alır." }
     ]
   },
   {
     "sehir": "Gümüşhane",
     "koordinat": [40.4608, 39.4814],
     "eserler": [
-      {
-        "baslik": "Zigana'dan Bakan Aile",
-        "yazar": "Fatma Koç",
-        "tur": "Hikaye",
-        "ozet": "Gümüşhane'nin Zigana Dağları eteklerinde yaşayan bir ailenin doğayla ve birbiriyle mücadelesi.",
-        "yazarBio": "Fatma Koç (1992, Gümüşhane) Karadeniz yaylalarını ve aile dayanışmasını yazar."
-      }
+      { "baslik": "Zigana'dan Bakan Aile", "yazar": "Fatma Koç", "tur": "Hikaye", "ozet": "Gümüşhane'nin Zigana Dağları eteklerinde yaşayan bir ailenin doğayla ve birbiriyle mücadelesi.", "yazarBio": "Fatma Koç (1992, Gümüşhane) Karadeniz yaylalarını ve aile dayanışmasını yazar." }
     ]
   },
   {
     "sehir": "Hakkari",
     "koordinat": [37.5747, 43.7376],
     "eserler": [
-      {
-        "baslik": "Hakkari'nin Zirvesinde",
-        "yazar": "Zeynel Demir",
-        "tur": "Hikaye",
-        "ozet": "Hakkari'nin sarp dağlarında zorlu bir yürüyüşle aile fertlerinin birbirine olan sadakati sınanır.",
-        "yazarBio": "Zeynel Demir (1995, Hakkari) coğrafya ve aile dayanışmasını işler."
-      }
+      { "baslik": "Hakkari'nin Zirvesinde", "yazar": "Zeynel Demir", "tur": "Hikaye", "ozet": "Hakkari'nin sarp dağlarında zorlu bir yürüyüşle aile fertlerinin birbirine olan sadakati sınanır.", "yazarBio": "Zeynel Demir (1995, Hakkari) coğrafya ve aile dayanışmasını işler." }
     ]
   },
   {
     "sehir": "Hatay",
     "koordinat": [36.2028, 36.1606],
     "eserler": [
-      {
-        "baslik": "Babamın Öğrettiği",
-        "yazar": "Ahmet Arslan",
-        "tur": "Hikaye",
-        "ozet": "Hatay'da bir baba çocuğuna hayat dersleri verir, değerleri aktarır.",
-        "yazarBio": "Ahmet Arslan (1990, Hatay) aile değerlerini ve kuşaklar arası öğretiyi anlatır."
-      },
-      {
-        "baslik": "Büyükannenin Hikâyesi",
-        "yazar": "Ayla Koç",
-        "tur": "Hikaye",
-        "ozet": "Hatay'da büyükanne geçmişi anlatarak aileye köklerini hatırlatır.",
-        "yazarBio": "Ayla Koç (1990, Hatay) kuşak ilişkilerini işler."
-      }
+      { "baslik": "Babamın Öğrettiği", "yazar": "Ahmet Arslan", "tur": "Hikaye", "ozet": "Hatay'da bir baba çocuğuna hayat dersleri verir, değerleri aktarır.", "yazarBio": "Ahmet Arslan (1990, Hatay) aile değerlerini ve kuşaklar arası öğretiyi anlatır." },
+      { "baslik": "Büyükannenin Hikâyesi", "yazar": "Ayla Koç", "tur": "Hikaye", "ozet": "Hatay'da büyükanne geçmişi anlatarak aileye köklerini hatırlatır.", "yazarBio": "Ayla Koç (1990, Hatay) kuşak ilişkilerini işler." }
     ]
   },
   {
     "sehir": "Isparta",
     "koordinat": [37.7648, 30.5565],
     "eserler": [
-      {
-        "baslik": "Kardeşlik",
-        "yazar": "Elif Koç",
-        "tur": "Hikaye",
-        "ozet": "Isparta'da iki kardeş zor durumda birbirine destek olur.",
-        "yazarBio": "Elif Koç (1995, Isparta) kardeş ilişkilerini işler."
-      },
-      {
-        "baslik": "Küçük Mutluluklar",
-        "yazar": "Zeynep Yıldız",
-        "tur": "Hikaye",
-        "ozet": "Isparta'da aile küçük anlarla mutlu olmayı öğrenir.",
-        "yazarBio": "Zeynep Yıldız (1995, Isparta) duygusal hikâyeler yazar."
-      },
-      {
-        "baslik": "Lavanta Kokusu",
-        "yazar": "Zeynep Kaya",
-        "tur": "Hikaye",
-        "ozet": "Isparta'nın lavanta tarlalarında ailece çalışmanın huzuru.",
-        "yazarBio": "Zeynep Kaya (1995, Isparta) estetik, doğa ve aile üzerine yazar."
-      }
+      { "baslik": "Kardeşlik", "yazar": "Elif Koç", "tur": "Hikaye", "ozet": "Isparta'da iki kardeş zor durumda birbirine destek olur.", "yazarBio": "Elif Koç (1995, Isparta) kardeş ilişkilerini işler." },
+      { "baslik": "Küçük Mutluluklar", "yazar": "Zeynep Yıldız", "tur": "Hikaye", "ozet": "Isparta'da aile küçük anlarla mutlu olmayı öğrenir.", "yazarBio": "Zeynep Yıldız (1995, Isparta) duygusal hikâyeler yazar." },
+      { "baslik": "Lavanta Kokusu", "yazar": "Zeynep Kaya", "tur": "Hikaye", "ozet": "Isparta'nın lavanta tarlalarında ailece çalışmanın huzuru.", "yazarBio": "Zeynep Kaya (1995, Isparta) estetik, doğa ve aile üzerine yazar." }
     ]
   },
   {
     "sehir": "Mersin",
     "koordinat": [36.8000, 34.6333],
     "eserler": [
-      {
-        "baslik": "Annenin Eli",
-        "yazar": "Fatma Yıldız",
-        "tur": "Hikaye",
-        "ozet": "Mersin'de bir çocuk annesinin fedakârlıklarını keşfeder.",
-        "yazarBio": "Fatma Yıldız (1993, Mersin) anne-çocuk ilişkilerini anlatır."
-      }
+      { "baslik": "Annenin Eli", "yazar": "Fatma Yıldız", "tur": "Hikaye", "ozet": "Mersin'de bir çocuk annesinin fedakârlıklarını keşfeder.", "yazarBio": "Fatma Yıldız (1993, Mersin) anne-çocuk ilişkilerini anlatır." }
     ]
   },
   {
     "sehir": "İstanbul",
     "koordinat": [41.0082, 28.9784],
     "eserler": [
-      {
-        "baslik": "Kürk Mantolu Madonna",
-        "yazar": "Sabahattin Ali",
-        "tur": "Roman",
-        "ozet": "Raif Efendi'nin içe kapanık hayatı ve Berlin'de tanıştığı Maria Puder'e duyduğu derin aşk.",
-        "yazarBio": "Sabahattin Ali (1907-1948), Türk edebiyatının en lirik yazarlarındandır."
-      },
-      {
-        "baslik": "Semaver",
-        "yazar": "Sait Faik Abasıyanık",
-        "tur": "Hikaye",
-        "ozet": "Ali'nin annesiyle paylaştığı mütevazı evde semaverin ritmiyle şekillenen sıcak bağ.",
-        "yazarBio": "Sait Faik (1906-1954), insanı ve doğayı seven, modern öykücülüğümüzün öncüsüdür."
-      },
-      {
-        "baslik": "Falaka",
-        "yazar": "Ömer Seyfettin",
-        "tur": "Hikaye",
-        "ozet": "Okulda işlenen küçük bir hata sonucu falaka cezası alan çocuğun yaşadığı korku ve aileye sığınışı.",
-        "yazarBio": "Ömer Seyfettin, çocukluk ve okul anılarını yalın bir dille işler."
-      },
-      {
-        "baslik": "Son Kuşlar",
-        "yazar": "Sait Faik Abasıyanık",
-        "tur": "Hikaye",
-        "ozet": "İstanbul'un değişen silueti ve doğanın yok oluşuyla aile içindeki yabancılaşma.",
-        "yazarBio": "Sait Faik, kentleşmenin insan ilişkilerine etkisini hüzünle anlatır."
-      },
-      {
-        "baslik": "Mahalle Kahvesi",
-        "yazar": "Sait Faik Abasıyanık",
-        "tur": "Hikaye",
-        "ozet": "Mahalle kahvesinde toplanan insanların hayatlarından aile sıcaklığına dair kesitler.",
-        "yazarBio": "Sait Faik, gündelik yaşamın içindeki sıradan insanların hikâyelerini anlatır."
-      }
+      { "baslik": "Kürk Mantolu Madonna", "yazar": "Sabahattin Ali", "tur": "Roman", "ozet": "Raif Efendi'nin içe kapanık hayatı ve Berlin'de tanıştığı Maria Puder'e duyduğu derin aşk.", "yazarBio": "Sabahattin Ali (1907-1948), Türk edebiyatının en lirik yazarlarındandır." },
+      { "baslik": "Semaver", "yazar": "Sait Faik Abasıyanık", "tur": "Hikaye", "ozet": "Ali'nin annesiyle paylaştığı mütevazı evde semaverin ritmiyle şekillenen sıcak bağ.", "yazarBio": "Sait Faik (1906-1954), insanı ve doğayı seven, modern öykücülüğümüzün öncüsüdür." },
+      { "baslik": "Falaka", "yazar": "Ömer Seyfettin", "tur": "Hikaye", "ozet": "Okulda işlenen küçük bir hata sonucu falaka cezası alan çocuğun yaşadığı korku ve aileye sığınışı.", "yazarBio": "Ömer Seyfettin, çocukluk ve okul anılarını yalın bir dille işler." },
+      { "baslik": "Son Kuşlar", "yazar": "Sait Faik Abasıyanık", "tur": "Hikaye", "ozet": "İstanbul'un değişen silueti ve doğanın yok oluşuyla aile içindeki yabancılaşma.", "yazarBio": "Sait Faik, kentleşmenin insan ilişkilerine etkisini hüzünle anlatır." },
+      { "baslik": "Mahalle Kahvesi", "yazar": "Sait Faik Abasıyanık", "tur": "Hikaye", "ozet": "Mahalle kahvesinde toplanan insanların hayatlarından aile sıcaklığına dair kesitler.", "yazarBio": "Sait Faik, gündelik yaşamın içindeki sıradan insanların hikâyelerini anlatır." }
     ]
   },
   {
     "sehir": "İzmir",
     "koordinat": [38.4237, 27.1428],
     "eserler": [
-      {
-        "baslik": "Ay Büyürken Uyuyamam",
-        "yazar": "Necati Cumalı",
-        "tur": "Hikaye",
-        "ozet": "İzmir'in bir kasabasında ay ışığında aile içi sırlar ve çocuk ruhunun sezgileri.",
-        "yazarBio": "Necati Cumalı (1921-2001), Ege insanının iç dünyasını usta bir dille anlatır."
-      },
-      {
-        "baslik": "Zeytin Hasadı",
-        "yazar": "Ayşe Demir",
-        "tur": "Hikaye",
-        "ozet": "İzmir'in verimli topraklarında ailecek zeytin toplamanın bereketi ve paylaşımı.",
-        "yazarBio": "Ayşe Demir (1993, İzmir) tarım hayatı ve gelenekleri aile bağlarıyla anlatır."
-      },
-      {
-        "baslik": "Yazlık Ev",
-        "yazar": "Kerem Demir",
-        "tur": "Hikaye",
-        "ozet": "İzmir'de yazlık evde geçirilen tatil, ailenin birbirini yeniden keşfettiği anlarla doludur.",
-        "yazarBio": "Kerem Demir (1992, İzmir) tatil ve aile içi neşeli hikâyeler yazar."
-      },
-      {
-        "baslik": "Akşamüstü Çayı",
-        "yazar": "Dilan Yıldız",
-        "tur": "Hikaye",
-        "ozet": "İzmir'de her akşam aynı saatte içilen çay, aile içi iletişimin simgesidir.",
-        "yazarBio": "Dilan Yıldız (1994, İzmir) günlük yaşamın ritüellerini ve sadeliği yazar."
-      }
+      { "baslik": "Ay Büyürken Uyuyamam", "yazar": "Necati Cumalı", "tur": "Hikaye", "ozet": "İzmir'in bir kasabasında ay ışığında aile içi sırlar ve çocuk ruhunun sezgileri.", "yazarBio": "Necati Cumalı (1921-2001), Ege insanının iç dünyasını usta bir dille anlatır." },
+      { "baslik": "Zeytin Hasadı", "yazar": "Ayşe Demir", "tur": "Hikaye", "ozet": "İzmir'in verimli topraklarında ailecek zeytin toplamanın bereketi ve paylaşımı.", "yazarBio": "Ayşe Demir (1993, İzmir) tarım hayatı ve gelenekleri aile bağlarıyla anlatır." },
+      { "baslik": "Yazlık Ev", "yazar": "Kerem Demir", "tur": "Hikaye", "ozet": "İzmir'de yazlık evde geçirilen tatil, ailenin birbirini yeniden keşfettiği anlarla doludur.", "yazarBio": "Kerem Demir (1992, İzmir) tatil ve aile içi neşeli hikâyeler yazar." },
+      { "baslik": "Akşamüstü Çayı", "yazar": "Dilan Yıldız", "tur": "Hikaye", "ozet": "İzmir'de her akşam aynı saatte içilen çay, aile içi iletişimin simgesidir.", "yazarBio": "Dilan Yıldız (1994, İzmir) günlük yaşamın ritüellerini ve sadeliği yazar." }
     ]
   },
   {
     "sehir": "Kars",
     "koordinat": [40.5922, 43.0776],
     "eserler": [
-      {
-        "baslik": "Kars'ın Akşamı",
-        "yazar": "Murat Eren",
-        "tur": "Hikaye",
-        "ozet": "Kars'ın ayazında akşam sohbetleriyle birbirine ısınan bir aile.",
-        "yazarBio": "Murat Eren (1989, Kars) soğuk coğrafyanın sıcak insan ilişkilerini vurgular."
-      }
+      { "baslik": "Kars'ın Akşamı", "yazar": "Murat Eren", "tur": "Hikaye", "ozet": "Kars'ın ayazında akşam sohbetleriyle birbirine ısınan bir aile.", "yazarBio": "Murat Eren (1989, Kars) soğuk coğrafyanın sıcak insan ilişkilerini vurgular." }
     ]
   }
 ]
