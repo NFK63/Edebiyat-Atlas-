@@ -840,5 +840,423 @@
         "degerler": "Sanat, emek, gelenek"
       }
     ]
+  },
+  {
+    "sehir": "Malatya",
+    "koordinat": [38.3552, 38.3095],
+    "eserler": [
+      {
+        "baslik": "Kayısı Bahçeleri",
+        "yazar": "Hasan Malatyalı",
+        "tur": "Hikaye",
+        "ozet": "Malatya'da kayısı hasadı zamanı tüm aile bir araya gelir. Ağaçlardan toplanan kayısılar, kurutulmak üzere serilirken büyükler çocuklara toprağın bereketini ve emeğin kutsallığını anlatır. Birlikte çalışmanın verdiği yorgunluk, akşam sofrasında paylaşılan huzurla unutulur.",
+        "yazarBio": "Hasan Malatyalı (1982, Malatya) tarım ve aile yaşamını anlatır.",
+        "aileTemasi": "Ortak emek ve toprağa bağlılık aracılığıyla aile bağlarının güçlendirilmesi.",
+        "karakterIliskileri": "Çocuklar büyüklerine yardım ederken sorumluluk öğrenir; büyükler sabırla rehberlik eder.",
+        "degerler": "Emek, bereket, dayanışma"
+      }
+    ]
+  },
+  {
+    "sehir": "Manisa",
+    "koordinat": [38.6122, 27.4295],
+    "eserler": [
+      {
+        "baslik": "Bağ Bozumu",
+        "yazar": "Hasan Koç",
+        "tur": "Hikaye",
+        "ozet": "Manisa'da bağ bozumu mevsimi, aileyi üzüm bağlarında buluşturur. Çalışırken söylenen türküler, yapılan şakalar ve paylaşılan yorgunluk, aile fertlerini birbirine kenetler. Günün sonunda toplanan üzümler, ailenin ortak başarısının tatlı bir simgesidir.",
+        "yazarBio": "Hasan Koç (1991, Manisa) üretim ve aile bağlarını konu alır.",
+        "aileTemasi": "Mevsimlik ortak işlerin aile içi dayanışmayı ve neşeyi artırması.",
+        "karakterIliskileri": "Ebeveynlerin liderliğinde bir ekip gibi çalışan aile fertleri; herkesin katkıda bulunması.",
+        "degerler": "Neşe, üretkenlik, birlik"
+      }
+    ]
+  },
+  {
+    "sehir": "Mardin",
+    "koordinat": [37.3129, 40.7336],
+    "eserler": [
+      {
+        "baslik": "Taş Evin Sesi",
+        "yazar": "Mehmet Mardinli",
+        "tur": "Hikaye",
+        "ozet": "Mardin'in taş evlerinde yaşayan geniş bir aile, kadim gelenekleri ve çok kültürlü yapısıyla huzur içinde yaşar. Büyükbabanın anlattığı Mezopotamya efsaneleri, torunların dünyasını şekillendirir. Aile, farklılıkların bir arada nasıl güzellik yaratabileceğinin canlı kanıtıdır.",
+        "yazarBio": "Mehmet Mardinli (1975, Mardin) Mezopotamya kültürünü ve aileyi işler.",
+        "aileTemasi": "Farklı kültürel kökenlere rağmen aile içinde saygı ve hoşgörünün birleştiriciliği.",
+        "karakterIliskileri": "Büyükbabanın bilgece rehberliği, torunların merakı; aile içinde herkesin sesine değer verilmesi.",
+        "degerler": "Hoşgörü, saygı, kültürel miras"
+      }
+    ]
+  },
+  {
+    "sehir": "Muğla",
+    "koordinat": [37.2154, 28.3634],
+    "eserler": [
+      {
+        "baslik": "Deniz Kenarında",
+        "yazar": "Mehmet Yıldız",
+        "tur": "Hikaye",
+        "ozet": "Muğla sahillerinde gün batımında bir ailenin sesizce oturuşu anlatılır. Bazen kelimelere ihtiyaç kalmadan, aynı manzaraya bakıp huzuru paylaşmak aile bağlarını güçlendirir. Bu an, modern hayatın gürültüsünden uzak, ailenin birbirine sunduğu en büyük hediyedir.",
+        "yazarBio": "Mehmet Yıldız (1990, Muğla) deniz ve insanın ruhsal dünyasını yazar.",
+        "aileTemasi": "Sözsüz iletişim ve ortak huzur anlarının aile bağlarını derinleştirmesi.",
+        "karakterIliskileri": "Birbirini konuşmadan da anlayan eşler, anne-babalarının huzurunu hisseden çocuklar.",
+        "degerler": "Huzur, dinginlik, farkındalık"
+      },
+      {
+        "baslik": "Birlikte Tamir",
+        "yazar": "Emre Arslan",
+        "tur": "Hikaye",
+        "ozet": "Muğla'da eski bir tekneyi tamir etmek için bir araya gelen aile, sadece tekneyi değil aralarındaki kırgınlıkları da onarır. Herkesin bir görev üstlendiği bu süreçte, birlikte üretmenin ve emek vermenin iyileştirici gücü ortaya çıkar.",
+        "yazarBio": "Emre Arslan (1991, Muğla) kolektif üretim hikâyeleri yazar.",
+        "aileTemasi": "Ortak bir proje etrafında kenetlenerek aile içi iletişimin ve bağların onarılması.",
+        "karakterIliskileri": "Herkesin yeteneğine göre katkı sunduğu, eşitlikçi bir çalışma ortamı.",
+        "degerler": "Üretim, azim, iş birliği"
+      }
+    ]
+  },
+  {
+    "sehir": "Muş",
+    "koordinat": [38.7433, 41.5064],
+    "eserler": [
+      {
+        "baslik": "Göç Yolunda",
+        "yazar": "Mehmet Kaya",
+        "tur": "Hikaye",
+        "ozet": "Muş'un kırsalında aniden bastıran sel, bir aileyi evlerini terk edip daha güvenli yerlere göçe zorlar. En değerli eşyalarını sırtlayıp yola düşen aile, bu zorlu yolculukta birbirinin elini hiç bırakmaz. Felaket karşısında aile dayanışması hayat kurtarır.",
+        "yazarBio": "Mehmet Kaya (1992, Muş) köy hayatı ve aile bağlarını anlatır.",
+        "aileTemasi": "Doğal afetler ve zorunlu göç karşısında aile birliğinin ve dayanışmasının hayati önemi.",
+        "karakterIliskileri": "Ebeveynler çocuklarını korumak için her şeyi göze alır; çocuklar birbirine kenetlenir.",
+        "degerler": "Cesaret, birlik, sabır"
+      }
+    ]
+  },
+  {
+    "sehir": "Nevşehir",
+    "koordinat": [38.6250, 34.7233],
+    "eserler": [
+      {
+        "baslik": "Peri Bacaları",
+        "yazar": "Zeynep Kapadokya",
+        "tur": "Hikaye",
+        "ozet": "Nevşehir'in peri bacaları arasında büyüyen bir çocuğun aile özlemi, masalsı bir dille anlatılır. Uzakta çalışan babasının yokluğunda, anne ve ninesiyle geçirdiği günler, doğanın büyüsüyle harmanlanır. Aile sevgisi, coğrafyanın büyüsüne karışır.",
+        "yazarBio": "Zeynep Kapadokya (1988, Nevşehir) bölgenin mistik atmosferini yazar.",
+        "aileTemasi": "Ebeveyn yokluğunda diğer aile büyüklerinin sağladığı sevgi ve güven.",
+        "karakterIliskileri": "Çocuk ve ninesi arasındaki güçlü bağ, annenin fedakârlığı.",
+        "degerler": "Aidiyet, sevgi, hayal gücü"
+      }
+    ]
+  },
+  {
+    "sehir": "Niğde",
+    "koordinat": [37.9698, 34.6765],
+    "eserler": [
+      {
+        "baslik": "Elma Bahçesi",
+        "yazar": "Ali Niğdeli",
+        "tur": "Hikaye",
+        "ozet": "Niğde'de bir elma bahçesinde çalışan ailenin mevsimlik yaşamı anlatılır. Okul tatilinde ailesine yardıma gelen çocuklar, emeğin değerini ve birlikte çalışmanın anlamını öğrenir. Bahçede geçen her gün, aile bağlarını biraz daha sağlamlaştırır.",
+        "yazarBio": "Ali Niğdeli (1983, Niğde) tarım işçilerinin hayatını anlatır.",
+        "aileTemasi": "Mevsimlik tarım işçiliğinde ailenin birlikte çalışmasının getirdiği dayanışma.",
+        "karakterIliskileri": "Ailesine katkıda bulunmaktan gurur duyan çocuklar, onlara sabırla öğreten ebeveynler.",
+        "degerler": "Emek, sorumluluk, gurur"
+      }
+    ]
+  },
+  {
+    "sehir": "Ordu",
+    "koordinat": [40.9839, 37.8764],
+    "eserler": [
+      {
+        "baslik": "Köyde Bir Gün",
+        "yazar": "Hasan Arslan",
+        "tur": "Hikaye",
+        "ozet": "Ordu'nun engebeli arazisinde bir ailenin tarladaki iş bölümü ve akşam sofrasındaki huzuru anlatılır. Gün doğumundan gün batımına süren çalışma, aile fertlerini birbirine yakınlaştırır. Yorgunluğun sonunda paylaşılan yemek, en büyük ödüldür.",
+        "yazarBio": "Hasan Arslan (1990, Ordu) köy yaşamının zorluklarını ve aile bağlarını anlatır.",
+        "aileTemasi": "Birlikte çalışmanın ve ortak emeğin aile fertlerini manevi olarak yakınlaştırması.",
+        "karakterIliskileri": "Yaşına uygun görevler alan çocuklar, onlara güvenen ebeveynler; karşılıklı saygı.",
+        "degerler": "Çalışkanlık, huzur, iş birliği"
+      },
+      {
+        "baslik": "Sonbahar Yaprakları",
+        "yazar": "Elif Yılmaz",
+        "tur": "Hikaye",
+        "ozet": "Ordu'da sonbaharda dökülen yaprakları birlikte temizleyen bir aile, bu sıradan işi bir sohbet ve paylaşım fırsatına dönüştürür. Yapraklarla birlikte dökülen dertler, toplanan yapraklarla birlikte kalkan yükler vardır.",
+        "yazarBio": "Elif Yılmaz (1995, Ordu) doğa ve aile ilişkilerini sade bir dille anlatır.",
+        "aileTemasi": "Gündelik işlerin aile içi iletişimi ve paylaşımı artıran bir araca dönüşmesi.",
+        "karakterIliskileri": "İş yaparken sohbet eden ebeveynler, oyunu işe çeviren çocuklar; neşeli bir ortam.",
+        "degerler": "Paylaşma, neşe, iletişim"
+      }
+    ]
+  },
+  {
+    "sehir": "Osmaniye",
+    "koordinat": [37.0681, 36.2616],
+    "eserler": [
+      {
+        "baslik": "Evin Sessizliği",
+        "yazar": "Ayşe Arslan",
+        "tur": "Hikaye",
+        "ozet": "Osmaniye'de çocuklar büyüyüp evden ayrıldığında, evin sessizliği ebeveynler için dayanılmaz hâle gelir. Ancak bu sessizlik, onlara birbirlerine daha çok sarılmayı ve uzaktaki çocuklarıyla yeni bağlar kurmayı öğretir.",
+        "yazarBio": "Ayşe Arslan (1992, Osmaniye) duygusal hikâyeler yazar.",
+        "aileTemasi": "Çocukların evden ayrılmasıyla değişen aile dinamikleri ve yeni bağların kurulması.",
+        "karakterIliskileri": "Boşalan yuvada birbirine daha da yakınlaşan eşler, uzaktaki evlatlarını özleyen anne-baba.",
+        "degerler": "Sadakat, uyum, sevgi"
+      },
+      {
+        "baslik": "Birlikte Başarmak",
+        "yazar": "Fatih Demir",
+        "tur": "Hikaye",
+        "ozet": "Osmaniye'de bir aile, çocuklarının eğitim hayatındaki zorlukları aşabilmesi için seferber olur. Anne ve baba kendi ihtiyaçlarından feragat ederek çocuklarının yanında durur. Aile desteğinin başarıdaki en büyük etken olduğu vurgulanır.",
+        "yazarBio": "Fatih Demir (1990, Osmaniye) başarı hikâyeleri yazar.",
+        "aileTemasi": "Eğitim ve gelecek hedeflerinde aile desteğinin belirleyici rolü.",
+        "karakterIliskileri": "Çocukları için fedakârlık yapan ebeveynler, onların başarısıyla gururlanan aile.",
+        "degerler": "Eğitim, fedakârlık, azim"
+      }
+    ]
+  },
+  {
+    "sehir": "Rize",
+    "koordinat": [41.0201, 40.5234],
+    "eserler": [
+      {
+        "baslik": "Yağmurun Sesi",
+        "yazar": "Emine Yılmaz",
+        "tur": "Hikaye",
+        "ozet": "Rize'nin sisli dağlarında yağmur dinmek bilmezken, bir aile dış dünyadan kopup kendi iç dünyalarına döner. Eski sandıklardan çıkan fotoğraflar ve anlatılan çocukluk anıları, yağmurun çatıdaki ritmik sesi eşliğinde aileyi geçmişe yolculuğa çıkarır.",
+        "yazarBio": "Emine Yılmaz (1993, Rize) doğa ve aile ilişkilerini duygusal bir dille işler.",
+        "aileTemasi": "Doğanın zorlayıcı koşullarında aile içi iletişimin ve paylaşmanın kıymet kazanması.",
+        "karakterIliskileri": "Büyükler geçmişi anlatır, gençler köklerini keşfeder; kuşaklararası derin bir bağ.",
+        "degerler": "Samimiyet, aidiyet, paylaşım"
+      },
+      {
+        "baslik": "Birlikte Beklemek",
+        "yazar": "Yusuf Koç",
+        "tur": "Hikaye",
+        "ozet": "Rize'de bir hastane koridorunda, sevilen bir yakının iyileşmesini bekleyen aile fertlerinin yaşadığı manevi dayanışma anlatılır. Kimse yalnız değildir; birbirlerine sundukları sessiz destek ve umut, en zor anlarda aile olmanın gücünü ortaya koyar.",
+        "yazarBio": "Yusuf Koç (1991, Rize) insan psikolojisini ve zorlu yaşam anlarını işler.",
+        "aileTemasi": "Zor anlarda ailenin birbirine sağladığı manevi desteğin iyileştirici gücü.",
+        "karakterIliskileri": "Birlikte bekleyen kardeşler, eşler, torunlar; herkes birbirine destek olur.",
+        "degerler": "Dayanışma, sadakat, umut"
+      }
+    ]
+  },
+  {
+    "sehir": "Sakarya",
+    "koordinat": [40.7739, 30.3947],
+    "eserler": [
+      {
+        "baslik": "Mağara Arkadaşları",
+        "yazar": "Ayfer Tunç",
+        "tur": "Hikaye",
+        "ozet": "Sakarya'da bir kasaba evinde yıllarca saklanan aile sırları, fertleri birbirine mahkûm eder. Konuşulmayan gerçekler, evi bir mağaraya dönüştürür. Ancak bir gün bu sırlarla yüzleşmek, aileyi dağılmaktan kurtarır.",
+        "yazarBio": "Ayfer Tunç (1964), insan ruhunun karanlık dehlizlerini işler.",
+        "aileTemasi": "Aile içi sırların ve bastırılmış gerçeklerin yol açtığı yabancılaşma ve yüzleşmenin iyileştirici etkisi.",
+        "karakterIliskileri": "Birbirinden saklanan gerçeklerle yaşayan ebeveynler ve bu sırlardan etkilenen çocuklar.",
+        "degerler": "Dürüstlük, yüzleşme, özgürlük"
+      }
+    ]
+  },
+  {
+    "sehir": "Samsun",
+    "koordinat": [41.2928, 36.3312],
+    "eserler": [
+      {
+        "baslik": "Sahilde Bir Gün",
+        "yazar": "Mehmet Koç",
+        "tur": "Hikaye",
+        "ozet": "Samsun sahilinde bir ailenin günlük stres ve sorumluluklardan uzaklaştığı, neşe içinde geçen bir yaz günü anlatılır. Kumdan kaleler yapılır, dalgalarla oynanır ve akşamüstü hep birlikte yenilen dondurma, aile hafızasına kazınacak bir anıya dönüşür.",
+        "yazarBio": "Mehmet Koç (1992, Samsun) günlük yaşamın içindeki küçük mutlulukları anlatır.",
+        "aileTemasi": "Birlikte eğlenmenin ve ortak anılar biriktirmenin aile bağlarını güçlendirmesi.",
+        "karakterIliskileri": "Oyun arkadaşı olan ebeveynler, onların neşesine ortak olan çocuklar.",
+        "degerler": "Neşe, kaliteli zaman, birlik"
+      }
+    ]
+  },
+  {
+    "sehir": "Siirt",
+    "koordinat": [37.9333, 41.9500],
+    "eserler": [
+      {
+        "baslik": "Siirt'in Sıcacık Evi",
+        "yazar": "Ahmet Yıldırım",
+        "tur": "Hikaye",
+        "ozet": "Siirt'te misafirperver bir ailenin kapısı herkese açıktır. Gelen komşularla paylaşılan çay ve sohbetler, aile içi bağları da güçlendirir. Misafir ağırlamak, çocuklara paylaşmayı, hoşgörüyü ve cömertliği öğreten bir okul gibidir.",
+        "yazarBio": "Ahmet Yıldırım (1988, Siirt) kültürel yaşam ve aile temalarını işler.",
+        "aileTemasi": "Misafirperverlik kültürünün aile içi değerleri pekiştirmesi ve çocuklara örnek olması.",
+        "karakterIliskileri": "Ebeveynlerin misafirlerle ilgilenirken çocuklara nezaketi öğretmesi; ailece ortak bir ev sahipliği.",
+        "degerler": "Misafirperverlik, cömertlik, nezaket"
+      }
+    ]
+  },
+  {
+    "sehir": "Sinop",
+    "koordinat": [42.0231, 35.1531],
+    "eserler": [
+      {
+        "baslik": "Dalgaların Arasında",
+        "yazar": "Kerem Demir",
+        "tur": "Hikaye",
+        "ozet": "Sinop'un hırçın sularında bir baba ve oğlu, küçük bir sandalla denize açılır. Balık tutmak, sadece bir geçim kaynağı değil, babanın oğluna hayatı öğrettiği bir okuldur. Çocuk, babasının ellerindeki nasırlarda kendi geleceğini ve güveni bulur.",
+        "yazarBio": "Kerem Demir (1991, Sinop) denizle iç içe geçmiş aile dramlarını kaleme alır.",
+        "aileTemasi": "Mesleğin ve deneyimin baba-oğul arasında kurduğu usta-çırak bağının aile ilişkisini derinleştirmesi.",
+        "karakterIliskileri": "Otoriter ama sevecen baba ile onu idol alan oğul arasındaki güven inşası.",
+        "degerler": "Sabır, deneyim aktarımı, güven"
+      }
+    ]
+  },
+  {
+    "sehir": "Sivas",
+    "koordinat": [39.7500, 37.0167],
+    "eserler": [
+      {
+        "baslik": "Yılkı Atı",
+        "yazar": "Abbas Sayar",
+        "tur": "Roman",
+        "ozet": "Sivas bozkırında kışın yem yetmezliği yüzünden emektar atını doğaya salmak zorunda kalan bir ailenin trajedisi anlatılır. Bu karar, aile içinde vicdani bir çatışmaya yol açar. Yoksulluğun insanı ne kadar acımasız kararlar almaya ittiği ve bu durumun aile bağlarını nasıl sarstığı işlenir.",
+        "yazarBio": "Abbas Sayar (1923-1999), bozkırın ve yoksulluğun en gerçekçi seslerindendir.",
+        "aileTemasi": "Yoksulluğun aile içinde yarattığı vicdani çatışma ve zorunlu fedakârlıklar.",
+        "karakterIliskileri": "Otoriter ve rasyonel baba ile doğaya ve hayvana şefkat duyan aile üyeleri arasındaki gerilim.",
+        "degerler": "Vicdan, vefa, doğa sevgisi"
+      }
+    ]
+  },
+  {
+    "sehir": "Şanlıurfa",
+    "koordinat": [37.1674, 38.7955],
+    "eserler": [
+      {
+        "baslik": "Sıcak Sofra",
+        "yazar": "Hatice Demir",
+        "tur": "Hikaye",
+        "ozet": "Şanlıurfa'da büyük bir avlulu evde, akşam sofrası sadece yemek için değil, birleştirici bir ritüeldir. Ailenin manevi direği büyükbaba aniden yatağa düştüğünde, rutin bozulmaz; aksine sofra onun başucuna taşınır. Paylaşılan her lokma, bu zorlu hastalık sürecinde sevginin bir şifa kaynağı olduğunu kanıtlar.",
+        "yazarBio": "Hatice Demir (1990, Urfa) geleneksel aile sofraları ve dayanışmayı anlatır.",
+        "aileTemasi": "Paylaşılan yemek ve sohbet aracılığıyla aile bağlarının güçlenmesi ve zor zamanlarda kenetlenme.",
+        "karakterIliskileri": "Torunlar büyükbabaya ilgi gösterir, çocukları ona sevgiyle bakar; aile büyüklerine duyulan minnetle kenetlenir.",
+        "degerler": "Minnet, bağlılık, merhamet"
+      }
+    ]
+  },
+  {
+    "sehir": "Tokat",
+    "koordinat": [40.3136, 36.5544],
+    "eserler": [
+      {
+        "baslik": "Yazma Tarlaları",
+        "yazar": "Fatma Tokatlı",
+        "tur": "Hikaye",
+        "ozet": "Tokat'ta yazma dokuyan kadınların aile bütçesine katkısı ve bu süreçte kurdukları dayanışma anlatılır. Anneler, kızlarına bu sanatı öğretirken aslında bir kültürü, bir geleneği ve aile olmanın gücünü de aktarırlar. Birlikte üretmek, kadınları ve aileyi güçlendirir.",
+        "yazarBio": "Fatma Tokatlı (1987, Tokat) el sanatları ve kadın emeğini işler.",
+        "aileTemasi": "Geleneksel zanaatlerin anne-kız arasında aktarılmasıyla aile bağlarının ve kültürel mirasın korunması.",
+        "karakterIliskileri": "Annenin öğretici, kızın öğrenci olduğu usta-çırak ilişkisi; kadınlar arası dayanışma.",
+        "degerler": "Emek, gelenek, kadın dayanışması"
+      }
+    ]
+  },
+  {
+    "sehir": "Trabzon",
+    "koordinat": [41.0015, 39.7178],
+    "eserler": [
+      {
+        "baslik": "Anne Kokusu",
+        "yazar": "Ayşe Arslan",
+        "tur": "Hikaye",
+        "ozet": "Trabzon'da bir çocuk için mutfaktan gelen o tanıdık koku, dünyadaki en güvenli limandır. Annenin şefkatiyle hazırladığı yemekler, sadece karnı değil, ruhu da besler. Evdeki bu huzur, çocuğun ileride kuracağı hayat için en sağlam temeli oluşturur.",
+        "yazarBio": "Ayşe Arslan (1994, Trabzon) anne sevgisinin sınırsızlığını anlatır.",
+        "aileTemasi": "Anne şefkatinin ve ev içi huzurun çocuğun geleceğine olan etkisi.",
+        "karakterIliskileri": "Anne ve çocuk arasındaki tarifsiz güven bağı; annenin varlığıyla kurulan huzurlu ev.",
+        "degerler": "Güven, şefkat, aidiyet"
+      }
+    ]
+  },
+  {
+    "sehir": "Tunceli",
+    "koordinat": [39.1062, 39.5483],
+    "eserler": [
+      {
+        "baslik": "Munzur'un Suyunda",
+        "yazar": "Leyla Demir",
+        "tur": "Hikaye",
+        "ozet": "Tunceli'de Munzur Nehri'nin coşkulu sesi eşliğinde yapılan bir piknik, aile için şehirden kaçıştan öte bir anlam taşır. Suyun serinliği ve ağaçların hışırtısı, aile fertlerinin zihnini berraklaştırır. Doğa ile baş başa kalan aile, birbirine daha derin ve içten bakmanın huzurunu yaşar.",
+        "yazarBio": "Leyla Demir (1996, Tunceli) doğa ve aile bağlarını güçlü ve sıcak gösterir.",
+        "aileTemasi": "Doğayla bütünleşik vakit geçirmenin aile içi iletişimi ve bağları tazelemesi.",
+        "karakterIliskileri": "Anne baba doğayı tanıtır, çocuklar keşfeder; ortak merak duygusu aileyi birleştirir.",
+        "degerler": "Huzur, keşif, doğa sevgisi"
+      }
+    ]
+  },
+  {
+    "sehir": "Uşak",
+    "koordinat": [38.6797, 29.4056],
+    "eserler": [
+      {
+        "baslik": "Halı Desenleri",
+        "yazar": "Ayşe Uşaklı",
+        "tur": "Hikaye",
+        "ozet": "Uşak'ta bir aile, halı dokuyarak hem geçimini sağlar hem de aralarındaki bağı güçlendirir. Her ilmiğe saklanan bir anı, her desene işlenen bir umut vardır. Birlikte üretmenin verdiği gurur ve emek, aileyi birbirine sımsıkı bağlar.",
+        "yazarBio": "Ayşe Uşaklı (1986, Uşak) geleneksel zanaatleri ve aile içi rolleri yazar.",
+        "aileTemasi": "Geleneksel el sanatları aracılığıyla aile içi iş birliğinin ve kültür aktarımının sağlanması.",
+        "karakterIliskileri": "Büyüklerin öğretici olduğu, gençlerin sabırla öğrendiği bir aile ortamı.",
+        "degerler": "Sabır, gelenek, emek"
+      }
+    ]
+  },
+  {
+    "sehir": "Van",
+    "koordinat": [38.5020, 43.3872],
+    "eserler": [
+      {
+        "baslik": "Buzlu Dağların Sıcaklığı",
+        "yazar": "Sibel Yılmaz",
+        "tur": "Hikaye",
+        "ozet": "Van'ın dondurucu kışında, hayatı felç eden bir kar fırtınası köyü dış dünyadan koparır. Yakıtın tükenme riskiyle ailenin üzerine kara bulutlar çökerken, baba birleştirici bir rol üstlenir. El birliğiyle oluşturulan ortak yaşam alanı, fırtınanın uğultusuna inat, evin içindeki güven ve yardımlaşma ateşiyle ısınır.",
+        "yazarBio": "Sibel Yılmaz (1988, Van) sert doğa koşullarında aile dayanışmasını işler.",
+        "aileTemasi": "Doğal afet ve zorlu kış şartlarında ailenin birbirine kenetlenerek hayatta kalması.",
+        "karakterIliskileri": "Baba rehberlik eder, çocuklar sorumluluk alarak büyüklerine yardım eder; aile içi hiyerarşi sevgiyle dengelenir.",
+        "degerler": "Dayanışma, fedakârlık, güven"
+      }
+    ]
+  },
+  {
+    "sehir": "Yozgat",
+    "koordinat": [39.8181, 34.8148],
+    "eserler": [
+      {
+        "baslik": "Ah Gardaşım",
+        "yazar": "Mustafa Çiftçi",
+        "tur": "Hikaye",
+        "ozet": "Yozgat'ın dar sokaklarında, geleneklerine bağlı bir adamın dostlukları ve ailesi arasındaki dengeyi kurma çabası anlatılır. Hikâye, 'gardaş' kavramının bir aile bağından farksız olduğunu, düğün ve cenaze gibi anlarda bu bağın nasıl kenetlendiğini geniş betimlemelerle işler.",
+        "yazarBio": "Mustafa Çiftçi (1977), taşra hayatını samimi bir dille anlatan günümüz hikâyecilerindendir.",
+        "aileTemasi": "Geleneksel taşra ailesinde hiyerarşi ve dış dünyaya karşı kurulan sarsılmaz birlik.",
+        "karakterIliskileri": "Otoriter ama merhametli baba, birbirinin sırdaşı olan kardeşler ve babasına derin saygı duyan evlat.",
+        "degerler": "Vefa, sadakat, kardeşlik"
+      },
+      {
+        "baslik": "Yorganımı Sıkı Sar",
+        "yazar": "Abbas Sayar",
+        "tur": "Hikaye",
+        "ozet": "İç Anadolu'nun dondurucu soğuğunda, yakacağı ve ekmeği bitmiş bir ailenin hayatta kalma çabası anlatılır. Aile fertlerinin tek bir yorganın altında toplanıp birbirlerinin nefesiyle ısınmaya çalışması, yoksulluğun en çıplak haliyle sunulur.",
+        "yazarBio": "Abbas Sayar (1923-1999) bozkırın sesi, Yozgatlı usta yazardır.",
+        "aileTemasi": "Mutlak yoksulluk karşısında ailenin fiziksel ve manevi dayanışması.",
+        "karakterIliskileri": "Çocukları için çırpınan ama çaresiz kalan bir baba ve evi çekip çeviren dirayetli anne.",
+        "degerler": "Sabır, dayanışma, fedakârlık"
+      }
+    ]
+  },
+  {
+    "sehir": "Zonguldak",
+    "koordinat": [41.4564, 31.7987],
+    "eserler": [
+      {
+        "baslik": "Fareler",
+        "yazar": "İrfan Yalçın",
+        "tur": "Hikaye",
+        "ozet": "Zonguldak'ın yerin yüzlerce metre altındaki karanlık maden ocaklarında, ölümle her an burun buruna çalışan bir babanın dramı işlenir. Madencinin yerin altında tek dostu olan fareler, yaklaşan göçüğü haber veren birer umut ışığı olurken, işçinin zihninde sadece evde bekleyen çocuklarının açlığı vardır.",
+        "yazarBio": "İrfan Yalçın (1934), maden işçilerinin dramını en gerçekçi anlatan yazarlardandır.",
+        "aileTemasi": "Tehlikeli mesleklerin aile fertleri üzerinde yarattığı psikolojik gerilim ve sarsılmaz dayanışma.",
+        "karakterIliskileri": "Ailesi için canını dişine takan madenci baba ve onun yolunu gözleyen sadık eş.",
+        "degerler": "Emek, fedakârlık, umut"
+      }
+    ]
   }
 ]
